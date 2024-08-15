@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>davis.com</groupId>
+  <artifactId>Library-Management-System-JPA-Hibernate</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+   
+  <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+	<dependency>
+	    <groupId>com.microsoft.sqlserver</groupId>
+	    <artifactId>mssql-jdbc</artifactId>
+	    <version>7.2.2.jre8</version>
+	</dependency>
+  
+  
+  <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
+<dependency>
+    <groupId>com.jfoenix</groupId>
+    <artifactId>jfoenix</artifactId>
+    <version>8.0.10</version>
+</dependency>
+
+  
+  
+  
+  </dependencies>
+  
+  
+</project>

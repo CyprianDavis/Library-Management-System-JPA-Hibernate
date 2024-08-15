@@ -1,0 +1,92 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.wrong-credentials
+{
+    -jfx-unfocus-color: #ef5350;
+    -jfx-focus-color: #ef5350;
+}
+.invalid-input{
+	-jfx-unfocus-color: red;
+    -jfx-focus-color:  red;
+	
+}
+.input-login {
+	-jfx-prompt-text-fill:#4059a9;
+	-jfx-focus-color:#4059a9;
+	-jfx-unfocus-color:#4059a9;
+	}
+.toolbar-button:hover
+{
+    -fx-background-color:  #00008B;
+}
+.button{
+	-fx-background-color:   transparent;
+	-fx-background-radius: 20px;
+}
+
+.addBook-button:hover, .addBook-button:focused{
+    -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
+.meun-button .arrow{
+	-fx-background-color:transparent;
+}
+.menu-button{
+	-fx-background-color:   transparent;
+	-fx-background-radius: 20px;
+}
+.menu-button:hover
+{
+    -fx-background-color:  #00008B;
+}
+.menu-button .context-menu .arrow{
+	-fx-background-color:white;
+}
+.context-menu .menu-item .right-container{
+	-fx-padding:0.0 -200 0.0 0.0 ;
+}
+
+.menu-button .context-menu:showing{
+	 -fx-background-color:   #00BFFF;
+}
+.menu-button .context-menu:hidden {
+	-fx-background-color: transparent;
+}
+.menu-button .context-menu{
+	-fx-background-color:  #00008B;
+	 -fx-pref-width:200px;
+	-fx-font-size:14px;
+	-fx-cursor:hand ;
+}
+.menu-button .menu-item .label{
+	-fx-text-fill:white;
+	-fx-font-weight:bold;
+	-fx-cursor:hand ;
+}
+.menu-button .context-menu:hover{
+	-fx-font-weight:bold;
+	-fx-cursor:hand ;
+}
+.table-view .column-header-background .label{
+	-fx-background-color: #3F00FF;
+    
+    -fx-text-fill: #ffffff;
+    
+}
+.table-view{
+	-fx-background-color:#f1eee5;
+	
+	-fx-font-size:14px;
+	-fx-border-radius:50px;
+
+	
+	
+}
+.container{
+	-fx-background-image:url("\resources\\LOGO.png");
+	-fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;  
+}
+
+

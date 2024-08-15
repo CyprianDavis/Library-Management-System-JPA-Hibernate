@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="683.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.addBook.AddBookDashBoardController">
+   <children>
+      <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="29.0" prefWidth="718.0" style="-fx-background-color: #3F00FF;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label layoutX="274.0" layoutY="7.0" prefHeight="10.0" prefWidth="149.0" text="ADD BOOK" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/LOGO.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="101.0" layoutY="49.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="515.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <VBox layoutX="5.0" layoutY="11.0" prefHeight="515.0" prefWidth="429.0" spacing="25.0">
+               <children>
+                  <JFXTextField fx:id="bkTitle" labelFloat="true" prefHeight="25.0" prefWidth="331.0" promptText="Book Title">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="bkAuthor" labelFloat="true" prefHeight="25.0" prefWidth="331.0" promptText="Author">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="coAuthor" labelFloat="true" prefHeight="25.0" prefWidth="331.0" promptText="Co Author">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="ISBN" labelFloat="true" prefHeight="25.0" prefWidth="331.0" promptText="ISBN">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="publicationYr" labelFloat="true" layoutX="25.0" layoutY="217.0" prefHeight="25.0" prefWidth="331.0" promptText="Publication Year">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="edition" labelFloat="true" layoutX="25.0" layoutY="281.0" prefHeight="25.0" prefWidth="331.0" promptText="Edition">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="language" labelFloat="true" layoutX="25.0" layoutY="345.0" prefHeight="25.0" prefWidth="331.0" promptText="Language">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="publisher" labelFloat="true" layoutX="25.0" layoutY="409.0" prefHeight="25.0" prefWidth="331.0" promptText="Publisher">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="category" labelFloat="true" layoutX="25.0" layoutY="403.0" prefHeight="25.0" prefWidth="331.0" promptText="Category">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="bkDescription" labelFloat="true" layoutX="25.0" layoutY="457.0" prefHeight="25.0" prefWidth="331.0" promptText="Book Description">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+            <HBox layoutX="128.0" layoutY="552.0" prefHeight="56.0" prefWidth="264.0" spacing="15.0" stylesheets="@../../application/application.css">
+               <children>
+                  <JFXButton fx:id="saveBtn" defaultButton="true" onAction="#saveBook" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #3457D5; -fx-background-radius: 10;" text="SAVE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </JFXButton>
+                  <JFXButton fx:id="clearBtn" layoutX="10.0" layoutY="10.0" onAction="#clear" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #3457D5; -fx-background-radius: 10;" text="CLEAR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
