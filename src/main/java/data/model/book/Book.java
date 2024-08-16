@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import database.catalog.Catalog;
 
 /**
@@ -13,12 +17,15 @@ import database.catalog.Catalog;
  * @author CYPRIAN DAVIS
  *
  */
-
+@Entity
+@Table(name="Catalog")
 public class Book {
 	private static int auto_bkId;	//Auto book id  number
 	private String title; 		//Books title
 	private String author; 		//Author for the book
+	
 	private String coAuthor; 	//co author of the book
+	@Id
 	private String bookId;  	//unique identify for the book
 	private String ISBN;		//International standard Book Number(it used as a unique numerical identifier assigned to each book edition)
 	private int publicationYear; //year i n which the book was published
@@ -42,10 +49,10 @@ public class Book {
 		this.author = author;
 		this.title = title;
 		this.status = status;
-		auto_bkId = Catalog.getLastBookID();
+		
 		
 	int year = Year.now().getValue();
-
+	auto_bkId = Catalog.getNextTableGeneratorValue();
 	if(auto_bkId<=999) {
 		String id = "BK000"+auto_bkId+""+year;
 		this.bookId = id;	
@@ -54,8 +61,7 @@ public class Book {
 		String id = "BKOO"+auto_bkId+""+year;
 		this.bookId = id;
 	}
-	//Save id in the database for future using
-	Catalog.saveLastId(auto_bkId);
+	
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	String dateT = dtf.format(now);
