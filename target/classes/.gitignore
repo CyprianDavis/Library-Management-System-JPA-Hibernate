@@ -1,4 +1,8 @@
-/META-INF/
+/application/
+/data/
 /database/
-/ui/
 /enitiyFactory/
+/ui/
+/utility/
+/validateInput/
+/META-INF/
