@@ -36,7 +36,7 @@ public class Book {
 	
 	
 	private String dateOfEntry;	// date when  the book was entered in the system
-	private Calendar dueDate;		//due date for returning the book
+	
 	private String  category;		//category of the book
 	private String description;		// Book Description
 	//Constructors
@@ -116,9 +116,7 @@ public class Book {
 	public void setEntryDate(String date) {
 		this.dateOfEntry = date;
 	}
-	public void setDueDate(Calendar date) {
-		this.dueDate = date;
-	}
+	
 	public void setCategory(String category) {
 		this.category = category;
 	}
@@ -171,27 +169,7 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
-	/**
-	 * computes the due date for the book
-	 * @param duration
-	 * @return
-	 */
-	private Calendar computeDueDate(int duration) {
-		Calendar date = new GregorianCalendar();
-		date.setTimeInMillis(System.currentTimeMillis());
-		date.add(Calendar.DATE, duration);
-		return date;
-	}
-	/**
-	 * 
-	 * @returns the due date for the book which is 2 weeks from date of issuing the book
-	 */
-	@SuppressWarnings("deprecation")
-	public String getDueDate() {
-		this.dueDate = computeDueDate(14);
-		return dueDate.getTime().toLocaleString();
-		
-	}
+	
 	public String toString() {
 		return "Title "+this.title+"\n"
 				+ "Author "+this.author+"\n"
