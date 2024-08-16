@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import data.model.book.Book;
 import data.model.member.hold.Hold;
 import data.model.member.transaction.Transaction;
@@ -16,9 +20,11 @@ import database.memberOperations.MembersOperations;
  * @author CYPRIAN DAVIS
  *
  */
-
+@Entity
 public class Member  {
 	private static int auto_id;		//To store auto id from the databse
+	@Id
+	@Column(name ="memberNo")
 	private String memberId;	//Member identification number
 	private String surName;		//surName
 	private String givenName;	//Mid Name
@@ -39,7 +45,7 @@ public class Member  {
 		this.givenName = gName;
 		this.otherName = oName;
 		int year = Year.now().getValue();
-		auto_id = MembersOperations.getLastMemberId();
+		auto_id = MembersOperations.getNextTableGeneratorValue();
 		if(auto_id<=9) {
 			String id = "LM0000"+auto_id+""+year;
 			this.memberId = id;	
@@ -59,8 +65,6 @@ public class Member  {
 			this.memberId = id;
 		}
 		
-		//Save id in the database for future using
-		MembersOperations.saveLastId(auto_id);
 		//Get the system date and Time
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
