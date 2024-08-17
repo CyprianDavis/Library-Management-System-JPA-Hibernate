@@ -62,11 +62,13 @@ public class Catalog {
 	 * @param book
 	 * @return
 	 */
-	public static boolean insertBook(Book book) {
-		boolean value = true;
+	public static Book insertBook(Book book) {
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(book);
+		transaction.commit();
+		return book;
 		
-		
-		return value;
 	}
 	/** 
 	 * 
@@ -84,9 +86,7 @@ public class Catalog {
 	 * @returns Book or null
 	 */
 	public static Book searchBook(String bookId) {
-		Book book = null;
-		
-		
+		Book book = entityManager.find(Book.class, bookId);
 		return book;
 	}
 	/**
@@ -95,8 +95,10 @@ public class Catalog {
 	 * @returns true if the book  exists in the database or false otherwise
 	 */
 	public static boolean searhBook(String id) {
+		Book book = entityManager.find(Book.class, id);
+		if(book!=null)
+			return true;
 
-       
         return false;
 	}
 	/**
