@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import data.model.book.Book;
 import data.model.member.Member;
+import database.holdProcesses.HoldProcesses;
 
 /**
  * 
@@ -37,7 +38,7 @@ public class Hold {
 		date = holdDate.toString();
 		//Auto id generation
 		int year = Year.now().getValue();
-		
+		auto_id = HoldProcesses.getNextTableGeneratorValue();
 		if(auto_id<=9) {
 			String id = "HBK0000"+auto_id+""+year;
 			this.holdId = id;	
