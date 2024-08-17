@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import database.catalog.Catalog;
@@ -17,6 +19,15 @@ import database.catalog.Catalog;
  */
 @Entity
 @Table(name="Catalog")
+@NamedQueries({
+	@NamedQuery(name ="Book.Catalog",query="SELECT b FROM Book b"),
+	@NamedQuery(name="Book.checkISBN",query="SELECT b FROM Book b WHERE b.ISBN=:isbn"),
+	@NamedQuery(name="Book.searchBook",query="SELECT b FROM Book b WHERE b.bookId=:search OR b.ISBN=:search OR b.title=:search"),
+	@NamedQuery(name="Book.isCheckedOut",query="SELECT b FROM Book b WHERE b.status=issued")
+}
+		
+		)
+
 public class Book {
 	private static int auto_bkId;	//Auto book id  number
 	private String title; 		//Books title

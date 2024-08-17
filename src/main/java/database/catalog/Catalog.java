@@ -1,6 +1,7 @@
 package database.catalog;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.book.Book;
@@ -68,7 +69,6 @@ public class Catalog {
 		entityManager.persist(book);
 		transaction.commit();
 		return book;
-		
 	}
 	/** 
 	 * 
@@ -85,32 +85,27 @@ public class Catalog {
 	 * @param bookId
 	 * @returns Book or null
 	 */
-	public static Book searchBook(String bookId) {
+	public static Book findBook(String bookId) {
 		Book book = entityManager.find(Book.class, bookId);
 		return book;
 	}
-	/**
-	 * 
-	 * @param id or ISBN
-	 * @returns true if the book  exists in the database or false otherwise
-	 */
-	public static boolean searhBook(String id) {
-		Book book = entityManager.find(Book.class, id);
-		if(book!=null)
-			return true;
-
-        return false;
-	}
+	
 	/**
 	 * Removes book from the database catalog
 	 * @param bookId
 	 * @returns true if the book is removable
 	 */
 	public static boolean removeBook(String bookId) {
-		boolean condition = true;
+		Book book = entityManager.find(Book.class, bookId);
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		if(book!=null) {
+			entityManager.remove(book);
+			transaction.commit();
+			return true;
+		}
+		return false;
 		
-			
-		return condition;
 		}
 	/**
 	 * 
@@ -142,31 +137,26 @@ public class Catalog {
 		
 		return catalog;
 	}
-	/**
-	 * 
-	 * @param searchs book based on book id or ISNB
-	 * @returns a Book 
-	 */
-	public static Book getBook(String search) {
-		Book book = new Book();
-		
-			
-		
-		return book;
-	}
+	
 	
 	/**
 	 * 
 	 * @returns the total number of books the library owns
 	 */
 	public static int totalNumberOfBooks() {
-		int count=0;
+		Integer count=0;
+		String numOfBks="SELECT COUNT(b)FROM Book b";
+		try {
+			count = 0;
+		
+		 count =(Integer) entityManager.createQuery(numOfBks).getFirstResult();
+		}catch(NoResultException e){
+			return 0;
+		}
 		return count;
 		
 	}
 		
-		
-	
 	/**
 	 * 
 	 * @param status
