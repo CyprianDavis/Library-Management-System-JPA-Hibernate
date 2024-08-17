@@ -16,13 +16,13 @@ import javafx.collections.ObservableList;
 
 public class Catalog {
 	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
-	
+	static EntityTransaction transaction = null;
 	/**
 	 * 
 	 * @returns the next id number from the id generation table for the next book
 	 */
 	 public static int getNextTableGeneratorValue() {
-		 EntityTransaction transaction = null;
+		 
 		 int nextValue =0;
 		 try {
 			transaction = entityManager.getTransaction();
@@ -64,6 +64,7 @@ public class Catalog {
 	 */
 	public static boolean insertBook(Book book) {
 		boolean value = true;
+		
 		
 		return value;
 	}
