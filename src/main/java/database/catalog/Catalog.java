@@ -136,7 +136,7 @@ public class Catalog {
 	 */
 	public static ObservableList<Book> getCatalogBooks(){
 		ObservableList<Book> catalog = FXCollections.observableArrayList(); //List of books from the database
-		
+		catalog.addAll(entityManager.createNamedQuery("Book.Catalog", Book.class).getResultList());
 		return catalog;
 	}
 	/**
@@ -146,9 +146,7 @@ public class Catalog {
 	 */
 	public static ObservableList<Book> getBooks(String search){
 		ObservableList<Book> catalog = FXCollections.observableArrayList(); //List of books from the database
-		
-			
-		
+		catalog.addAll(entityManager.createNamedQuery("Book.searchBook", Book.class).setParameter("search", search).getResultList());
 		return catalog;
 	}
 	
