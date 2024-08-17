@@ -76,9 +76,16 @@ public class Catalog {
 	 * @returns return if the ISBN number exists
 	 */
 	public static boolean checkISBN(String isbn) {
-		
-	        return false;
+		try {
+			Book book= entityManager.createNamedQuery("Book.checkISBN", Book.class).getSingleResult();
+			if (book!=null) 
+				return true;
+			
+		}catch(NoResultException e) {
+			return false;
 		}
+		return false;  
+	}
 	
 	/**
 	 * Search and returns the book from catalog if it exists 
