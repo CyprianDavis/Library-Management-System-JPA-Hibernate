@@ -119,9 +119,16 @@ public class Catalog {
 	 * @param bookId
 	 * @returns true if the book is checked out or false otherwise
 	 */
-	public static boolean isBookCheckout(String bookId) {
-		
+	public static boolean isBookCheckedout(String bookId) {
+		try {
+			Book book = entityManager.createNamedQuery("Book.isCheckedOut", Book.class).setParameter("id", bookId).getSingleResult();
+			if(book!=null)
+				return true;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+		}
 		return false;
+		
 	}
 	/**
 	 * 
