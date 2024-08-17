@@ -14,8 +14,8 @@ import data.model.member.Member;
 public class IssueBook {
 	private Book issuedBk;
 	private Member member;
-	private Calendar due_Date;		//due date for returning the book
-	private String dueDate;
+	private Calendar dueDate;		//due date for returning the book
+	private String due_Date;
 	private String DateOfReturn;
 	
 	public IssueBook(Book bk,Member member) {
@@ -32,7 +32,7 @@ public class IssueBook {
 		this.member = member;
 	}
 	public void setDueDate(String date) {
-		this.dueDate =date;
+		this.due_Date = date;
 	}
 	public void setDateOfReturn(String DateOfReturn) {
 		this.DateOfReturn = DateOfReturn;
@@ -43,6 +43,13 @@ public class IssueBook {
 	public Member getMember() {
 		return member;	
 	}
+	public String getDateOfReturn() {
+		return DateOfReturn;
+	}
+	public String getDue_Date() {
+		return this.due_Date;
+		
+	}
 	
 	/**
 	 * computes the due date for the book
@@ -50,12 +57,10 @@ public class IssueBook {
 	 * @return
 	 */
 	private Calendar computeDueDate(int duration) {
-		
 		Calendar date = new GregorianCalendar();
 		date.setTimeInMillis(System.currentTimeMillis());
 		date.add(Calendar.DATE, duration);
-		
-		return this.due_Date=date;
+		return this.dueDate = date;
 	}
 	/**
 	 * 
@@ -64,6 +69,7 @@ public class IssueBook {
 	@SuppressWarnings("deprecation")
 	public String getDueDate() {
 		this.dueDate = computeDueDate(14);
+		this.due_Date = dueDate.toString();
 		return dueDate.getTime().toLocaleString();
 		
 	}

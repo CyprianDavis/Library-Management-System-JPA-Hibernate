@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import data.model.book.Book;
 import data.model.member.hold.Hold;
@@ -36,7 +37,9 @@ public class Member  {
 	private String gender;		//Member's Gender
 	
 	private LinkedList<Book>borrowedBooks;	//Stores books being borrowed by the memeber temporary
+	@OneToMany
 	private LinkedList<Hold>booksOnHold;	//stores the books being put on hold by the member temporary
+	@OneToMany
 	private LinkedList<Transaction>tranctions; //Stores member's current transtions temporary
 	
 	//Constructors
