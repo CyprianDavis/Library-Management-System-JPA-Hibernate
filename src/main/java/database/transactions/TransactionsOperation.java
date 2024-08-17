@@ -39,7 +39,7 @@ public class TransactionsOperation {
 		        updateQuery.setParameter("nextValue", nextValue);
 		        int rowsUpdated = updateQuery.executeUpdate();
 		        if(rowsUpdated ==0) {
-		        	throw new RuntimeException("No rows updated. Check if the 'emp_ID' record exists.");
+		        	throw new RuntimeException("No rows updated. Check if the 'TransactionId' record exists.");
 		        }
 		        //commit transaction
 		        transaction.commit();

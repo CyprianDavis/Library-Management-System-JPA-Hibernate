@@ -3,8 +3,6 @@ package data.model.book;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
