@@ -160,9 +160,7 @@ public class Catalog {
 	public static int totalNumberOfBooks() {
 		Integer count=0;
 		String numOfBks="SELECT COUNT(b)FROM Book b";
-		try {
-			count = 0;
-		
+		try {		
 		 count =(Integer) entityManager.createQuery(numOfBks).getFirstResult();
 		}catch(NoResultException e){
 			return 0;
@@ -177,8 +175,13 @@ public class Catalog {
 	 * @returns number of books based on their status
 	 */
 	public static int getBooksByStatus(String status) {
-		int count =0;
-		
+		Integer count =0;
+		try {
+			count =(Integer) entityManager.createNamedQuery("Book.numberOfBooks", Integer.class).setParameter("status", status).getSingleResult();
+			
+		}catch(NoResultException e) {
+			return 0;
+		}
 		return count;
 		
 	}
