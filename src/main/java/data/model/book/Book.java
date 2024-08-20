@@ -3,13 +3,16 @@ package data.model.book;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import data.model.member.transaction.Transaction;
 import database.catalog.Catalog;
 
 /**
@@ -34,7 +37,6 @@ public class Book {
 	private static int auto_bkId;	//Auto book id  number
 	private String title; 		//Books title
 	private String author; 		//Author for the book
-	
 	private String coAuthor; 	//co author of the book
 	@Id
 	private String bookId;  	//unique identify for the book
@@ -44,12 +46,12 @@ public class Book {
 	private String edition; 	//book edition
 	private String language;
 	private String status; //status of the book in the library eg available or issued
-	
-	
 	private String dateOfEntry;	// date when  the book was entered in the system
-	
 	private String  category;		//category of the book
 	private String description;		// Book Description
+	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
+	private Collection<Transaction>transactions;
+
 	//Constructors
 	/**
 	 * 

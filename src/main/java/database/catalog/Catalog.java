@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
  */
 
 public class Catalog {
-	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
+	 static EntityManager entityManager = EntityFactoryGen.getEntityManager();
 	static EntityTransaction transaction = null;
 	/**
 	 * 
@@ -144,7 +144,7 @@ public class Catalog {
 	 * @param search 
 	 * @returns books from data using text search 
 	 */
-	public static ObservableList<Book> getBooks(String search){
+	public static ObservableList<Book> searchBooks(String search){
 		ObservableList<Book> catalog = FXCollections.observableArrayList(); //List of books from the database
 		catalog.addAll(entityManager.createNamedQuery("Book.searchBook", Book.class).setParameter("search", search).getResultList());
 		return catalog;
@@ -156,15 +156,13 @@ public class Catalog {
 	 * @returns the total number of books the library owns
 	 */
 	public static int totalNumberOfBooks() {
-		Integer count=0;
 		String numOfBks="SELECT COUNT(b)FROM Book b";
 		try {		
-		 count =(Integer) entityManager.createQuery(numOfBks).getFirstResult();
+			 Long count = (Long) entityManager.createQuery(numOfBks).getSingleResult();
+		        return count.intValue(); // Convert Long to int
 		}catch(NoResultException e){
 			return 0;
 		}
-		return count;
-		
 	}
 		
 	/**
