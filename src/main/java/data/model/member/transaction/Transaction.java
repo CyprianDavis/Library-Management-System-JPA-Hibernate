@@ -2,10 +2,12 @@ package data.model.member.transaction;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import data.model.book.Book;
 import data.model.member.Member;
@@ -23,11 +25,15 @@ public class Transaction {
 	@Column(name="TransactionID")
 	private String transID; //Transation id number
 	private String date; 	//date of the transaction
+	@OneToOne
+	@JoinColumn(name="book")
 	private	Book book;	//Book title
 	@Column(name="TansType")
 	private String type; 		//Transaction type
-
+	@ManyToOne
+	@JoinColumn(name="member")
 	private Member member ;
+	
 	
 	//Constructor
 	public Transaction(String type,Book bk,Member member) {

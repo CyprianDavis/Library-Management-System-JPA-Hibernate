@@ -3,11 +3,18 @@ package data.model.book;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import data.model.member.hold.Hold;
+import data.model.member.transaction.Transaction;
 import database.catalog.Catalog;
 
 /**
@@ -17,11 +24,21 @@ import database.catalog.Catalog;
  */
 @Entity
 @Table(name="Catalog")
+@NamedQueries({
+	@NamedQuery(name ="Book.Catalog",query="SELECT b FROM Book b"),
+	@NamedQuery(name="Book.checkISBN",query="SELECT b FROM Book b WHERE b.ISBN=:isbn"),
+	@NamedQuery(name="Book.searchBook",query="SELECT b FROM Book b WHERE b.bookId=:search OR b.ISBN=:search OR b.title=:search"),
+	@NamedQuery(name="Book.isCheckedOut",query="SELECT b FROM Book b WHERE b.bookId=:id AND b.status= 'issued' "),
+	@NamedQuery(name="Book.numberOfBooks",query="SELECT COUNT(b) FROM Book b WHERE b.status=:status"),
+	
+}
+		
+		)
+
 public class Book {
 	private static int auto_bkId;	//Auto book id  number
 	private String title; 		//Books title
 	private String author; 		//Author for the book
-	
 	private String coAuthor; 	//co author of the book
 	@Id
 	private String bookId;  	//unique identify for the book
@@ -31,12 +48,14 @@ public class Book {
 	private String edition; 	//book edition
 	private String language;
 	private String status; //status of the book in the library eg available or issued
-	
-	
 	private String dateOfEntry;	// date when  the book was entered in the system
-	
 	private String  category;		//category of the book
 	private String description;		// Book Description
+	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
+	private Collection<Transaction>transactions =new LinkedList<>();
+	@OneToMany(targetEntity=Hold.class,mappedBy="book")
+	private Collection<Hold>holds = new LinkedList<>();
+
 	//Constructors
 	/**
 	 * 
@@ -167,8 +186,12 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
-	
-	
+	public Collection<Transaction> getTransactions(){
+		return transactions;
+	}
+	public Collection<Hold> getHolds(){
+		return this.holds;	
+	}
 	public String toString() {
 		return "Title "+this.title+"\n"
 				+ "Author "+this.author+"\n"

@@ -1,6 +1,7 @@
 package database.catalog;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.book.Book;
@@ -15,7 +16,7 @@ import javafx.collections.ObservableList;
  */
 
 public class Catalog {
-	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
+	 static EntityManager entityManager = EntityFactoryGen.getEntityManager();
 	static EntityTransaction transaction = null;
 	/**
 	 * 
@@ -62,11 +63,12 @@ public class Catalog {
 	 * @param book
 	 * @return
 	 */
-	public static boolean insertBook(Book book) {
-		boolean value = true;
-		
-		
-		return value;
+	public static Book insertBook(Book book) {
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(book);
+		transaction.commit();
+		return book;
 	}
 	/** 
 	 * 
@@ -74,50 +76,60 @@ public class Catalog {
 	 * @returns return if the ISBN number exists
 	 */
 	public static boolean checkISBN(String isbn) {
-		
-	        return false;
+		try {
+			Book book= entityManager.createNamedQuery("Book.checkISBN", Book.class).setParameter("isbn", isbn).getSingleResult();
+			if (book!=null) 
+				return true;
+			
+		}catch(NoResultException e) {
+			return false;
 		}
+		return false;  
+	}
 	
 	/**
 	 * Search and returns the book from catalog if it exists 
 	 * @param bookId
 	 * @returns Book or null
 	 */
-	public static Book searchBook(String bookId) {
-		Book book = null;
-		
-		
+	public static Book findBook(String bookId) {
+		Book book = entityManager.find(Book.class, bookId);
 		return book;
 	}
-	/**
-	 * 
-	 * @param id or ISBN
-	 * @returns true if the book  exists in the database or false otherwise
-	 */
-	public static boolean searhBook(String id) {
-
-       
-        return false;
-	}
+	
 	/**
 	 * Removes book from the database catalog
 	 * @param bookId
 	 * @returns true if the book is removable
 	 */
 	public static boolean removeBook(String bookId) {
-		boolean condition = true;
+		Book book = entityManager.find(Book.class, bookId);
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		if(book!=null) {
+			entityManager.remove(book);
+			transaction.commit();
+			return true;
+		}
+		return false;
 		
-			
-		return condition;
 		}
 	/**
 	 * 
 	 * @param bookId
 	 * @returns true if the book is checked out or false otherwise
 	 */
-	public static boolean isBookCheckout(String bookId) {
-		
+	public static boolean isBookCheckedout(String bookId) {
+		try {
+			Book book = entityManager.createNamedQuery("Book.isCheckedOut", Book.class).setParameter("id", bookId).getSingleResult();
+			if(book!=null) 
+				return true;
+		}catch(NoResultException e) {
+			return false;
+		}
 		return false;
+		
+		
 	}
 	/**
 	 * 
@@ -125,7 +137,7 @@ public class Catalog {
 	 */
 	public static ObservableList<Book> getCatalogBooks(){
 		ObservableList<Book> catalog = FXCollections.observableArrayList(); //List of books from the database
-		
+		catalog.addAll(entityManager.createNamedQuery("Book.Catalog", Book.class).getResultList());
 		return catalog;
 	}
 	/**
@@ -133,47 +145,41 @@ public class Catalog {
 	 * @param search 
 	 * @returns books from data using text search 
 	 */
-	public static ObservableList<Book> getBooks(String search){
+	public static ObservableList<Book> searchBooks(String search){
 		ObservableList<Book> catalog = FXCollections.observableArrayList(); //List of books from the database
-		
-			
-		
+		catalog.addAll(entityManager.createNamedQuery("Book.searchBook", Book.class).setParameter("search", search).getResultList());
 		return catalog;
 	}
-	/**
-	 * 
-	 * @param searchs book based on book id or ISNB
-	 * @returns a Book 
-	 */
-	public static Book getBook(String search) {
-		Book book = new Book();
-		
-			
-		
-		return book;
-	}
+	
 	
 	/**
 	 * 
 	 * @returns the total number of books the library owns
 	 */
 	public static int totalNumberOfBooks() {
-		int count=0;
-		return count;
-		
+		String numOfBks="SELECT COUNT(b)FROM Book b";
+		try {		
+			 Long count = (Long) entityManager.createQuery(numOfBks).getSingleResult();
+		        return count.intValue(); // Convert Long to int
+		}catch(NoResultException e){
+			return 0;
+		}
 	}
 		
-		
-	
 	/**
 	 * 
 	 * @param status
 	 * @returns number of books based on their status
 	 */
 	public static int getBooksByStatus(String status) {
-		int count =0;
-		
-		return count;
+		Long count = null;
+		try {
+			count =(Long) entityManager.createNamedQuery("Book.numberOfBooks", Long.class).setParameter("status", status).getSingleResult();
+			return count.intValue(); // Convert Long to int
+		}catch(NoResultException e) {
+			
+		}
+		return 0;
 		
 	}
 }

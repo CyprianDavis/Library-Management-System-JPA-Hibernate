@@ -3,18 +3,21 @@ package data.model.member;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import data.model.book.Book;
 import data.model.member.hold.Hold;
 import data.model.member.transaction.Transaction;
 import database.memberOperations.MembersOperations;
+
 
 /**
  * 
@@ -35,12 +38,14 @@ public class Member  {
 	private String address;		//Address
 	private String dateOfReg;	//members date of registeration
 	private String gender;		//Member's Gender
-	
-	private LinkedList<Book>borrowedBooks;	//Stores books being borrowed by the memeber temporary
+	@OneToMany(targetEntity=Hold.class,mappedBy="member")
+	private Collection<Hold>booksOnHold = new LinkedList<>();
+	@OneToMany(targetEntity=Transaction.class,mappedBy="member")
+	private Collection<Transaction>transactions = new LinkedList<>();
 	@OneToMany
-	private LinkedList<Hold>booksOnHold;	//stores the books being put on hold by the member temporary
-	@OneToMany
-	private LinkedList<Transaction>tranctions; //Stores member's current transtions temporary
+	@JoinTable(name="IssuedBooks",
+			joinColumns= @JoinColumn(name="member"))
+	private Collection<Book>issuedBooks;
 	
 	//Constructors
 	public Member(String sName,String gName,String oName) {
@@ -52,9 +57,7 @@ public class Member  {
 		if(auto_id<=9) {
 			String id = "LM0000"+auto_id+""+year;
 			this.memberId = id;	
-			
 		}
-
 		else if(auto_id>=10) {
 			String id = "LM000"+auto_id+""+year;
 			this.memberId = id;	
@@ -137,47 +140,16 @@ public class Member  {
 	public String getGender() {
 		return gender;	
 	}
-	/**
-	 * Hold utility methods*/
-	/**
-	 * Places a hold on a book
-	 * @param book
-	 */
-	public  void placeHold(Book book) {
-		
+	public Collection<Transaction> getTransactions(){
+		return this.transactions;
 	}
-	public boolean removeHold(Book book) {
-		return false;	
+	public Collection<Hold> getHolds(){
+		return this.booksOnHold;
 	}
-	/**
-	 * 
-	 * @return List of books being issued to the member
-	 */
-	public List<Book> getIssuedBooks(){
-		return borrowedBooks;
+	public Collection<Book> getIssuedBooks(){
+		return this.issuedBooks;
 	}
-	/**
-	 * 
-	 * @return List of books on Hold
-	 */
-	public List<Hold> getBooksOnHold(){
-		return booksOnHold;
-	}
-	/**
-	 * 
-	 * @return List of current Transations of the member
-	 */
-	public List<Transaction> getTransactions(){
-		return tranctions;
-		
-	}
-	/**
-	 * Returns string representation of member 
-	 */
-	public String toString() {
-		return ""+this.surName +" "+this.givenName+" "+this.otherName;
-		
-	}
+	
 	
 	
 

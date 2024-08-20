@@ -5,6 +5,8 @@ import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import data.model.book.Book;
@@ -22,7 +24,11 @@ public class Hold {
 	private static int auto_id; 	//auto id for the hold
 	@Id
 	private String holdId;			//contains the id for the hold 
+	@ManyToOne
+	@JoinColumn(name="member")
 	private Member member;		//memeber who is placing the hold
+	@ManyToOne
+	@JoinColumn(name="book")
 	private Book book;			//Book on with hold
 	private Calendar holdDate;		//when the member wants the book
 	private String date; //date in string
