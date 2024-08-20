@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class Book {
 	private String  category;		//category of the book
 	private String description;		// Book Description
 	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
-	private Collection<Transaction>transactions;
+	private Collection<Transaction>transactions =new LinkedList<>();
 
 	//Constructors
 	/**
@@ -181,6 +182,10 @@ public class Book {
 	}
 	public String getDescription() {
 		return description;
+	}
+	public Collection<Transaction> getTransactions(){
+		return transactions;
+		
 	}
 	
 	
