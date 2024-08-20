@@ -32,32 +32,7 @@ public class RemoveBook implements Initializable {
 	@FXML
 	private void deleteBook() {
 		
-		if(book.getText().isEmpty()) {
-			showAlert(Alert.AlertType.WARNING,((Stage) book.getScene().getWindow()),"Remove Book","Enter Book ID or ISBN");
-			return;
-		}
-		if(!Catalog.searhBook(book.getText())) {
-			showAlert(Alert.AlertType.WARNING,((Stage) book.getScene().getWindow()),"Remove Book","Unkown Book Id or ISBN");
-			return;
-		}
-		if(Catalog.isBookCheckout(book.getText())) {
-			showAlert(Alert.AlertType.WARNING,((Stage) book.getScene().getWindow()),"Remove Book","Can't Delete a checkedout Book");
-			return;	
-		}
-		if(HoldProcesses.bookHasHold(book.getText())) {
-			showAlert(Alert.AlertType.WARNING,((Stage) book.getScene().getWindow()),"Remove Book","Can't Delete a Book with Hold");
-			return;	
-		}
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-	       alert.setTitle("Remove Book");
-	       
-	      alert.setContentText("Are you sure want to delete Book " + book.getText() + " ?");
-	       Optional<ButtonType> answer = alert.showAndWait();
-	       if (answer.get() == ButtonType.OK) { 
-	   		Catalog.removeBook(book.getText());
-	   		showAlert(Alert.AlertType.INFORMATION,((Stage) book.getScene().getWindow()),"Information","Operation successful BOOK ");
-		}
-		
+	
 		
 		
 		

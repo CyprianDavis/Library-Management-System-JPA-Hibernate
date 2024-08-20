@@ -71,7 +71,7 @@ public class ViewCatalogController implements Initializable{
 	private void search() {
 		searchBk.textProperty().addListener((observable, oldValue, newValue) -> {	
 			catalogTable.getItems().clear();
-			catalogTable.getItems().addAll(Catalog.getBooks(newValue));
+			catalogTable.getItems().addAll(Catalog.searchBooks(newValue));
 			if(searchBk.getText().isEmpty()) {
 				loadTable();
 				
