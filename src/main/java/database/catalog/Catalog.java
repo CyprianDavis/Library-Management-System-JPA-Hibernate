@@ -77,7 +77,7 @@ public class Catalog {
 	 */
 	public static boolean checkISBN(String isbn) {
 		try {
-			Book book= entityManager.createNamedQuery("Book.checkISBN", Book.class).getSingleResult();
+			Book book= entityManager.createNamedQuery("Book.checkISBN", Book.class).setParameter("isbn", isbn).getSingleResult();
 			if (book!=null) 
 				return true;
 			
@@ -122,12 +122,13 @@ public class Catalog {
 	public static boolean isBookCheckedout(String bookId) {
 		try {
 			Book book = entityManager.createNamedQuery("Book.isCheckedOut", Book.class).setParameter("id", bookId).getSingleResult();
-			if(book!=null)
+			if(book!=null) 
 				return true;
 		}catch(NoResultException e) {
-			e.printStackTrace();
+			return false;
 		}
 		return false;
+		
 		
 	}
 	/**
@@ -171,14 +172,14 @@ public class Catalog {
 	 * @returns number of books based on their status
 	 */
 	public static int getBooksByStatus(String status) {
-		Integer count =0;
+		Long count = null;
 		try {
-			count =(Integer) entityManager.createNamedQuery("Book.numberOfBooks", Integer.class).setParameter("status", status).getSingleResult();
-			
+			count =(Long) entityManager.createNamedQuery("Book.numberOfBooks", Long.class).setParameter("status", status).getSingleResult();
+			return count.intValue(); // Convert Long to int
 		}catch(NoResultException e) {
-			return 0;
+			
 		}
-		return count;
+		return 0;
 		
 	}
 }

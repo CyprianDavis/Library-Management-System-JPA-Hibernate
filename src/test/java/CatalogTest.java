@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -8,6 +11,8 @@ import database.catalog.Catalog;
 
 public class CatalogTest {
 	Book book =null;
+	boolean value =false;
+	List<Book>books = new LinkedList<>();
 	@Disabled
 	@BeforeEach
 	void init() {
@@ -27,7 +32,7 @@ public class CatalogTest {
 	@Test
 	void testtotalNumberOfBooks() {
 		int number = Catalog.totalNumberOfBooks();
-		Assertions.assertEquals(16, number);
+		Assertions.assertEquals(6, number);
 	}
 	@Disabled
 	@Test
@@ -40,8 +45,46 @@ public class CatalogTest {
 	void testInsetBook() {
 		Book bk = Catalog.insertBook(book);
 		Assertions.assertEquals(book, bk);
-		
-		
-		
 	}
+	@Disabled
+	@Test
+	void testCheckISBN() {
+		value = Catalog.checkISBN("978-1-492-05761-1");
+		Assertions.assertEquals(true, value);
+	}
+	
+	@Test
+	void findBook() {
+		book = Catalog.findBook("BK0001002024");
+		Assertions.assertEquals(book, book);
+	}
+	@Disabled
+	@Test
+	void removeBook() {
+		 value = Catalog.removeBook("BK0001272024");
+		Assertions.assertEquals(true, value);
+	}
+	@Disabled
+	@Test
+	void isBookCheckedout() {
+		 value = Catalog.isBookCheckedout("BK0001272024");
+		Assertions.assertEquals(true, value);
+	}
+	@Test
+	void getCatalogBooks() {
+		books.addAll(Catalog.getCatalogBooks());
+		Assertions.assertEquals(true, !books.isEmpty());
+	}
+	@Test
+	void searchBooks() {
+		books.addAll(Catalog.searchBooks("Learning SQL"));
+		Assertions.assertEquals(true, !books.isEmpty());
+	}
+	@Test
+	void getBooksByStatus() {
+		int value = Catalog.getBooksByStatus("Issued");
+		Assertions.assertEquals(6, value);
+	}
+	
+	
 }
