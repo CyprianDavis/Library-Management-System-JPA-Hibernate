@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,15 +39,13 @@ public class Member  {
 	private String dateOfReg;	//members date of registeration
 	private String gender;		//Member's Gender
 	@OneToMany(targetEntity=Hold.class,mappedBy="member")
-	private Collection<Hold>booksOnHold;
+	private Collection<Hold>booksOnHold = new LinkedList<>();
 	@OneToMany(targetEntity=Transaction.class,mappedBy="member")
-	private Collection<Transaction>transactions;
+	private Collection<Transaction>transactions = new LinkedList<>();
 	@OneToMany
 	@JoinTable(name="IssuedBooks",
 			joinColumns= @JoinColumn(name="member"))
 	private Collection<Book>issuedBooks;
-	
-	
 	
 	//Constructors
 	public Member(String sName,String gName,String oName) {
@@ -141,17 +140,14 @@ public class Member  {
 	public String getGender() {
 		return gender;	
 	}
-	/**
-	 * Hold utility methods*/
-	/**
-	 * Places a hold on a book
-	 * @param book
-	 */
-	public  void placeHold(Book book) {
-		
+	public Collection<Transaction> getTransactions(){
+		return this.transactions;
 	}
-	public boolean removeHold(Book book) {
-		return false;	
+	public Collection<Hold> getHolds(){
+		return this.booksOnHold;
+	}
+	public Collection<Book> getIssuedBooks(){
+		return this.issuedBooks;
 	}
 	
 	
