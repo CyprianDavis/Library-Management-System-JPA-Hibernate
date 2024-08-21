@@ -5,7 +5,11 @@
 		>
 		<persistence-unit name="Library" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-	
+		<class>data.model.member.Member</class>
+		<class>data.model.member.Hold</class>
+		<class>data.model.member.transaction.Transaction</class>
+		<class>data.model.book.Book</class>
+
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://CYPRIAN-DAVIS\CYPRIANMSSQL;integratedSecurity=true;DatabaseName=Library_Management_System"/>
