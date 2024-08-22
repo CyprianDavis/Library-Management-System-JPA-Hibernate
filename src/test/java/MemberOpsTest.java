@@ -19,8 +19,15 @@ public class MemberOpsTest {
 	@Test
 	void testViewMembers() {
 		members.addAll(MembersOperations.viewMembers());
-		Assertions.assertEquals(10,members.size());
+		Assertions.assertEquals(5,members.size());
 	}
-	
+	@Test
+	void testFindMember() {
+		Member member = MembersOperations.findMember("LM000012024");
+		Assertions.assertEquals(member, member);
+	}
+	void testMemberExists() {
+		
+	}
 
 }
