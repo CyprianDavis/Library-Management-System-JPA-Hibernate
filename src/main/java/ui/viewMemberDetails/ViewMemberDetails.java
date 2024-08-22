@@ -38,7 +38,7 @@ public class ViewMemberDetails implements Initializable{
 			showAlert(Alert.AlertType.WARNING,((Stage) memberID.getScene().getWindow()),"View Member Details","Enter Member ID Number");
 			return;
 		}
-		if(!MembersOperations.searhMember(memberID.getText())) {
+		if(!MembersOperations.memberExists(memberID.getText())) {
 			showAlert(Alert.AlertType.WARNING,((Stage) memberID.getScene().getWindow()),"View Member Details","Unkown Member ID Number");
 			return;
 		}
