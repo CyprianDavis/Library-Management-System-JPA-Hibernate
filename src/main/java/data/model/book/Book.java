@@ -32,7 +32,6 @@ import database.catalog.Catalog;
 	@NamedQuery(name="Book.numberOfBooks",query="SELECT COUNT(b) FROM Book b WHERE b.status=:status"),
 	
 }
-		
 		)
 
 public class Book {

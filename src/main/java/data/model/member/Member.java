@@ -11,20 +11,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import data.model.book.Book;
 import data.model.member.hold.Hold;
 import data.model.member.transaction.Transaction;
 import database.memberOperations.MembersOperations;
-
-
+import javafx.scene.image.Image;
 /**
  * 
  * @author CYPRIAN DAVIS
  *
  */
 @Entity
+@NamedQueries({
+		@NamedQuery(name="Member.members" ,query="SELECT m FROM Member m"),
+		@NamedQuery(name="Member.searchById",query="SELECT m FROM Member m WHERE m.memberId=:idNum"),
+		@NamedQuery(name="Member.numberOfMembers",query="SELECT COUNT(m) FROM Member m ")
+}
+		)
+
 public class Member  {
 	private static int auto_id;		//To store auto id from the databse
 	@Id
@@ -37,7 +45,10 @@ public class Member  {
 	private String email; 		//Email Address
 	private String address;		//Address
 	private String dateOfReg;	//members date of registeration
-	private String gender;		//Member's Gender
+	private String gender;	
+	@Column(name="picture")
+	private Image image;	//Members Image
+	//Member's Gender
 	@OneToMany(targetEntity=Hold.class,mappedBy="member")
 	private Collection<Hold>booksOnHold = new LinkedList<>();
 	@OneToMany(targetEntity=Transaction.class,mappedBy="member")
@@ -111,6 +122,9 @@ public class Member  {
 	public void setGender(String sex) {
 		this.gender = sex;
 	}
+	public void setImage(Image img) {
+		this.image = img;
+	}
 	//Getters
 	public String getMemberId() {
 		return memberId;
@@ -135,10 +149,13 @@ public class Member  {
 	}
 	public String getDateOfReg() {
 		return this.dateOfReg;
-		
 	}
 	public String getGender() {
 		return gender;	
+	}
+	public Image getImage() {
+		return image;
+		
 	}
 	public Collection<Transaction> getTransactions(){
 		return this.transactions;
