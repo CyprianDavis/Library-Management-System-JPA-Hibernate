@@ -77,7 +77,7 @@ public class MembersOperations {
 	 */
 	public static ObservableList<Member> viewMembers(){
 		ObservableList<Member> members = FXCollections.observableArrayList(); //List of members from the database
-		
+		members.addAll(entityManager.createNamedQuery("Member.members", Member.class).getResultList());
 		return members;
 	}
 	public static ObservableList<Member> searchMemberByID(String memberID){
