@@ -95,6 +95,9 @@ public class Member  {
 		this.givenName = gName;
 		this.otherName = oName;
 	}
+	public Member() {
+		
+	}
 	//Setters
 	public void setMemberId(String id) {
 		this.memberId = id;
