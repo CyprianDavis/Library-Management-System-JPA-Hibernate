@@ -1,5 +1,4 @@
 package database.memberOperations;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.persistence.EntityManager;
@@ -20,7 +19,7 @@ import javafx.collections.ObservableList;
 public class MembersOperations {
 	//Creates entity Manager
 	protected static EntityManager entityManager =EntityFactoryGen.getEntityManager();
-	
+	protected static EntityTransaction transaction = null;
 	/**
 	 * 
 	 * @returns the next id number from the id generation table for the next Member
@@ -59,10 +58,6 @@ public class MembersOperations {
 	        
 	        return nextValue;
 	    }
-	
-	
-	
-	
 	/**
 	 * Inserts a member in the database
 	 * @param member

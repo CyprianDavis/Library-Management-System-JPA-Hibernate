@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import data.model.member.Member;
-import database.catalog.Catalog;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
