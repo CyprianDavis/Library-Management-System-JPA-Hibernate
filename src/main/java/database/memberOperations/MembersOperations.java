@@ -120,12 +120,14 @@ public class MembersOperations {
 	 * @returns the total number of library Members 
 	 */
 	public static int totalNumberOfMembers() {
-		int count=0;
-		
-		
-		return count;
-		
-		
+		Long count = null;
+		try {
+			count =(Long) entityManager.createNamedQuery("Member.numberOfMembers", Long.class).getSingleResult();
+			return count.intValue(); // Convert Long to int
+		}catch(NoResultException e) {
+			
+		}
+		return 0;
 	}
 	
 }
