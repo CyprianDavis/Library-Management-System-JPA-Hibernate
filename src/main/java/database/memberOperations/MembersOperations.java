@@ -105,9 +105,15 @@ public class MembersOperations {
 	 * @param id
 	 * @returns true if the member id exists in the database or false otherwise
 	 */
-	public static boolean searhMember(String id) {
-
-        return false;
+	public static boolean memberExists(String id) {
+		try {
+			Member member = entityManager.find(Member.class, id);
+			if(member!=null)
+				return true;
+		}catch(NoResultException e) {
+			
+		}
+		 return false;
 	}
 	/**
 	 * 
