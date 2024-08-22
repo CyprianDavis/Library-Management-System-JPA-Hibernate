@@ -64,10 +64,12 @@ public class MembersOperations {
 	 * @return
 	 * @throws FileNotFoundException 
 	 */
-	public static boolean insertMember(Member member) throws FileNotFoundException {
-		boolean condition = true;
-		
-		return condition;
+	public static Member insertMember(Member member) throws FileNotFoundException {
+		transaction = entityManager.getTransaction();//extracting transaction
+		transaction.begin();
+		entityManager.persist(member);//persisting member entity
+		transaction.commit();
+		return member;	
 	}
 	/**
 	 * 
