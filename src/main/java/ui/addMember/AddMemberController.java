@@ -131,7 +131,7 @@ public class AddMemberController implements Initializable{
 		member.setContact(contact.getText());
 		//save member and picture in the database
 		try {
-			MembersOperations.insertMember(member, file);
+			MembersOperations.insertMember(member);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
