@@ -69,7 +69,7 @@ public class MembersOperations {
 	 * @return
 	 * @throws FileNotFoundException 
 	 */
-	public static boolean insertMember(Member member, File file) throws FileNotFoundException {
+	public static boolean insertMember(Member member) throws FileNotFoundException {
 		boolean condition = true;
 		
 		return condition;
@@ -116,6 +116,8 @@ public class MembersOperations {
 	 */
 	public static int totalNumberOfMembers() {
 		int count=0;
+		
+		
 		return count;
 		
 		
