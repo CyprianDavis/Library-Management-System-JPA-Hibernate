@@ -77,12 +77,12 @@ public class MembersOperations {
 	 */
 	public static ObservableList<Member> viewMembers(){
 		ObservableList<Member> members = FXCollections.observableArrayList(); //List of members from the database
-		members.addAll(entityManager.createNamedQuery("Member.members", Member.class).getResultList());
+		members.addAll(entityManager.createNamedQuery("Member.members",Member.class).getResultList());
 		return members;
 	}
 	public static ObservableList<Member> searchMemberByID(String memberID){
 		ObservableList<Member> members = FXCollections.observableArrayList();
-		
+		members.addAll(entityManager.createNamedQuery("Member.searchById", Member.class).setParameter("idNum", "%"+memberID+"%").getResultList());
 		return members;
 		
 		}
