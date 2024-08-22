@@ -16,8 +16,8 @@ import javafx.collections.ObservableList;
  */
 
 public class Catalog {
-	 static EntityManager entityManager = EntityFactoryGen.getEntityManager();
-	static EntityTransaction transaction = null;
+	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
+	protected static EntityTransaction transaction = null;
 	/**
 	 * 
 	 * @returns the next id number from the id generation table for the next book

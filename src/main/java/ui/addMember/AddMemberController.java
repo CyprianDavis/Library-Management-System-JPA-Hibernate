@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import data.model.member.Member;
-import database.catalog.Catalog;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -131,7 +130,7 @@ public class AddMemberController implements Initializable{
 		member.setContact(contact.getText());
 		//save member and picture in the database
 		try {
-			MembersOperations.insertMember(member, file);
+			MembersOperations.insertMember(member);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

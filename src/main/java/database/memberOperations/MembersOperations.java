@@ -1,9 +1,9 @@
 package database.memberOperations;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.member.Member;
@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 public class MembersOperations {
 	//Creates entity Manager
 	protected static EntityManager entityManager =EntityFactoryGen.getEntityManager();
-	
+	protected static EntityTransaction transaction = null;
 	/**
 	 * 
 	 * @returns the next id number from the id generation table for the next Member
@@ -59,20 +59,18 @@ public class MembersOperations {
 	        
 	        return nextValue;
 	    }
-	
-	
-	
-	
 	/**
 	 * Inserts a member in the database
 	 * @param member
 	 * @return
 	 * @throws FileNotFoundException 
 	 */
-	public static boolean insertMember(Member member, File file) throws FileNotFoundException {
-		boolean condition = true;
-		
-		return condition;
+	public static Member insertMember(Member member) throws FileNotFoundException {
+		transaction = entityManager.getTransaction();//extracting transaction
+		transaction.begin();
+		entityManager.persist(member);//persisting member entity
+		transaction.commit();
+		return member;	
 	}
 	/**
 	 * 
@@ -80,25 +78,26 @@ public class MembersOperations {
 	 */
 	public static ObservableList<Member> viewMembers(){
 		ObservableList<Member> members = FXCollections.observableArrayList(); //List of members from the database
-		
+		members.addAll(entityManager.createNamedQuery("Member.members",Member.class).getResultList());
 		return members;
 	}
 	public static ObservableList<Member> searchMemberByID(String memberID){
 		ObservableList<Member> members = FXCollections.observableArrayList();
-		
+		members.addAll(entityManager.createNamedQuery("Member.searchById", Member.class).setParameter("idNum", "%"+memberID+"%").getResultList());
 		return members;
-		
 		}
-	
 	/**
 	 * 
 	 * @param memberId
 	 * @returns member from the database if the member exists or null otherwise
 	 */
-	public static Member searchMember(String memberId) {
-		Member member = null;
-		
-		
+	public static Member findMember(String memberId) {
+		Member member =null;
+		try {
+			 member = entityManager.find(Member.class, memberId);
+		}catch(NoResultException e) {
+			
+		}
 		return member;
 	}
 	/**
@@ -106,19 +105,29 @@ public class MembersOperations {
 	 * @param id
 	 * @returns true if the member id exists in the database or false otherwise
 	 */
-	public static boolean searhMember(String id) {
-
-        return false;
+	public static boolean memberExists(String id) {
+		try {
+			Member member = entityManager.find(Member.class, id);
+			if(member!=null)
+				return true;
+		}catch(NoResultException e) {
+			
+		}
+		 return false;
 	}
 	/**
 	 * 
 	 * @returns the total number of library Members 
 	 */
 	public static int totalNumberOfMembers() {
-		int count=0;
-		return count;
-		
-		
+		Long count = null;
+		try {
+			count =(Long) entityManager.createNamedQuery("Member.numberOfMembers", Long.class).getSingleResult();
+			return count.intValue(); // Convert Long to int
+		}catch(NoResultException e) {
+			
+		}
+		return 0;
 	}
 	
 }
