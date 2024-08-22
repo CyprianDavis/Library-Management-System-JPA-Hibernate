@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.member.Member;
@@ -84,18 +85,19 @@ public class MembersOperations {
 		ObservableList<Member> members = FXCollections.observableArrayList();
 		members.addAll(entityManager.createNamedQuery("Member.searchById", Member.class).setParameter("idNum", "%"+memberID+"%").getResultList());
 		return members;
-		
 		}
-	
 	/**
 	 * 
 	 * @param memberId
 	 * @returns member from the database if the member exists or null otherwise
 	 */
-	public static Member searchMember(String memberId) {
-		Member member = null;
-		
-		
+	public static Member findMember(String memberId) {
+		Member member =null;
+		try {
+			 member = entityManager.find(Member.class, memberId);
+		}catch(NoResultException e) {
+			
+		}
 		return member;
 	}
 	/**
