@@ -1,5 +1,4 @@
 package data.model.user;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
