@@ -2,17 +2,12 @@ package ui.login;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-import database.conn.DatabaseConn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +19,7 @@ import utility.icon.IconUntil;
 
 
 public class LoginController implements Initializable{
-		private static Connection conn = DatabaseConn.getConnection();//connection to the database
+		//private static Connection conn = DatabaseConn.getConnection();//connection to the database
 		@FXML
 		private JFXTextField username;
 		@FXML
@@ -65,20 +60,9 @@ public class LoginController implements Initializable{
 	 * @returns true if username and password exist in the database or false otherwise
 	 */
 	public static boolean loginHandler(String username,String password) {
-		try {
-			PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM users WHERE username=? AND password=?");
-			stmt.setString(1, username);
-			stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                return (count > 0);
-            }
-		}catch(SQLException e) {
-			e.printStackTrace();
-			
-		}
 		return false;
+		
+		
 		
 	}
 	//Closses the Login Stage
