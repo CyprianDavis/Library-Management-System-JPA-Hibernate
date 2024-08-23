@@ -37,6 +37,19 @@ public class LibraryOperations {
 		else
 			return false;
 	}
+	/**
+	 * Checks if the user password exists
+	 * @param passWord
+	 * @return
+	 */
+	public static boolean userPasswordExists(String passWord) {
+		User user = entityManager.find(User.class, passWord);
+		if(user!=null)
+			return true;
+		else 
+			return false;
+	}
+	
 	
 	
 	
