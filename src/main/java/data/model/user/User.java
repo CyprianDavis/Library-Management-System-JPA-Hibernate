@@ -8,9 +8,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 @NamedQueries({
-	@NamedQuery(name="Users.findAllUsers",query="SELECT u FROM Users u"),
-	@NamedQuery(name="Users.login", query="SELECT u FROM Users u WHERE u.userName=:name AND u.passWord=:password"),
-	@NamedQuery(name="Users.findUserByName",query="SELECT u FROM Users u WHERE u.userName=:name")
+	@NamedQuery(name="User.findAllUsers",query="SELECT u FROM User u"),
+	@NamedQuery(name="User.login", query="SELECT u FROM User u WHERE u.userName=:name AND u.passWord=:password"),
+	@NamedQuery(name="User.findUserByName",query="SELECT u FROM User u WHERE u.userName=:name")
 	
 })
 public class User {
