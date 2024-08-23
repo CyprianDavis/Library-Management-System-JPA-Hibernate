@@ -2,7 +2,6 @@ package database.library;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
 import data.model.user.User;
 import enitiyFactory.EntityFactoryGen;
 
@@ -26,6 +25,20 @@ public class LibraryOperations {
 		transaction.commit();
 		return user;
 	}
+	/**
+	 * Checks if the user name exsists and return True or false otherwise
+	 * @param userName
+	 * @return User
+	 */
+	public static boolean  userNameExists(String userName) {
+		User user = entityManager.find(User.class, userName);
+		if(user !=null)
+		return true;
+		else
+			return false;
+	}
+	
+	
 	
 	
 	
