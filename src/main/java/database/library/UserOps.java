@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 
+import data.model.user.PasswordUtils;
 import data.model.user.User;
 import enitiyFactory.EntityFactoryGen;
 
@@ -40,11 +41,15 @@ public class UserOps {
 	 * @return
 	 */
 	public static boolean userPasswordExists(String passWord) {
-		User user = entityManager.find(User.class, passWord);
-		if(user!=null)
-			return true;
-		else 
-			return false;
+		User user = null;
+		try {
+			user = entityManager.createNamedQuery("User.UserPasswordExists",User.class)
+					.setParameter("password", passWord).getSingleResult();
+			
+		}catch(NoResultException e) {
+			
+		}
+		return	PasswordUtils.checkPassword(passWord, user.getPassword());
 	}
 	/**
 	 * 
@@ -56,7 +61,7 @@ public class UserOps {
 		User user = null;
 		try {
 			 user = entityManager.createNamedQuery("User.login", User.class).setParameter("userName", userName)
-					.setParameter("password", password).getSingleResult();
+					.setParameter("password", PasswordUtils.hashPassword(password)).getSingleResult();
 		
 		}catch(NoResultException e) {
 			
