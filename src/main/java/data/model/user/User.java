@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="User.findAllUsers",query="SELECT u FROM User u"),
 	@NamedQuery(name="User.login", query="SELECT u FROM User u WHERE u.userName=:name AND u.passWord=:password"),
-	@NamedQuery(name="User.UserPasswordExists",query="SELECT u FROM User u WHERE u.password=:password")
+	@NamedQuery(name="User.UserPasswordExists",query="SELECT u FROM User u WHERE u.passWord=:password")
 })
 public class User {
 	@Id

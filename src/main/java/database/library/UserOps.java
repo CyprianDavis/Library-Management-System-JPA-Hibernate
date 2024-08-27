@@ -60,7 +60,7 @@ public class UserOps {
 	public static User getUser(String userName, String password) {
 		User user = null;
 		try {
-			 user = entityManager.createNamedQuery("User.login", User.class).setParameter("userName", userName)
+			 user = entityManager.createNamedQuery("User.login", User.class).setParameter("name", userName)
 					.setParameter("password", PasswordUtils.hashPassword(password)).getSingleResult();
 		
 		}catch(NoResultException e) {
