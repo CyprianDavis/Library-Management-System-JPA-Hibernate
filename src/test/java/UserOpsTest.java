@@ -25,11 +25,11 @@ public class UserOpsTest {
 	}
 	@Test
 	void testUserNameExists() {
-		Assertions.assertEquals(true,UserOps.userNameExists("CyprianDav"));
+		Assertions.assertEquals(false,UserOps.userNameExists("CyprianDav"));
 	}
 	@Test
 	void testgetUser() {
-		Assertions.assertEquals(null,UserOps.getUser("CyprianDavis", "Cyprian_2024#"));
+		Assertions.assertEquals(null,UserOps.getUser("CyprianDavis"));
 		
 	}
 

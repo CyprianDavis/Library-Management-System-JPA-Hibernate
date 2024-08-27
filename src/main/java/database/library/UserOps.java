@@ -57,15 +57,9 @@ public class UserOps {
 	 * @param password
 	 * @return user object from the databse
 	 */
-	public static User getUser(String userName, String password) {
-		User user = null;
-		try {
-			 user = entityManager.createNamedQuery("User.login", User.class).setParameter("name", userName)
-					.setParameter("password", PasswordUtils.hashPassword(password)).getSingleResult();
+	public static User getUser(String userName) {
+		User user = entityManager.find(User.class, userName);
 		
-		}catch(NoResultException e) {
-			
-		}
 		return user;
 	}
 	

@@ -8,6 +8,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import data.model.user.PasswordUtils;
+import data.model.user.User;
+import database.library.UserOps;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,6 +63,10 @@ public class LoginController implements Initializable{
 	 * @returns true if username and password exist in the database or false otherwise
 	 */
 	public static boolean loginHandler(String username,String password) {
+		User user = UserOps.getUser(username);
+		if(user!=null && PasswordUtils.checkPassword(password, user.getPassword()))
+			return true;
+		else
 		return false;
 		
 		

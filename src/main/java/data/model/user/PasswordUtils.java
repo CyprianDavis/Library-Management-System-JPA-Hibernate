@@ -11,6 +11,13 @@ public class PasswordUtils {
 
     // Check if a password matches a hashed password
     public static boolean checkPassword(String password, String hashed) {
-        return BCrypt.checkpw(password, hashed);
+    	boolean value=false;
+        try {
+        	value=BCrypt.checkpw(password, hashed);
+        	return value;
+        }catch(IllegalArgumentException e) {
+        	
+        }
+		return value;
     }
 }
