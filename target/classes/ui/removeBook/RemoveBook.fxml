@@ -43,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField fx:id="book" labelFloat="true" layoutX="173.0" layoutY="99.0" prefHeight="25.0" prefWidth="268.0" promptText="Book Id or ISBN">
+      <JFXTextField fx:id="book" labelFloat="true" layoutX="173.0" layoutY="99.0" prefHeight="25.0" prefWidth="268.0" promptText="Book Id ">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>

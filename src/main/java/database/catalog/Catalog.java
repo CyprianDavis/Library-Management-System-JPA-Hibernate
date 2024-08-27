@@ -96,6 +96,17 @@ public class Catalog {
 		Book book = entityManager.find(Book.class, bookId);
 		return book;
 	}
+	/**
+	 * 
+	 * @param bookId
+	 * @returns true if the book id exists in the database or false otherwise
+	 */
+	public static boolean bookExists(String bookId) {
+		Book book =entityManager.find(Book.class, bookId);
+		if(book!=null)
+			return true;
+		return false;
+	}
 	
 	/**
 	 * Removes book from the database catalog
