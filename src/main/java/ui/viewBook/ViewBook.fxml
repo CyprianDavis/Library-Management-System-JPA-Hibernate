@@ -55,22 +55,22 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="220.0" layoutY="15.0" text="Book Title :">
+            <Label layoutX="220.0" layoutY="15.0" text="Book Title :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="bookTitle" layoutX="301.0" layoutY="16.0" prefHeight="19.0" prefWidth="302.0">
+            <Label fx:id="bookTitle" layoutX="301.0" layoutY="16.0" prefHeight="19.0" prefWidth="302.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="69.0" text="Book ID :">
+            <Label layoutX="33.0" layoutY="69.0" text="Book ID :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="bookId" layoutX="133.0" layoutY="69.0">
+            <Label fx:id="bookId" layoutX="133.0" layoutY="69.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
@@ -78,112 +78,112 @@
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Label layoutX="459.0" layoutY="69.0" text="ISBN :">
+            <Label layoutX="459.0" layoutY="69.0" text="ISBN :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="ISBN" layoutX="554.0" layoutY="69.0">
+            <Label fx:id="ISBN" layoutX="554.0" layoutY="69.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="119.0" text="Author :">
+            <Label layoutX="33.0" layoutY="119.0" text="Author :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="author" layoutX="133.0" layoutY="119.0">
+            <Label fx:id="author" layoutX="133.0" layoutY="119.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="459.0" layoutY="119.0" text="Co Author :">
+            <Label layoutX="459.0" layoutY="119.0" text="Co Author :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="coAuthor" layoutX="554.0" layoutY="119.0">
+            <Label fx:id="coAuthor" layoutX="554.0" layoutY="119.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="169.0" text="Edition :">
+            <Label layoutX="33.0" layoutY="169.0" text="Edition :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="edition" layoutX="133.0" layoutY="169.0">
+            <Label fx:id="edition" layoutX="133.0" layoutY="169.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="459.0" layoutY="169.0" text="Language :">
+            <Label layoutX="459.0" layoutY="169.0" text="Language :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="language" layoutX="554.0" layoutY="169.0">
+            <Label fx:id="language" layoutX="554.0" layoutY="169.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="219.0" text="Publisher :">
+            <Label layoutX="33.0" layoutY="219.0" text="Publisher :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="publisher" layoutX="133.0" layoutY="219.0">
+            <Label fx:id="publisher" layoutX="133.0" layoutY="219.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="category" layoutX="554.0" layoutY="219.0">
+            <Label fx:id="category" layoutX="554.0" layoutY="219.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="459.0" layoutY="219.0" text="Category :">
+            <Label layoutX="459.0" layoutY="219.0" text="Category :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="269.0" text="Description : ">
+            <Label layoutX="33.0" layoutY="269.0" text="Description : " textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="description" layoutX="133.0" layoutY="269.0">
+            <Label fx:id="description" layoutX="133.0" layoutY="269.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="319.0" text="Published : ">
+            <Label layoutX="33.0" layoutY="319.0" text="Published : " textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="year" layoutX="133.0" layoutY="319.0">
+            <Label fx:id="year" layoutX="133.0" layoutY="319.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="459.0" layoutY="319.0" text="Date of Entry :">
+            <Label layoutX="459.0" layoutY="319.0" text="Date of Entry :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="dateOfEntry" layoutX="554.0" layoutY="319.0">
+            <Label fx:id="dateOfEntry" layoutX="554.0" layoutY="319.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="323.0" layoutY="369.0" text="Status :">
+            <Label layoutX="323.0" layoutY="369.0" text="Status :" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="status" layoutX="430.0" layoutY="369.0">
+            <Label fx:id="status" layoutX="430.0" layoutY="369.0" textFill="#ce2222">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
