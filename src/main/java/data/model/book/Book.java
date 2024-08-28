@@ -27,7 +27,7 @@ import database.catalog.Catalog;
 @NamedQueries({
 	@NamedQuery(name ="Book.Catalog",query="SELECT b FROM Book b"),
 	@NamedQuery(name="Book.checkISBN",query="SELECT b FROM Book b WHERE b.ISBN=:isbn"),
-	@NamedQuery(name="Book.searchBook",query="SELECT b FROM Book b WHERE b.bookId LIKE :search OR b.ISBN LIKE :search OR b.title LIKE:search"),
+	@NamedQuery(name="Book.searchBook",query="SELECT b FROM Book b WHERE b.bookId LIKE :search OR b.ISBN LIKE :search OR b.title LIKE:search OR b.author LIKE:search"),
 	@NamedQuery(name="Book.isCheckedOut",query="SELECT b FROM Book b WHERE b.bookId=:id AND b.status= 'issued' "),
 	@NamedQuery(name="Book.numberOfBooks",query="SELECT COUNT(b) FROM Book b WHERE b.status=:status"),
 	
