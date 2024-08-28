@@ -3,6 +3,8 @@ package ui.viewBook;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import data.model.book.Book;
+import database.catalog.Catalog;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -78,11 +80,26 @@ public class ViewBookController implements Initializable{
 			showAlert(Alert.AlertType.WARNING,((Stage) category.getScene().getWindow()),"","Invalid Input for Book ID or ISBN");
 			return;
 		}
-		//if(!Catalog.searhBook(bookSearch.getText())) {
-		///	showAlert(Alert.AlertType.WARNING,((Stage) category.getScene().getWindow()),"","Unkown Book Id or ISBN");
-		//	return;
-		//}
-		//	showDetails();
+	if(!Catalog.bookExists(bookSearch.getText())) {
+			showAlert(Alert.AlertType.WARNING,((Stage) category.getScene().getWindow()),"","Unkown Book Id");
+			return;
+		}
+			showDetails();
+			Book book = Catalog.findBook(bookSearch.getText());
+			bookId.setText(book.getBookId());
+			ISBN.setText(book.getISBN());
+			bookTitle.setText(book.getTitle());
+			author.setText(book.getAuthor());
+			coAuthor.setText(book.getCoAuthor());
+			edition.setText(book.getEdition());
+			language.setText(book.getLanguage());
+			publisher.setText(book.getPublisher());
+			category.setText(book.getCategory());
+			description.setText(book.getDescription());
+			year.setText(String.valueOf(book.getPublicationYear()));
+			dateOfEntry.setText(book.getEntryDate());
+			status.setText(book.getStatus());
+			
 			
 			
 	}
