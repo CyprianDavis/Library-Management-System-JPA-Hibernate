@@ -65,7 +65,7 @@ public class MembersOperations {
 	 * @return
 	 * @throws FileNotFoundException 
 	 */
-	public static Member insertMember(Member member) throws FileNotFoundException {
+	public static Member insertMember(Member member) {
 		transaction = entityManager.getTransaction();//extracting transaction
 		transaction.begin();
 		entityManager.persist(member);//persisting member entity

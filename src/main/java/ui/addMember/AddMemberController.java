@@ -1,7 +1,6 @@
 package ui.addMember;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,19 +45,17 @@ public class AddMemberController implements Initializable{
 	@FXML
 	private JFXButton clearBtn;
 	private File file;
-
+	private Image img;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		Image im = new Image("\\resources\\student.png");
 		image.setFill(new ImagePattern(im));
 		image.setEffect(new DropShadow(+40d,0d,+2d,Color.DARKSEAGREEN));
-		
-		
 	}
 
 	@FXML
-	private File loadImage() {
+	private void loadImage() {
 		FileChooser fileChooser = new FileChooser();
 		
 		//Set extension files
@@ -70,14 +67,11 @@ public class AddMemberController implements Initializable{
 		//show open file dialog
 		file = fileChooser.showOpenDialog(((Stage) image.getScene().getWindow()));
 		if(file != null) {
-			Image img = new Image(file.toURI().toString());
+			img = new Image(file.toURI().toString());
 			//studentImage.setRotate(-90);
 			
-			image.setFill(new ImagePattern(img));
-			
-		}
-		return file;
-		
+			image.setFill(new ImagePattern(img));	
+		}	
 	}
 	@FXML
 	private void clear() {
@@ -128,18 +122,11 @@ public class AddMemberController implements Initializable{
 		member.setEmail(email.getText());
 		member.setGender(gender.getText());
 		member.setContact(contact.getText());
-		//save member and picture in the database
-		try {
-			MembersOperations.insertMember(member);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		member.setImage(img);
+		
+		//Save Member
+		MembersOperations.insertMember(member);
 		showAlert(Alert.AlertType.INFORMATION,((Stage) contact.getScene().getWindow()),"Information","Operation successful, Member ID  "+member.getMemberId());
-		
-		
-		
 		
 		
 	}
