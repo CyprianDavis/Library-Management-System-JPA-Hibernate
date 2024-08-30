@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class IssueBookController implements Initializable{
 	@FXML
@@ -31,12 +32,22 @@ public class IssueBookController implements Initializable{
 	private TableColumn<Book,String>author;
 	@FXML
 	private TableColumn<Book,String>category;
-	@FXML
-	private TableColumn<Book,String>date;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		colsIntialize();
+	}
+	/**
+	 * Initializes table columns
+	 */
+	private void colsIntialize(){
+		bkNumber.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+		title.setCellValueFactory(new PropertyValueFactory<>("title"));
+		author.setCellValueFactory(new PropertyValueFactory<>("author"));
+		category.setCellValueFactory(new PropertyValueFactory<>("category"));
+		
 		
 	}
 
