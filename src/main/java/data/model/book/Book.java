@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import data.model.member.hold.Hold;
@@ -61,7 +60,7 @@ public class Book {
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();
-	@OneToOne
+	@OneToMany
 	@JoinTable(name="IssuedBooks",
 			joinColumns= @JoinColumn(name="book"))
 	private Collection<Book>issuedBooks = new LinkedList<>();
