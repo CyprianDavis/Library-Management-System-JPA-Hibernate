@@ -54,8 +54,7 @@ public class Book {
 	private String dateOfEntry;	// date when  the book was entered in the system
 	private String  category;		//category of the book
 	private String description;		// Book Description
-	private String dateOfIssuing;		//date on which book is issued
-	private Calendar dueDate;		//due date for returning the book		
+		
 	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
@@ -156,12 +155,7 @@ public class Book {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public void setDueDate(Calendar date) {
-		this.dueDate = date;
-	}
-	public void setDateOfIssuing(String issuedOn) {
-		this.dateOfIssuing =issuedOn;
-	}
+	
 	//Getter methods
 	public String getBookId() {
 		return bookId;
@@ -202,30 +196,7 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
-	/**
-	 * computes the due date for the book
-	 * @param duration
-	 * @return
-	 */
-	private Calendar computeDueDate(int duration) {
-		Calendar date = new GregorianCalendar();
-		date.setTimeInMillis(System.currentTimeMillis());
-		date.add(Calendar.DATE, duration);
-		return date;
-	}
-	/**
-	 * 
-	 * @returns the due date for the book which is 2 weeks from date of issuing the book
-	 */
-	@SuppressWarnings("deprecation")
-	public String getDueDate() {
-		this.dueDate = computeDueDate(14);
-		return dueDate.getTime().toLocaleString();
-		
-	}
-	public String getDateOfIssuing() {
-		return this.dateOfIssuing;
-	}
+	
 	public Collection<Transaction> getTransactions(){
 		return transactions;
 	}
