@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import data.model.library.Hold;
+import data.model.library.IssueBook;
 import data.model.library.Transaction;
 import database.catalog.Catalog;
 
@@ -59,12 +60,7 @@ public class Book {
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();
-	@OneToMany
-	@JoinTable(name="IssuedBooks",
-			joinColumns= @JoinColumn(name="book"))
-	private Collection<Book>issuedBooks = new LinkedList<>();
 	
-
 	//Constructors
 	/**
 	 * 
@@ -203,10 +199,7 @@ public class Book {
 	public Collection<Hold> getHolds(){
 		return this.holds;	
 	}
-	public Collection<Book>getIssuedBooks(){
-		return this.issuedBooks;
-		
-	}
+	
 	public String toString() {
 		return "Title "+this.title+"\n"
 				+ "Author "+this.author+"\n"

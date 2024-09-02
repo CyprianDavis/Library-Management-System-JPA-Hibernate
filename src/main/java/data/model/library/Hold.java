@@ -21,6 +21,7 @@ import database.holdProcesses.HoldProcesses;
 @Entity
 @Table(name="Holds")
 public class Hold {
+	private static Calendar holdDate;		//when the member wants the book
 	private static int auto_id; 	//auto id for the hold
 	@Id
 	private String holdId;			//contains the id for the hold 
@@ -30,12 +31,13 @@ public class Hold {
 	@ManyToOne
 	@JoinColumn(name="book")
 	private Book book;			//Book on with hold
-	private Calendar holdDate;		//when the member wants the book
+	
 	private String date; //date in string
 	private String status; //Hold Status
 	
 	
 	public Hold(Member member, Book bk,int duration) {
+		 
 		this.member = member;
 		this.book = bk;
 		holdDate = new GregorianCalendar();
@@ -48,9 +50,7 @@ public class Hold {
 		if(auto_id<=9) {
 			String id = "HBK0000"+auto_id+""+year;
 			this.holdId = id;	
-			
 		}
-
 		else if(auto_id>=10) {
 			String id = "HBK000"+auto_id+""+year;
 			this.holdId = id;	

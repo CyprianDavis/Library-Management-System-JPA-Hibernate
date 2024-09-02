@@ -10,14 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import data.model.book.Book;
 import data.model.library.Hold;
+import data.model.library.IssueBook;
 import data.model.library.Transaction;
 import database.memberOperations.MembersOperations;
 import javafx.scene.image.Image;
@@ -54,9 +53,7 @@ public class Member  {
 	private Collection<Hold>booksOnHold = new LinkedList<>();
 	@OneToMany(targetEntity=Transaction.class,mappedBy="member")
 	private Collection<Transaction>transactions = new LinkedList<>();
-	@OneToMany
-	@JoinTable(name="IssuedBooks",
-			joinColumns= @JoinColumn(name="member"))
+	@OneToMany(targetEntity=IssueBook.class,mappedBy="member")
 	private Collection<Book>issuedBooks = new LinkedList<>();
 	
 	//Constructors

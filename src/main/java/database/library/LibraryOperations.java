@@ -25,7 +25,7 @@ public class LibraryOperations {
 	
 	public static boolean issueBook(Member member,Book book) {
 		member.getIssuedBooks().add(book);
-		book.getIssuedBooks().add(book);
+		book.setStatus("Issued");
 		return false;
 		
 	}
