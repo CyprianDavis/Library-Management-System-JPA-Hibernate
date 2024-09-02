@@ -10,9 +10,12 @@ import java.util.LinkedList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import data.model.member.hold.Hold;
@@ -58,6 +61,11 @@ public class Book {
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();
+	@OneToOne
+	@JoinTable(name="IssuedBooks",
+			joinColumns= @JoinColumn(name="book"))
+	private Collection<Book>issuedBooks = new LinkedList<>();
+	
 
 	//Constructors
 	/**
@@ -224,6 +232,10 @@ public class Book {
 	}
 	public Collection<Hold> getHolds(){
 		return this.holds;	
+	}
+	public Collection<Book>getIssuedBooks(){
+		return this.issuedBooks;
+		
 	}
 	public String toString() {
 		return "Title "+this.title+"\n"
