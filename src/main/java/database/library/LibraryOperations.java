@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import data.model.book.Book;
+import data.model.library.IssueBook;
 import data.model.member.Member;
 import enitiyFactory.EntityFactoryGen;
 
@@ -23,10 +24,18 @@ public class LibraryOperations {
 	 * @return
 	 */
 	
-	public static boolean issueBook(Member member,Book book) {
+	public static String issueBook(Member member,Book book,String issuedOn) {
 		member.getIssuedBooks().add(book);
 		book.setStatus("Issued");
-		return false;
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		IssueBook issuedBk = new IssueBook(member,book);
+		issuedBk.setDateOfIssuing(issuedOn);
+		entityManager.persist(issuedBk);
+		String dueDate = issuedBk.getDueDate();
+		transaction.commit();
+		
+		return dueDate;
 		
 	}
 	public static boolean returnBook(Book book) {
