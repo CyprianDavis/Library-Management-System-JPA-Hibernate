@@ -5,8 +5,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import data.model.book.Book;
+import data.model.library.Hold;
 import data.model.member.Member;
-import data.model.member.hold.Hold;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

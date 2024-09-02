@@ -17,8 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import data.model.member.hold.Hold;
-import data.model.member.transaction.Transaction;
+import data.model.library.Hold;
+import data.model.library.Transaction;
 import database.catalog.Catalog;
 
 /**
