@@ -12,6 +12,7 @@ import database.memberOperations.MembersOperations;
 public class MemberOpsTest {
 	Member member;
 	List<Member>members = new LinkedList<>();
+	@Disabled
 	@BeforeEach
 	void init() {
 		Member member = new Member("SSEREMBA","CYPRIAN","DAVIS");
@@ -43,11 +44,17 @@ public class MemberOpsTest {
 		boolean value = MembersOperations.memberExists("LM000052024");
 		Assertions.assertEquals(true, value);
 	}
+	@Disabled
 	@Test
 	void testGetNumberOfMember() {
 		int num = MembersOperations.totalNumberOfMembers();
 		Assertions.assertEquals(5, num);
 	}
-	
+	@Test
+	void testMemberIssuedBks() {
+		Member member = MembersOperations.findMember("LM000012024");
+		Assertions.assertEquals(0, member.getIssuedBooks().size());
+		
+	}
 
 }

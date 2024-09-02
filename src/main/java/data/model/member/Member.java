@@ -57,7 +57,7 @@ public class Member  {
 	@OneToMany
 	@JoinTable(name="IssuedBooks",
 			joinColumns= @JoinColumn(name="member"))
-	private Collection<Book>issuedBooks;
+	private Collection<Book>issuedBooks = new LinkedList<>();
 	
 	//Constructors
 	public Member(String sName,String gName,String oName) {
