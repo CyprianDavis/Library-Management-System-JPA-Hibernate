@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 
 import data.model.book.Book;
 import data.model.member.Member;
-import database.transactions.TransactionsOperation;
+import database.transactions.TransactionsOps;
 
 /**
  * 
@@ -47,7 +47,7 @@ public class Transaction {
 		this.date = dateT;
 		int year = Year.now().getValue();
 		//Retive last id from the databse
-		auto_id = TransactionsOperation.getNextTableGeneratorValue();
+		auto_id = TransactionsOps.getNextTableGeneratorValue();
 		if(auto_id<=9) {
 			String id = "TR0000"+auto_id+""+year;
 			this.transID = id;		

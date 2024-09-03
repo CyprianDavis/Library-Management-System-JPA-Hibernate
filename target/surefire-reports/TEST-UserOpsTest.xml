@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="CatalogTest" time="5.524" tests="11" errors="0" skipped="6" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="UserOpsTest" time="0.325" tests="3" errors="0" skipped="1" failures="1">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="file.encoding.pkg" value="sun.io"/>
     <property name="java.specification.version" value="1.8"/>
+    <property name="javafx.runtime.version" value="8.0.391-b13"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.class.path" value="C:\Users\HP ELITEBOOK 840 G5\Desktop\Personal Project\Library-Management-System-JPA-Hibernate\target\test-classes;C:\Users\HP ELITEBOOK 840 G5\Desktop\Personal Project\Library-Management-System-JPA-Hibernate\target\classes;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\7.2.2.jre8\mssql-jdbc-7.2.2.jre8.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\com\jfoenix\jfoenix\8.0.10\jfoenix-8.0.10.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.2\junit-jupiter-api-5.7.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\junit\platform\junit-platform-commons\1.7.2\junit-platform-commons-1.7.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.2\junit-jupiter-engine-5.7.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\junit\platform\junit-platform-engine\1.7.2\junit-platform-engine-1.7.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\junit\platform\junit-platform-launcher\1.7.2\junit-platform-launcher-1.7.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\hibernate\hibernate-core\5.4.1.Final\hibernate-core-5.4.1.Final.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\javax\persistence\javax.persistence-api\2.2\javax.persistence-api-2.2.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\javassist\javassist\3.24.0-GA\javassist-3.24.0-GA.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\net\bytebuddy\byte-buddy\1.9.5\byte-buddy-1.9.5.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final\jboss-transaction-api_1.2_spec-1.1.1.Final.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\jboss\jandex\2.0.5.Final\jandex-2.0.5.Final.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\dom4j\dom4j\2.1.1\dom4j-2.1.1.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.1.0.Final\hibernate-commons-annotations-5.1.0.Final.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\javax\xml\bind\jaxb-api\2.3.1\jaxb-api-2.3.1.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.1\jaxb-runtime-2.3.1.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\glassfish\jaxb\txw2\2.3.1\txw2-2.3.1.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\com\sun\istack\istack-commons-runtime\3.0.7\istack-commons-runtime-3.0.7.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\jvnet\staxex\stax-ex\1.8\stax-ex-1.8.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\com\sun\xml\fastinfoset\FastInfoset\1.2.15\FastInfoset-1.2.15.jar;C:\Users\HP ELITEBOOK 840 G5\.m2\repository\org\mindrot\jbcrypt\0.4\jbcrypt-0.4.jar;"/>
@@ -15,6 +16,7 @@
     <property name="user.timezone" value="Africa/Nairobi"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="os.name" value="Windows 11"/>
+    <property name="javafx.version" value="8.0.391"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-1.8\jre\bin"/>
@@ -62,17 +64,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testtotalNumberOfBooks" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.testtotalNumberOfBooks() is @Disabled"/>
-  </testcase>
-  <testcase name="getHoldsOnBook" classname="CatalogTest" time="5.223">
-    <failure message="expected: &lt;4&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <4> but was: <0>
+  <testcase name="testgetUser" classname="UserOpsTest" time="0.204">
+    <failure message="expected: &lt;null&gt; but was: &lt;data.model.user.User@4acc5dff&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <null> but was: <data.model.user.User@4acc5dff>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:510)
-	at CatalogTest.getHoldsOnBook(CatalogTest.java:91)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at UserOpsTest.testgetUser(UserOpsTest.java:32)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -143,73 +142,14 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
-    <system-out><![CDATA[Hibernate: SELECT idValue FROM ID_Gen WHERE idName='BookId'
-Hibernate: UPDATE ID_GEN SET idValue = ? WHERE idName = 'BookId'
-Hibernate: select book0_.bookId as bookId1_0_0_, book0_.ISBN as ISBN2_0_0_, book0_.author as author3_0_0_, book0_.category as category4_0_0_, book0_.coAuthor as coAuthor5_0_0_, book0_.dateOfEntry as dateOfEn6_0_0_, book0_.description as descript7_0_0_, book0_.edition as edition8_0_0_, book0_.language as language9_0_0_, book0_.publicationYear as publica10_0_0_, book0_.publisher as publish11_0_0_, book0_.status as status12_0_0_, book0_.title as title13_0_0_ from Catalog book0_ where book0_.bookId=?
-Hibernate: select holds0_.book as book4_1_0_, holds0_.holdId as holdId1_1_0_, holds0_.holdId as holdId1_1_1_, holds0_.book as book4_1_1_, holds0_.date as date2_1_1_, holds0_.member as member5_1_1_, holds0_.status as status3_1_1_, member1_.memberNo as memberNo1_3_2_, member1_.address as address2_3_2_, member1_.contact as contact3_3_2_, member1_.dateOfReg as dateOfRe4_3_2_, member1_.email as email5_3_2_, member1_.gender as gender6_3_2_, member1_.givenName as givenNam7_3_2_, member1_.otherName as otherNam8_3_2_, member1_.picture as picture9_3_2_, member1_.surName as surName10_3_2_ from Holds holds0_ left outer join Member member1_ on holds0_.member=member1_.memberNo where holds0_.book=?
-]]></system-out>
-    <system-err><![CDATA[Sep 03, 2024 11:54:54 AM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
-INFO: HHH000204: Processing PersistenceUnitInfo [name: Library]
-Sep 03, 2024 11:54:54 AM org.hibernate.Version logVersion
-INFO: HHH000412: Hibernate Core {5.4.1.Final}
-Sep 03, 2024 11:54:54 AM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
-INFO: HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-Sep 03, 2024 11:54:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
-WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-Sep 03, 2024 11:54:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
-INFO: HHH10001005: using driver [com.microsoft.sqlserver.jdbc.SQLServerDriver] at URL [jdbc:sqlserver://CYPRIAN-DAVIS\CYPRIANMSSQL;integratedSecurity=true;DatabaseName=Library_Management_System]
-Sep 03, 2024 11:54:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
-INFO: HHH10001001: Connection properties: {user=CYPRIAN-DAVIS\HP ELITEBOOK 840 G5, password=****}
-Sep 03, 2024 11:54:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
-INFO: HHH10001003: Autocommit mode: false
-Sep 03, 2024 11:54:55 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
-INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-Sep 03, 2024 11:54:56 AM org.hibernate.dialect.Dialect <init>
-INFO: HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
-Sep 03, 2024 11:54:57 AM org.hibernate.type.descriptor.java.JavaTypeDescriptorRegistry checkEqualsAndHashCode
-WARN: HHH000481: Encountered Java type [class javafx.scene.image.Image] for which we could not locate a JavaTypeDescriptor and which does not appear to implement equals and/or hashCode.  This can lead to significant performance problems when performing equality/dirty checking involving this Java type.  Consider registering a custom JavaTypeDescriptor or at least implementing equals/hashCode.
-Sep 03, 2024 11:54:58 AM org.hibernate.tuple.PojoInstantiator <init>
-INFO: HHH000182: No default (no-argument) constructor for class: data.model.library.Hold (class must be instantiated by Interceptor)
-Sep 03, 2024 11:54:58 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
-INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-]]></system-err>
-  </testcase>
-  <testcase name="testIdGen" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.testIdGen() is @Disabled"/>
-  </testcase>
-  <testcase name="findBook" classname="CatalogTest" time="0.028">
-    <system-out><![CDATA[Hibernate: SELECT idValue FROM ID_Gen WHERE idName='BookId'
-Hibernate: UPDATE ID_GEN SET idValue = ? WHERE idName = 'BookId'
+    <system-out><![CDATA[Hibernate: select user0_.userName as userName1_5_0_, user0_.passWord as passWord2_5_0_ from users user0_ where user0_.userName=?
 ]]></system-out>
   </testcase>
-  <testcase name="searchBooks" classname="CatalogTest" time="0.093">
-    <system-out><![CDATA[Hibernate: SELECT idValue FROM ID_Gen WHERE idName='BookId'
-Hibernate: UPDATE ID_GEN SET idValue = ? WHERE idName = 'BookId'
-Hibernate: select book0_.bookId as bookId1_0_, book0_.ISBN as ISBN2_0_, book0_.author as author3_0_, book0_.category as category4_0_, book0_.coAuthor as coAuthor5_0_, book0_.dateOfEntry as dateOfEn6_0_, book0_.description as descript7_0_, book0_.edition as edition8_0_, book0_.language as language9_0_, book0_.publicationYear as publica10_0_, book0_.publisher as publish11_0_, book0_.status as status12_0_, book0_.title as title13_0_ from Catalog book0_ where book0_.bookId like ? or book0_.ISBN like ? or book0_.title like ? or book0_.author like ?
+  <testcase name="testUserNameExists" classname="UserOpsTest" time="0.112">
+    <system-out><![CDATA[Hibernate: select user0_.userName as userName1_5_0_, user0_.passWord as passWord2_5_0_ from users user0_ where user0_.userName=?
 ]]></system-out>
   </testcase>
-  <testcase name="getBooksByStatus" classname="CatalogTest" time="0.027">
-    <system-out><![CDATA[Hibernate: SELECT idValue FROM ID_Gen WHERE idName='BookId'
-Hibernate: UPDATE ID_GEN SET idValue = ? WHERE idName = 'BookId'
-Hibernate: select count(book0_.bookId) as col_0_0_ from Catalog book0_ where book0_.status=?
-]]></system-out>
-  </testcase>
-  <testcase name="testInsetBook" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.testInsetBook() is @Disabled"/>
-  </testcase>
-  <testcase name="getCatalogBooks" classname="CatalogTest" time="0.045">
-    <system-out><![CDATA[Hibernate: SELECT idValue FROM ID_Gen WHERE idName='BookId'
-Hibernate: UPDATE ID_GEN SET idValue = ? WHERE idName = 'BookId'
-Hibernate: select book0_.bookId as bookId1_0_, book0_.ISBN as ISBN2_0_, book0_.author as author3_0_, book0_.category as category4_0_, book0_.coAuthor as coAuthor5_0_, book0_.dateOfEntry as dateOfEn6_0_, book0_.description as descript7_0_, book0_.edition as edition8_0_, book0_.language as language9_0_, book0_.publicationYear as publica10_0_, book0_.publisher as publish11_0_, book0_.status as status12_0_, book0_.title as title13_0_ from Catalog book0_
-]]></system-out>
-  </testcase>
-  <testcase name="testCheckISBN" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.testCheckISBN() is @Disabled"/>
-  </testcase>
-  <testcase name="removeBook" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.removeBook() is @Disabled"/>
-  </testcase>
-  <testcase name="isBookCheckedout" classname="CatalogTest" time="0.0">
-    <skipped message="void CatalogTest.isBookCheckedout() is @Disabled"/>
+  <testcase name="testAddUser" classname="UserOpsTest" time="0.0">
+    <skipped message="void UserOpsTest.testAddUser() is @Disabled"/>
   </testcase>
 </testsuite>

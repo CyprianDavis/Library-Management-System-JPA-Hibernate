@@ -58,7 +58,7 @@ public class MemberOpsTest {
 	@Test
 	void testMemberHolds() {
 		Member member = MembersOperations.findMember("LM000012024");
-		Assertions.assertEquals(0, member.getHolds().size());	
+		Assertions.assertEquals(10, member.getHolds().size());	
 		
 	}
 

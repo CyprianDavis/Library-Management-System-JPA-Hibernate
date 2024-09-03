@@ -5,12 +5,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import data.model.library.Transaction;
-import data.model.member.Member;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class TransactionsOperation {
+public class TransactionsOps {
 	
 	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
 	
@@ -59,7 +58,8 @@ public class TransactionsOperation {
 	 * @param trans
 	 * @param memeber
 	 */
-	public static void insertTransaction(Transaction trans, Member member) {
+	public static void insertTransaction(Transaction trans) {
+		
 		
 		
 	}
