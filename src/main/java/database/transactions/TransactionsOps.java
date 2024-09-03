@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 public class TransactionsOps {
 	
 	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
+	protected static EntityTransaction transaction = null;
 	
 	
 	/**
@@ -58,10 +59,11 @@ public class TransactionsOps {
 	 * @param trans
 	 * @param memeber
 	 */
-	public static void insertTransaction(Transaction trans) {
-		
-		
-		
+	public static void saveTransaction(Transaction trans) {
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(trans);
+		transaction.commit();
 	}
 	/**
 	 * 

@@ -25,7 +25,6 @@ public class LibraryOperations {
 		Transaction trans = new Transaction(type,book,member);//create transaction object
 		TransactionsOps.insertTransaction(trans);
 		
-		
 	}
 	/**
 	 * 
