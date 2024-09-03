@@ -1,5 +1,8 @@
 package database.library;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -39,7 +42,7 @@ public class LibraryOperations {
 		transaction = entityManager.getTransaction();
 		transaction.begin();
 		IssueBook issuedBk = new IssueBook(member,book);
-		issuedBk.setDateOfIssuing(issuedOn);//set date of book check-out
+		issuedBk.setDateOfIssuing(getDate());//set date of book check-out
 		createTransaction("Check-Out",book, member);
 		entityManager.persist(issuedBk);
 		String dueDate = issuedBk.getDueDate();
@@ -54,6 +57,13 @@ public class LibraryOperations {
 	}
 	public static boolean renewBook(Book book) {
 		return false;
+		
+	}
+	private static String getDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		String dateT = dtf.format(now);
+		return dateT;
 		
 	}
 	
