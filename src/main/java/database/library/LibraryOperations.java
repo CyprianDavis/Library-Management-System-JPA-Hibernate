@@ -23,7 +23,7 @@ public class LibraryOperations {
 	
 	private static void createTransaction(String type,Book book,Member member) {
 		Transaction trans = new Transaction(type,book,member);//create transaction object
-		TransactionsOps.insertTransaction(trans);
+		TransactionsOps.saveTransaction(trans);
 		
 	}
 	/**
