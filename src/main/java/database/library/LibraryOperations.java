@@ -107,11 +107,13 @@ public class LibraryOperations {
 			transaction.begin();
 			IssueBook issuedBook = entityManager.createNamedQuery("IssueBook.findBook", IssueBook.class).setParameter("book", book).getSingleResult();
 			//Add more 7 days to the remaining days to due date
-			issuedBook.setDateOfIssuing(computeDueDate(7+getDaysRemaining(book)));
+			issuedBook.setDueDate(computeDueDate(7+getDaysRemaining(book)));
+			entityManager.merge(issuedBook);
 			transaction.commit();
 			return true;
 			
 		}catch(NoResultException e) {
+			e.printStackTrace();
 			
 		}
 		return false;
@@ -146,7 +148,7 @@ public class LibraryOperations {
 	           LocalDate endDate = LocalDate.of(now.getYear(),now.getMonth(),now.getDayOfMonth());
 
 	           // Calculate the period between the two dates
-	           Period period = Period.between(startDate, endDate);
+	           Period period = Period.between(endDate, startDate);
 	           days = period.getDays();
 		}catch(NoResultException |DateTimeParseException e) {
 			e.printStackTrace();

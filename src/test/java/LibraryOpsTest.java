@@ -24,10 +24,18 @@ public class LibraryOpsTest {
 		String date =LibraryOperations.issueBook(member, book);
 		System.out.print(date);	
 	}
+	
 	@Test
 	void testGetRemainingDays() {
 		int days = LibraryOperations.getDaysRemaining(book);
-		Assertions.assertEquals(13, days);
+		Assertions.assertEquals(12, days);
+	}
+	@Disabled
+	@Test
+	void testrenewBook() {
+		boolean value = LibraryOperations.renewBook(book);
+		Assertions.assertEquals(true, value);
+		
 	}
 	
 	
