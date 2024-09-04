@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -11,17 +12,23 @@ import database.memberOperations.MembersOperations;
 public class LibraryOpsTest {
 	Member member =null;
 	Book book=null;
-	@Disabled
+	
 	@BeforeEach
 	void intial() {
-		book =  Catalog.findBook("BK0001012024");
+		book =  Catalog.findBook("BK0001092024");
 		member = MembersOperations.findMember("LM000022024");
 	}
+	@Disabled
 	@Test
 	void testIssueBook() {
 		String date =LibraryOperations.issueBook(member, book);
-		System.out.print(date);
-		
+		System.out.print(date);	
 	}
+	@Test
+	void testGetRemainingDays() {
+		int days = LibraryOperations.getDaysRemaining(book);
+		Assertions.assertEquals(13, days);
+	}
+	
 	
 }
