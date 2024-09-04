@@ -56,14 +56,12 @@ public class LibraryOperations {
 	 * @return
 	 */
 	public static String issueBook(Member member,Book book) {
-		
 		transaction = entityManager.getTransaction();
 		transaction.begin();
 		member.getIssuedBooks().add(book);
 		book.setStatus("Issued");
 		entityManager.merge(book);
 		entityManager.merge(member);
-		
 		IssueBook issuedBk = new IssueBook(member,book);
 		issuedBk.setDueDate(computeDueDate(14));//set due date to 14 days from now
 		issuedBk.setDateOfIssuing(getDate());//set date of book check-out
@@ -75,12 +73,23 @@ public class LibraryOperations {
 		return dueDate;
 		
 	}
-	
-	public static boolean returnBook(Book book) {
+	/**
+	 * 
+	 * @param book
+	 * @return
+	 */
+	public static boolean returnBook(Book book,Member member) {
 		
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		member.getIssuedBooks().remove(book);
+		book.setStatus("Avaliable");
+		entityManager.merge(member);
+		entityManager.merge(book);
+		entityManager.createNamedQuery("IssuedBook.returnBook", IssueBook.class).setParameter("date", getDate()).setParameter("book", book).executeUpdate();
 		
-		
-		return false;
+		transaction.commit();
+		return true;
 		
 	}
 	public static boolean renewBook(Book book) {
