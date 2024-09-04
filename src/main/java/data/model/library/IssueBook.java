@@ -23,8 +23,9 @@ import data.model.member.Member;
 
   @NamedQueries({
   
-  @NamedQuery(name="IssuedBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn=:date WHERE i.book=:book"),
-  @NamedQuery(name="IssuedBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book")
+  @NamedQuery(name="IssueBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn=:date WHERE i.book=:book"),
+  @NamedQuery(name="IssueBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book"),
+  @NamedQuery(name="IssueBook.findBook ",query="SELECT i.book FROM IssueBook i WHERE i.book=:book AND dueDate= null")
   
   
   } )
