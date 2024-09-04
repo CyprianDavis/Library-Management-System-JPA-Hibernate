@@ -56,6 +56,7 @@ public class Book {
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();
 	
+	
 	//Constructors
 	/**
 	 * 

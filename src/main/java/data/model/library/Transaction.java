@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import data.model.book.Book;
 import data.model.member.Member;
@@ -19,6 +20,7 @@ import database.transactions.TransactionsOps;
  *
  */
 @Entity
+@Table(name="Transactions")
 public class Transaction {
 	private static int auto_id;	//Auto id retrived from the database
 	@Id
@@ -28,7 +30,7 @@ public class Transaction {
 	@OneToOne
 	@JoinColumn(name="book")
 	private	Book book;	//Book title
-	@Column(name="TansType")
+	@Column(name="TransType")
 	private String type; 		//Transaction type
 	@ManyToOne
 	@JoinColumn(name="member")

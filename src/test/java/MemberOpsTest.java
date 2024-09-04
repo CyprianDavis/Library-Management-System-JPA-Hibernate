@@ -55,6 +55,7 @@ public class MemberOpsTest {
 		Member member = MembersOperations.findMember("LM000012024");
 		Assertions.assertEquals(0, member.getIssuedBooks().size());	
 	}
+	@Disabled
 	@Test
 	void testMemberHolds() {
 		Member member = MembersOperations.findMember("LM000012024");

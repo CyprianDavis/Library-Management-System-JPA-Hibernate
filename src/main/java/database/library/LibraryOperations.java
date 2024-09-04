@@ -1,5 +1,6 @@
 package database.library;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,7 +28,26 @@ public class LibraryOperations {
 	private static void createTransaction(String type,Book book,Member member) {
 		Transaction trans = new Transaction(type,book,member);//create transaction object
 		TransactionsOps.saveTransaction(trans);
+	}
+	/**
+	 * computes the due date for the book
+	 * @param duration
+	 * @return
+	 */
+	private static String computeDueDate(int duration) {
+		 // Get the current date
+        LocalDate today = LocalDate.now();
+        
+        // Add 14 days to the current date
+        LocalDate futureDate = today.plusDays(duration);
+        
+        // Define a formatter for the desired date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // You can change the pattern to your preferred format
+        
+        // Format the date as a string
+        String futureDateString = futureDate.format(formatter);
 		
+		return futureDateString;
 	}
 	/**
 	 * 
@@ -35,13 +55,17 @@ public class LibraryOperations {
 	 * @param book
 	 * @return
 	 */
-	
-	public static String issueBook(Member member,Book book,String issuedOn) {
-		member.getIssuedBooks().add(book);
-		book.setStatus("Issued");
+	public static String issueBook(Member member,Book book) {
+		
 		transaction = entityManager.getTransaction();
 		transaction.begin();
+		member.getIssuedBooks().add(book);
+		book.setStatus("Issued");
+		entityManager.merge(book);
+		entityManager.merge(member);
+		
 		IssueBook issuedBk = new IssueBook(member,book);
+		issuedBk.setDueDate(computeDueDate(14));//set due date to 14 days from now
 		issuedBk.setDateOfIssuing(getDate());//set date of book check-out
 		createTransaction("Check-Out",book, member);
 		entityManager.persist(issuedBk);
@@ -51,7 +75,11 @@ public class LibraryOperations {
 		return dueDate;
 		
 	}
+	
 	public static boolean returnBook(Book book) {
+		
+		
+		
 		return false;
 		
 	}
