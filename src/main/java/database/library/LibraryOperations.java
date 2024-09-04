@@ -2,10 +2,13 @@ package database.library;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 
 import data.model.book.Book;
 import data.model.library.IssueBook;
@@ -101,7 +104,36 @@ public class LibraryOperations {
 		LocalDateTime now = LocalDateTime.now();
 		String dateT = dtf.format(now);
 		return dateT;
+	}
+	/**
+	 * 
+	 * @param book
+	 * @returns the number of remaining days to book date over due
+	 */
+	public static int getDaysRemaining(Book book) {
+		String query = "SELECT i.dueDate FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null";
+		int days =0;
 		
+		 // Get the current date
+		LocalDateTime now = LocalDateTime.now();
+		String dueDate = null;
+		//Get book Due date from database
+		try {
+			dueDate = (String) entityManager.createQuery(query).setParameter("book", book).getSingleResult();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			  // Parse the date string into a LocalDate object
+	           LocalDate date = LocalDate.parse(dueDate, formatter);
+	        // Define two dates
+	           LocalDate startDate = LocalDate.of(date.getYear(),date.getMonth(),date.getDayOfMonth());
+	           LocalDate endDate = LocalDate.of(now.getYear(),now.getMonth(),now.getDayOfMonth());
+
+	           // Calculate the period between the two dates
+	           Period period = Period.between(startDate, endDate);
+	           days = period.getDays();
+		}catch(NoResultException |DateTimeParseException e) {
+			e.printStackTrace();
+		}
+		return days;
 	}
 	
 	
