@@ -95,7 +95,25 @@ public class LibraryOperations {
 		return true;
 		
 	}
+	/**
+	 * 
+	 * @param book
+	 * @returns true after adding 7 days to the remaining days to due date
+	 */
 	public static boolean renewBook(Book book) {
+		transaction = entityManager.getTransaction();
+		
+		try {
+			transaction.begin();
+			IssueBook issuedBook = entityManager.createNamedQuery("IssueBook.findBook", IssueBook.class).setParameter("book", book).getSingleResult();
+			//Add more 7 days to the remaining days to due date
+			issuedBook.setDateOfIssuing(computeDueDate(7+getDaysRemaining(book)));
+			transaction.commit();
+			return true;
+			
+		}catch(NoResultException e) {
+			
+		}
 		return false;
 		
 	}
