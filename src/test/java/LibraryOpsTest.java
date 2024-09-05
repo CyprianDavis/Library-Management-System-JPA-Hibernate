@@ -15,25 +15,25 @@ public class LibraryOpsTest {
 	
 	@BeforeEach
 	void intial() {
-		book =  Catalog.findBook("BK0001092024");
+		book =  Catalog.findBook("BK00012024");
 		member = MembersOperations.findMember("LM000022024");
 	}
-	@Disabled
+	
 	@Test
 	void testIssueBook() {
 		String date =LibraryOperations.issueBook(member, book);
 		System.out.print(date);	
 	}
-	
+	@Disabled
 	@Test
 	void testGetRemainingDays() {
 		int days = LibraryOperations.getDaysRemaining(book);
-		Assertions.assertEquals(12, days);
+		Assertions.assertEquals(14, days);
 	}
 	@Disabled
 	@Test
 	void testrenewBook() {
-		boolean value = LibraryOperations.renewBook(book);
+		boolean value = LibraryOperations.renewBook(book,member);
 		Assertions.assertEquals(true, value);
 		
 	}

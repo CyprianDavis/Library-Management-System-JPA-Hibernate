@@ -21,17 +21,17 @@ public class TransactionsOps {
 	 */
 	 public static int getNextTableGeneratorValue() {
 		 EntityTransaction transaction = null;
-		 int nextValue =0;
+		 int currentValue =0;
 		 try {
 			transaction = entityManager.getTransaction();
 			transaction.begin();
 			 // SQL query to get the next value for the sequence
 			 String selectSql = "SELECT idValue FROM ID_Gen WHERE idName='TransactionId'";
 		        Query selectQuery = entityManager.createNativeQuery(selectSql);
-		        int currentValue = ((Number) selectQuery.getSingleResult()).intValue();
+		         currentValue = ((Number) selectQuery.getSingleResult()).intValue();
 
 		        // Increment the value
-		         nextValue = currentValue + 1;
+		        int  nextValue = currentValue + 1;
 
 		        // SQL query to update the sequence value
 		        String updateSql = "UPDATE ID_GEN SET idValue = :nextValue WHERE idName = 'TransactionId'";
@@ -51,7 +51,7 @@ public class TransactionsOps {
 			 throw new RuntimeException("Error updating sequence value", e);
 		 }
 	        
-	        return nextValue;
+	        return currentValue;
 	    }
 	
 	/**

@@ -82,7 +82,6 @@ public class LibraryOperations {
 	 * @return
 	 */
 	public static boolean returnBook(Book book,Member member) {
-		
 		transaction = entityManager.getTransaction();
 		transaction.begin();
 		member.getIssuedBooks().remove(book);
@@ -90,7 +89,7 @@ public class LibraryOperations {
 		entityManager.merge(member);
 		entityManager.merge(book);
 		entityManager.createNamedQuery("IssuedBook.returnBook", IssueBook.class).setParameter("date", getDate()).setParameter("book", book).executeUpdate();
-		
+		createTransaction("Check-In",book, member);
 		transaction.commit();
 		return true;
 		
@@ -100,7 +99,7 @@ public class LibraryOperations {
 	 * @param book
 	 * @returns true after adding 7 days to the remaining days to due date
 	 */
-	public static boolean renewBook(Book book) {
+	public static boolean renewBook(Book book,Member member) {
 		transaction = entityManager.getTransaction();
 		
 		try {
@@ -109,15 +108,13 @@ public class LibraryOperations {
 			//Add more 7 days to the remaining days to due date
 			issuedBook.setDueDate(computeDueDate(7+getDaysRemaining(book)));
 			entityManager.merge(issuedBook);
+			createTransaction("Renewal",book, member);
 			transaction.commit();
 			return true;
-			
 		}catch(NoResultException e) {
 			e.printStackTrace();
-			
 		}
 		return false;
-		
 	}
 	private static String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
