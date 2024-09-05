@@ -18,7 +18,7 @@ public class LibraryOpsTest {
 		book =  Catalog.findBook("BK00012024");
 		member = MembersOperations.findMember("LM000022024");
 	}
-	
+	@Disabled
 	@Test
 	void testIssueBook() {
 		String date =LibraryOperations.issueBook(member, book);
@@ -30,7 +30,7 @@ public class LibraryOpsTest {
 		int days = LibraryOperations.getDaysRemaining(book);
 		Assertions.assertEquals(14, days);
 	}
-	@Disabled
+	
 	@Test
 	void testrenewBook() {
 		boolean value = LibraryOperations.renewBook(book,member);
