@@ -81,17 +81,17 @@ public class LibraryOperations {
 	 * @param book
 	 * @return
 	 */
-	public static boolean returnBook(Book book,Member member) {
+	public static int returnBook(Book book,Member member) {
 		transaction = entityManager.getTransaction();
 		transaction.begin();
 		member.getIssuedBooks().remove(book);
 		book.setStatus("Avaliable");
 		entityManager.merge(member);
 		entityManager.merge(book);
-		entityManager.createNamedQuery("IssuedBook.returnBook", IssueBook.class).setParameter("date", getDate()).setParameter("book", book).executeUpdate();
+		int rows = entityManager.createNamedQuery("IssuedBook.returnBook", IssueBook.class).setParameter("date", getDate()).setParameter("book", book).executeUpdate();
 		createTransaction("Check-In",book, member);
 		transaction.commit();
-		return true;
+		return rows;
 		
 	}
 	/**
