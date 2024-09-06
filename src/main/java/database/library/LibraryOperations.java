@@ -12,9 +12,7 @@ import javax.persistence.NoResultException;
 
 import data.model.book.Book;
 import data.model.library.IssueBook;
-import data.model.library.Transaction;
 import data.model.member.Member;
-import database.transactions.TransactionsOps;
 import enitiyFactory.EntityFactoryGen;
 
 
@@ -29,8 +27,7 @@ public class LibraryOperations {
 	
 	
 	private static void createTransaction(String type,Book book,Member member) {
-		Transaction trans = new Transaction(type,book,member);//create transaction object
-		TransactionsOps.saveTransaction(trans);
+		
 	}
 	/**
 	 * computes the due date for the book
