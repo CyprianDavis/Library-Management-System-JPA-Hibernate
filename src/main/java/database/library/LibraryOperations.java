@@ -74,7 +74,6 @@ public class LibraryOperations {
 		transaction.commit();
 		
 		return dueDate;
-		
 	}
 	/**
 	 * 
@@ -99,10 +98,7 @@ public class LibraryOperations {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return rows;
-		
 	}
 	/**
 	 * 
@@ -126,6 +122,7 @@ public class LibraryOperations {
 		}
 		return false;
 	}
+	
 	private static String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
@@ -162,11 +159,4 @@ public class LibraryOperations {
 		}
 		return days;
 	}
-	
-	
-	
-	
-	
-	
-
 }
