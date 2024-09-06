@@ -1,4 +1,4 @@
-package data.model.member.transaction;
+package data.model.library;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -8,10 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import data.model.book.Book;
 import data.model.member.Member;
-import database.transactions.TransactionsOperation;
+import database.transactions.TransactionsOps;
 
 /**
  * 
@@ -19,6 +20,7 @@ import database.transactions.TransactionsOperation;
  *
  */
 @Entity
+@Table(name="Transactions")
 public class Transaction {
 	private static int auto_id;	//Auto id retrived from the database
 	@Id
@@ -28,7 +30,7 @@ public class Transaction {
 	@OneToOne
 	@JoinColumn(name="book")
 	private	Book book;	//Book title
-	@Column(name="TansType")
+	@Column(name="TransType")
 	private String type; 		//Transaction type
 	@ManyToOne
 	@JoinColumn(name="member")
@@ -47,7 +49,7 @@ public class Transaction {
 		this.date = dateT;
 		int year = Year.now().getValue();
 		//Retive last id from the databse
-		auto_id = TransactionsOperation.getNextTableGeneratorValue();
+		auto_id = TransactionsOps.getNextTableGeneratorValue();
 		if(auto_id<=9) {
 			String id = "TR0000"+auto_id+""+year;
 			this.transID = id;		

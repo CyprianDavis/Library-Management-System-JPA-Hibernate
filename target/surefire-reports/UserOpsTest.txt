@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
-Test set: CatalogTest
+Test set: UserOpsTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 1, Errors: 0, Skipped: 6, Time elapsed: 5.524 s <<< FAILURE! -- in CatalogTest
-CatalogTest.getHoldsOnBook -- Time elapsed: 5.223 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <4> but was: <0>
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 1, Time elapsed: 0.325 s <<< FAILURE! -- in UserOpsTest
+UserOpsTest.testgetUser -- Time elapsed: 0.204 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <data.model.user.User@4acc5dff>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:510)
-	at CatalogTest.getHoldsOnBook(CatalogTest.java:91)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at UserOpsTest.testgetUser(UserOpsTest.java:32)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
