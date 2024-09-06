@@ -12,7 +12,9 @@ import javax.persistence.NoResultException;
 
 import data.model.book.Book;
 import data.model.library.IssueBook;
+import data.model.library.Transaction;
 import data.model.member.Member;
+import database.transactions.TransactionsOps;
 import enitiyFactory.EntityFactoryGen;
 
 
@@ -27,6 +29,8 @@ public class LibraryOperations {
 	
 	
 	private static void createTransaction(String type,Book book,Member member) {
+		Transaction trans = new Transaction(type,book,member);//create transaction object
+		TransactionsOps.saveTransaction(trans);
 		
 	}
 	/**
@@ -58,16 +62,18 @@ public class LibraryOperations {
 	public static String issueBook(Member member,Book book) {
 		transaction = entityManager.getTransaction();
 		transaction.begin();
+		IssueBook bk =  new IssueBook(member,book);
+		bk.setDateOfIssuing(getDate());
+		bk.setDueDate(computeDueDate(14));//set due date to 14 days from now
+		createTransaction("Check-Out",book, member);
+		entityManager.persist(bk);
+		String dueDate = bk.getDueDate();
 		member.getIssuedBooks().add(book);
+		
 		book.setStatus("Issued");
 		entityManager.merge(book);
 		entityManager.merge(member);
-		IssueBook issuedBk = new IssueBook(member,book);
-		issuedBk.setDueDate(computeDueDate(14));//set due date to 14 days from now
-		issuedBk.setDateOfIssuing(getDate());//set date of book check-out
-		createTransaction("Check-Out",book, member);
-		entityManager.persist(issuedBk);
-		String dueDate = issuedBk.getDueDate();
+		
 		transaction.commit();
 		
 		return dueDate;
@@ -103,6 +109,8 @@ public class LibraryOperations {
 	 * @returns true after adding 7 days to the remaining days to due date
 	 */
 	public static boolean renewBook(Book book,Member member) {
+		transaction = entityManager.getTransaction();
+		
 		transaction = entityManager.getTransaction();
 		
 		try {
