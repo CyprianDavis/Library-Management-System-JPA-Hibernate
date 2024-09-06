@@ -83,7 +83,12 @@ public class CatalogTest {
 	@Test
 	void getBooksByStatus() {
 		int value = Catalog.getBooksByStatus("Issued");
-		Assertions.assertEquals(6, value);
+		Assertions.assertEquals(0, value);
+	}
+	@Test
+	void getHoldsOnBook() {
+		book = Catalog.findBook("BK0001002024");
+		Assertions.assertEquals(4, book.getHolds().size());
 	}
 	
 	

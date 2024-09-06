@@ -4,15 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import data.model.member.Member;
-import data.model.member.transaction.Transaction;
+import data.model.library.Transaction;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class TransactionsOperation {
+public class TransactionsOps {
 	
 	protected static EntityManager entityManager = EntityFactoryGen.getEntityManager();
+	protected static EntityTransaction transaction = null;
 	
 	
 	/**
@@ -21,17 +21,17 @@ public class TransactionsOperation {
 	 */
 	 public static int getNextTableGeneratorValue() {
 		 EntityTransaction transaction = null;
-		 int nextValue =0;
+		 int currentValue =0;
 		 try {
 			transaction = entityManager.getTransaction();
 			transaction.begin();
 			 // SQL query to get the next value for the sequence
 			 String selectSql = "SELECT idValue FROM ID_Gen WHERE idName='TransactionId'";
 		        Query selectQuery = entityManager.createNativeQuery(selectSql);
-		        int currentValue = ((Number) selectQuery.getSingleResult()).intValue();
+		         currentValue = ((Number) selectQuery.getSingleResult()).intValue();
 
 		        // Increment the value
-		         nextValue = currentValue + 1;
+		        int  nextValue = currentValue + 1;
 
 		        // SQL query to update the sequence value
 		        String updateSql = "UPDATE ID_GEN SET idValue = :nextValue WHERE idName = 'TransactionId'";
@@ -51,7 +51,7 @@ public class TransactionsOperation {
 			 throw new RuntimeException("Error updating sequence value", e);
 		 }
 	        
-	        return nextValue;
+	        return currentValue;
 	    }
 	
 	/**
@@ -59,9 +59,11 @@ public class TransactionsOperation {
 	 * @param trans
 	 * @param memeber
 	 */
-	public static void insertTransaction(Transaction trans, Member member) {
-		
-		
+	public static void saveTransaction(Transaction trans) {
+		transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(trans);
+		transaction.commit();
 	}
 	/**
 	 * 

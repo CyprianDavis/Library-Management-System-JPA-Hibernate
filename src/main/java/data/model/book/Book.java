@@ -13,8 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import data.model.member.hold.Hold;
-import data.model.member.transaction.Transaction;
+import data.model.library.Hold;
+import data.model.library.Transaction;
 import database.catalog.Catalog;
 
 /**
@@ -50,11 +50,13 @@ public class Book {
 	private String dateOfEntry;	// date when  the book was entered in the system
 	private String  category;		//category of the book
 	private String description;		// Book Description
+		
 	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();
-
+	
+	
 	//Constructors
 	/**
 	 * 
@@ -145,6 +147,7 @@ public class Book {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
 	//Getter methods
 	public String getBookId() {
 		return bookId;
@@ -185,12 +188,14 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
+	
 	public Collection<Transaction> getTransactions(){
 		return transactions;
 	}
 	public Collection<Hold> getHolds(){
 		return this.holds;	
 	}
+	
 	public String toString() {
 		return "Title "+this.title+"\n"
 				+ "Author "+this.author+"\n"
