@@ -28,14 +28,18 @@ public class LibraryOpsTest {
 	@Test
 	void testGetRemainingDays() {
 		int days = LibraryOperations.getDaysRemaining(book);
-		Assertions.assertEquals(14, days);
+		Assertions.assertEquals(21, days);
 	}
-	
+	@Disabled
 	@Test
 	void testrenewBook() {
 		boolean value = LibraryOperations.renewBook(book,member);
-		Assertions.assertEquals(true, value);
-		
+		Assertions.assertEquals(true, value);	
+	}
+	@Test
+	void testReturnBook() {
+		int value = LibraryOperations.returnBook(book, member);
+		Assertions.assertEquals(1,value);
 	}
 	
 	

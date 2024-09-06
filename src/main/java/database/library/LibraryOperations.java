@@ -82,15 +82,25 @@ public class LibraryOperations {
 	 * @return
 	 */
 	public static int returnBook(Book book,Member member) {
+		int rows=0;
 		transaction = entityManager.getTransaction();
-		transaction.begin();
-		member.getIssuedBooks().remove(book);
-		book.setStatus("Avaliable");
-		entityManager.merge(member);
-		entityManager.merge(book);
-		int rows = entityManager.createNamedQuery("IssuedBook.returnBook", IssueBook.class).setParameter("date", getDate()).setParameter("book", book).executeUpdate();
-		createTransaction("Check-In",book, member);
-		transaction.commit();
+		
+		try {
+			transaction.begin();//Begin transaction
+			book.setStatus("Avaliable");// update book's status
+			member.getIssuedBooks().remove(book); //remove book from the list of issued books
+			entityManager.merge(book);
+			entityManager.merge(member);
+			rows=entityManager.createNamedQuery("IssueBook.returnBook").setParameter("date", getDate()).setParameter("book", book).executeUpdate();
+			createTransaction("Check-in",book, member);
+			transaction.commit();
+			return rows;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		return rows;
 		
 	}
