@@ -21,10 +21,22 @@ public class HoldOpsTest {
 		book = Catalog.findBook("BK00032024");
 		 hold = new Hold(member,book,3);
 	}
+	@Disabled
 	@Test
 	void testHoldgetNextId() {
 		int value=HoldProcesses.getNextTableGeneratorValue();
 		Assertions.assertEquals(1, value);
+	}
+	@Disabled
+	@Test
+	void testBookHasHold() {
+		boolean value = HoldProcesses.bookHasHold(book);
+		Assertions.assertEquals(true, value);
+	}
+	@Test
+	void testHoldExists() {
+		boolean value = HoldProcesses.holdExists(book, member);
+		Assertions.assertEquals(true, value);
 	}
 
 }

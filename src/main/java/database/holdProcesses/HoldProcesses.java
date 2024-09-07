@@ -73,7 +73,7 @@ public class HoldProcesses {
 				return true;
 			}
 		}catch(NoResultException e) {
-			e.printStackTrace();
+			return false;
 		}
 		return false;
 	}
@@ -89,7 +89,7 @@ public class HoldProcesses {
 			if(hold!=null)
 				return true;
 		}catch(NoResultException e) {
-			e.printStackTrace();
+			return false;
 		}
 	
 		return false;
