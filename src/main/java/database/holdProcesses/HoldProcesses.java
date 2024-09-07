@@ -128,7 +128,6 @@ public class HoldProcesses {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return rows>0;
 	}
 	/**
@@ -138,7 +137,7 @@ public class HoldProcesses {
 	 */
 	public static ObservableList<Hold> getHolds(Book book){
 		ObservableList<Hold> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
-		
+		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
 		return holds;
 }
 	}
