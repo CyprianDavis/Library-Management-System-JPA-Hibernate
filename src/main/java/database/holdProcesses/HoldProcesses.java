@@ -99,6 +99,7 @@ public class HoldProcesses {
  */
 	public static void placeHold(Hold hold) {
 		try {
+			transaction = entityManager.getTransaction();
 			transaction.begin();
 			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
 			entityManager.persist(hold);
@@ -115,9 +116,20 @@ public class HoldProcesses {
 	 * @param status
 	 * @returns true if the hold is removed successfully or false otherwise
 	 */
-	public static boolean removeHold(Member member, Book book,String status) {
+	public static boolean removeHold(Member member, Book book) {
+		int rows =0;
+		transaction = entityManager.getTransaction();
+		try {
+			transaction.begin();
+			rows = entityManager.createNamedQuery("Hold.removeHold").setParameter("member", member).setParameter("book", book).executeUpdate();
+			LibraryOperations.createTransaction("Cancel Reservations",book, member);
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		return true;
+		return rows>0;
 	}
 	/**
 	 * 
