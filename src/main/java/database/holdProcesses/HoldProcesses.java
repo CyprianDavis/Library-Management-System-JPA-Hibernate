@@ -81,7 +81,14 @@ public class HoldProcesses {
 	 * @param member
 	 * @returns true if the hold already exists in the database and false otherwise
 	 */
-	public static boolean holdExsists(Book book, Member member) {
+	public static boolean holdExists(Book book, Member member) {
+		try {
+			Hold hold = entityManager.createNamedQuery("Hold.holdExist", Hold.class).setParameter("member", member).setParameter("book", book).getSingleResult();
+			if(hold!=null)
+				return true;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+		}
 	
 		return false;
 		}
