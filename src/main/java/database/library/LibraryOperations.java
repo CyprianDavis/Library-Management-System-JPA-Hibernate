@@ -28,7 +28,7 @@ public class LibraryOperations {
 	protected static EntityTransaction transaction =null;
 	
 	
-	private static void createTransaction(String type,Book book,Member member) {
+	public static void createTransaction(String type,Book book,Member member) {
 		Transaction trans = new Transaction(type,book,member);//create transaction object
 		TransactionsOps.saveTransaction(trans);
 		

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import data.model.book.Book;
 import data.model.library.Hold;
 import data.model.member.Member;
+import database.library.LibraryOperations;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,6 +98,14 @@ public class HoldProcesses {
  * @param hold
  */
 	public static void placeHold(Hold hold) {
+		try {
+			transaction.begin();
+			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
+			entityManager.persist(hold);
+			transaction.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	/**
