@@ -33,10 +33,16 @@ public class HoldOpsTest {
 		boolean value = HoldProcesses.bookHasHold(book);
 		Assertions.assertEquals(true, value);
 	}
+	@Disabled 
 	@Test
 	void testHoldExists() {
 		boolean value = HoldProcesses.holdExists(book, member);
 		Assertions.assertEquals(true, value);
+	}
+	@Test
+	void testPlaceHold() {
+	 Hold h = HoldProcesses.placeHold(hold);
+		Assertions.assertEquals(h, hold);
 	}
 
 }

@@ -38,7 +38,7 @@ public class HoldProcesses {
 		        int currentValue = ((Number) selectQuery.getSingleResult()).intValue();
 
 		        // Increment the value
-		         nextValue = currentValue + 0;
+		         nextValue = currentValue + 1;
 
 		        // SQL query to update the sequence value
 		        String updateSql = "UPDATE ID_GEN SET idValue = :nextValue WHERE idName = 'HoldId'";
@@ -98,16 +98,19 @@ public class HoldProcesses {
  * Places hold on the book 
  * @param hold
  */
-	public static void placeHold(Hold hold) {
+	public static Hold placeHold(Hold hold) {
 		try {
 			transaction = entityManager.getTransaction();
 			transaction.begin();
-			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
+			hold.setStatus("On");
 			entityManager.persist(hold);
+			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
 			transaction.commit();
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return hold;
 		
 	}
 	/**
