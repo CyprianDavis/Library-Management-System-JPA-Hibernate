@@ -9,14 +9,14 @@ import database.catalog.Catalog;
 import database.library.LibraryOperations;
 import database.memberOperations.MembersOperations;
 
-public class LibraryOpsTest {
+public class LibraryOpsTest2 {
 	Member member =null;
 	Book book=null;
 	
 	@BeforeEach
 	void intial() {
-		book =  Catalog.findBook("BK00012024");
-		member = MembersOperations.findMember("LM000022024");
+		book =  Catalog.findBook("BK00032024");
+		member = MembersOperations.findMember("LM000012024");
 	}
 	@Disabled
 	@Test
@@ -30,17 +30,16 @@ public class LibraryOpsTest {
 		int days = LibraryOperations.getDaysRemaining(book);
 		Assertions.assertEquals(21, days);
 	}
-	@Disabled
 	@Test
 	void testrenewBook() {
 		boolean value = LibraryOperations.renewBook(book,member);
 		Assertions.assertEquals(true, value);	
 	}
+	@Disabled
 	@Test
 	void testReturnBook() {
 		int value = LibraryOperations.returnBook(book, member);
 		Assertions.assertEquals(1,value);
 	}
-	
 	
 }

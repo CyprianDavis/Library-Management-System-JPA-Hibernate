@@ -21,15 +21,14 @@ import data.model.member.Member;
 @Entity
 @Table(name="IssuedBooks")
 
-  @NamedQueries({
-  
-  @NamedQuery(name="IssueBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn= :date WHERE i.book= :book"),
-  @NamedQuery(name="IssueBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book"),
-  @NamedQuery(name="IssueBook.findBook",query="SELECT i FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null")
-  
-  
-  } )
- 
+@NamedQueries(
+		{
+		@NamedQuery(name="IssueBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn= :date WHERE i.book= :book"),
+		@NamedQuery(name="IssueBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book"),
+		@NamedQuery(name="IssueBook.findBook",query="SELECT i FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null")
+						  
+		})
+
 public class IssueBook {
 	@Id 
 	@GeneratedValue(strategy =GenerationType.IDENTITY)

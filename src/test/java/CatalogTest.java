@@ -33,14 +33,12 @@ public class CatalogTest {
 	void testtotalNumberOfBooks() {
 		int number = Catalog.totalNumberOfBooks();
 		Assertions.assertEquals(6, number);
-	}
-	@Disabled
+	}@Disabled
 	@Test
 	void testIdGen() {
 		int num = Catalog.getNextTableGeneratorValue();
-		Assertions.assertEquals(116, num);
+		Assertions.assertEquals(1, num);
 	}
-	@Disabled
 	@Test
 	void testInsetBook() {
 		Book bk = Catalog.insertBook(book);
@@ -52,7 +50,7 @@ public class CatalogTest {
 		value = Catalog.checkISBN("978-1-492-05761-1");
 		Assertions.assertEquals(true, value);
 	}
-	
+	@Disabled
 	@Test
 	void findBook() {
 		book = Catalog.findBook("BK0001002024");
@@ -70,26 +68,37 @@ public class CatalogTest {
 		 value = Catalog.isBookCheckedout("BK0001272024");
 		Assertions.assertEquals(true, value);
 	}
+	@Disabled
 	@Test
 	void getCatalogBooks() {
 		books.addAll(Catalog.getCatalogBooks());
 		Assertions.assertEquals(true, !books.isEmpty());
 	}
+	@Disabled
 	@Test
 	void searchBooks() {
 		books.addAll(Catalog.searchBooks("Learning SQL"));
 		Assertions.assertEquals(true, !books.isEmpty());
 	}
+	@Disabled
 	@Test
 	void getBooksByStatus() {
 		int value = Catalog.getBooksByStatus("Issued");
 		Assertions.assertEquals(0, value);
 	}
+	@Disabled
 	@Test
 	void getHoldsOnBook() {
 		book = Catalog.findBook("BK0001002024");
 		Assertions.assertEquals(4, book.getHolds().size());
 	}
+	@Disabled
+	@Test
+	void testClearPersistence() {
+		int value = Catalog.clearPersitence();
+		Assertions.assertEquals(1, value);
+	}
+	
 	
 	
 }

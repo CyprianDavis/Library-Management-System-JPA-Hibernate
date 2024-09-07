@@ -193,4 +193,14 @@ public class Catalog {
 		return 0;
 		
 	}
+	public static int clearPersitence() {
+		try {
+			entityManager.clear();
+			return 1;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

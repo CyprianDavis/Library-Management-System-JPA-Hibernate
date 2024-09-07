@@ -91,10 +91,11 @@ public class LibraryOperations {
 			transaction.begin();//Begin transaction
 			book.setStatus("Avaliable");// update book's status
 			member.getIssuedBooks().remove(book); //remove book from the list of issued books
-			entityManager.merge(book);
-			entityManager.merge(member);
+			
 			rows=entityManager.createNamedQuery("IssueBook.returnBook").setParameter("date", getDate()).setParameter("book", book).executeUpdate();
 			createTransaction("Check-in",book, member);
+			entityManager.merge(book);
+			entityManager.merge(member);
 			transaction.commit();
 			return rows;
 			
