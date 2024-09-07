@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import data.model.book.Book;
@@ -20,6 +22,15 @@ import database.holdProcesses.HoldProcesses;
  */
 @Entity
 @Table(name="Holds")
+@NamedQueries(
+		{
+			@NamedQuery(name="Hold.getHolds",query="SELECT h.member FROM Hold h WHERE h.book= :book AND h.status=On "),
+			@NamedQuery(name="Hold.bookHasHold",query="SELECT h.b FROM H h WHERE h.b= :book AND h.status=On"),
+			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status=Removed WHERE h.member=:member AND h.book=:book ")
+			
+		})
+
+
 public class Hold {
 	private static Calendar holdDate;		//when the member wants the book
 	private static int auto_id; 	//auto id for the hold
