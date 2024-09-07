@@ -23,9 +23,9 @@ import database.holdProcesses.HoldProcesses;
 @Table(name="Holds")
 @NamedQueries(
 		{
-			@NamedQuery(name="Hold.getHolds",query="SELECT h.member FROM Hold h WHERE h.book= :book AND h.status=On "),
-			@NamedQuery(name="Hold.bookHasHold",query="SELECT h.b FROM H h WHERE h.b= :book AND h.status=On"),
-			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status=Removed WHERE h.member=:member AND h.book=:book "),
+			@NamedQuery(name="Hold.getHolds",query="SELECT h FROM Hold h WHERE h.book=:book AND h.status='On'"),
+			@NamedQuery(name="Hold.bookHasHold",query="SELECT h.book FROM Hold h WHERE h.book=:book AND h.status= 'On'"),
+			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status='Removed' WHERE h.member=:member AND h.book=:book "),
 			@NamedQuery(name="Hold.holdExist",query="SELECT h FROM Hold h WHERE h.member= :member AND h.book= :book")
 		})
 
@@ -56,19 +56,19 @@ public class Hold {
 		int year = Year.now().getValue();
 		auto_id = HoldProcesses.getNextTableGeneratorValue();
 		if(auto_id<=9) {
-			String id = "HBK0000"+auto_id+""+year;
+			String id = "HBK00000"+auto_id+""+year;
 			this.holdId = id;	
 		}
 		else if(auto_id>=10) {
-			String id = "HBK000"+auto_id+""+year;
+			String id = "HBK0000"+auto_id+""+year;
 			this.holdId = id;	
 		}
 		else if(auto_id >99) {
-			String id = "HBOO"+auto_id+""+year;
+			String id = "HBOO0"+auto_id+""+year;
 			this.holdId = id;
 		}
 		else if(auto_id >999) {
-			String id ="HB0"+auto_id+""+year;
+			String id ="HB00"+auto_id+""+year;
 			this.holdId = id;
 		}
 		

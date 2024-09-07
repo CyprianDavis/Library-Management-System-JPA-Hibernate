@@ -38,7 +38,7 @@ public class HoldProcesses {
 		        int currentValue = ((Number) selectQuery.getSingleResult()).intValue();
 
 		        // Increment the value
-		         nextValue = currentValue + 1;
+		         nextValue = currentValue + 0;
 
 		        // SQL query to update the sequence value
 		        String updateSql = "UPDATE ID_GEN SET idValue = :nextValue WHERE idName = 'HoldId'";
@@ -60,6 +60,7 @@ public class HoldProcesses {
 	        
 	        return nextValue;
 	    }
+	 
 	/**
 	 * 
 	 * @param bookId
