@@ -2,6 +2,7 @@ package database.holdProcesses;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.book.Book;
@@ -63,9 +64,15 @@ public class HoldProcesses {
 	 * @param bookId
 	 * @returns true if the book has a hold or false otherwise
 	 */
-	public static boolean bookHasHold(String bookId) {
-		
-            
+	public static boolean bookHasHold(Book bk) {
+		try {
+			Book book = entityManager.createNamedQuery("Hold.bookHasHold", Book.class).setParameter("book", bk).getSingleResult();
+			if(book!=null) {
+				return true;
+			}
+		}catch(NoResultException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	/**
