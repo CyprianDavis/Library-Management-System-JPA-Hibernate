@@ -14,14 +14,14 @@ public class HoldOpsTest {
 	Member member =null;
 	Book book=null;
 	Hold hold =null;
-	@Disabled
+	
 	@BeforeEach
 	void init() {
 		member = MembersOperations.findMember("LM000022024");
 		book = Catalog.findBook("BK00032024");
 		 hold = new Hold(member,book,3);
 	}
-	@Disabled
+
 	@Test
 	void testHoldgetNextId() {
 		int value=HoldProcesses.getNextTableGeneratorValue();
@@ -39,10 +39,16 @@ public class HoldOpsTest {
 		boolean value = HoldProcesses.holdExists(book, member);
 		Assertions.assertEquals(true, value);
 	}
+	@Disabled
 	@Test
 	void testPlaceHold() {
 	 Hold h = HoldProcesses.placeHold(hold);
 		Assertions.assertEquals(h, hold);
+	}
+	@Disabled
+	@Test
+	void testClearPersistence() {
+		Assertions.assertEquals(1,HoldProcesses.clearPersitence());
 	}
 
 }

@@ -143,5 +143,15 @@ public class HoldProcesses {
 		ObservableList<Hold> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
 		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
 		return holds;
-}
+}	
+	public static int clearPersitence() {
+		try {
+			entityManager.clear();
+			return 1;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	}

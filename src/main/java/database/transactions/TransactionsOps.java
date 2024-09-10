@@ -31,7 +31,7 @@ public class TransactionsOps {
 		         currentValue = ((Number) selectQuery.getSingleResult()).intValue();
 
 		        // Increment the value
-		        int  nextValue = currentValue + 1;
+		        int  nextValue = currentValue +1;
 
 		        // SQL query to update the sequence value
 		        String updateSql = "UPDATE ID_GEN SET idValue = :nextValue WHERE idName = 'TransactionId'";

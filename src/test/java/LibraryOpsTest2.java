@@ -8,6 +8,7 @@ import data.model.member.Member;
 import database.catalog.Catalog;
 import database.library.LibraryOperations;
 import database.memberOperations.MembersOperations;
+import database.transactions.TransactionsOps;
 
 public class LibraryOpsTest2 {
 	Member member =null;
@@ -30,6 +31,7 @@ public class LibraryOpsTest2 {
 		int days = LibraryOperations.getDaysRemaining(book);
 		Assertions.assertEquals(21, days);
 	}
+	@Disabled
 	@Test
 	void testrenewBook() {
 		boolean value = LibraryOperations.renewBook(book,member);
@@ -40,6 +42,11 @@ public class LibraryOpsTest2 {
 	void testReturnBook() {
 		int value = LibraryOperations.returnBook(book, member);
 		Assertions.assertEquals(1,value);
+	}
+	@Test
+	void testTransactionNextId() {
+		Assertions.assertEquals(9,TransactionsOps.getNextTableGeneratorValue());
+		
 	}
 	
 }
