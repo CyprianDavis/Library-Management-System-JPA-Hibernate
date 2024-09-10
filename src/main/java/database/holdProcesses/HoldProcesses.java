@@ -2,11 +2,13 @@ package database.holdProcesses;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import data.model.book.Book;
 import data.model.library.Hold;
 import data.model.member.Member;
+import database.library.LibraryOperations;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,14 +60,21 @@ public class HoldProcesses {
 	        
 	        return nextValue;
 	    }
+	 
 	/**
 	 * 
 	 * @param bookId
 	 * @returns true if the book has a hold or false otherwise
 	 */
-	public static boolean bookHasHold(String bookId) {
-		
-            
+	public static boolean bookHasHold(Book bk) {
+		try {
+			Book book = entityManager.createNamedQuery("Hold.bookHasHold", Book.class).setParameter("book", bk).getSingleResult();
+			if(book!=null) {
+				return true;
+			}
+		}catch(NoResultException e) {
+			return false;
+		}
 		return false;
 	}
 	/**
@@ -74,7 +83,14 @@ public class HoldProcesses {
 	 * @param member
 	 * @returns true if the hold already exists in the database and false otherwise
 	 */
-	public static boolean holdExsists(Book book, Member member) {
+	public static boolean holdExists(Book book, Member member) {
+		try {
+			Hold hold = entityManager.createNamedQuery("Hold.holdExist", Hold.class).setParameter("member", member).setParameter("book", book).getSingleResult();
+			if(hold!=null)
+				return true;
+		}catch(NoResultException e) {
+			return false;
+		}
 	
 		return false;
 		}
@@ -82,7 +98,19 @@ public class HoldProcesses {
  * Places hold on the book 
  * @param hold
  */
-	public static void placeHold(Hold hold) {
+	public static Hold placeHold(Hold hold) {
+		try {
+			transaction = entityManager.getTransaction();
+			transaction.begin();
+			hold.setStatus("On");
+			entityManager.persist(hold);
+			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return hold;
 		
 	}
 	/**
@@ -92,9 +120,19 @@ public class HoldProcesses {
 	 * @param status
 	 * @returns true if the hold is removed successfully or false otherwise
 	 */
-	public static boolean removeHold(Member member, Book book,String status) {
-		
-		return true;
+	public static boolean removeHold(Member member, Book book) {
+		int rows =0;
+		transaction = entityManager.getTransaction();
+		try {
+			transaction.begin();
+			rows = entityManager.createNamedQuery("Hold.removeHold").setParameter("member", member).setParameter("book", book).executeUpdate();
+			LibraryOperations.createTransaction("Cancel Reservations",book, member);
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rows>0;
 	}
 	/**
 	 * 
@@ -103,7 +141,17 @@ public class HoldProcesses {
 	 */
 	public static ObservableList<Hold> getHolds(Book book){
 		ObservableList<Hold> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
-		
+		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
 		return holds;
-}
+}	
+	public static int clearPersitence() {
+		try {
+			entityManager.clear();
+			return 1;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	}
