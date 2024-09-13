@@ -52,7 +52,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="issueBkBtn" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Issue Book" textFill="WHITE">
+                        <Button fx:id="issueBkBtn" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#IssueBook" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Issue Book" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="13.0" />
                            </font>
@@ -141,7 +141,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Transactions">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Book Issueing" />
+                            <MenuItem mnemonicParsing="false" text="Issued Books" />
                               <MenuItem mnemonicParsing="false" text="Returned Books" />
                               <MenuItem mnemonicParsing="false" text="Print Transactions" />
                           </items>

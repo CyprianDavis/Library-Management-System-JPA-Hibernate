@@ -221,9 +221,27 @@ public class DashBoardController implements Initializable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-	}
+	}	
+		}
+	@FXML
+	private void IssueBook() {
+		Parent parent;
+		try {
+			parent = FXMLLoader.load(getClass().getResource("/ui/issueBooks/SearchMember.fxml"));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			 stage.setTitle("Verify Member");
+			IconUntil.setStageIcon(stage);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setResizable(false);
+			stage.setScene(new Scene(parent));
+			stage.show();
+				           
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		
 	}
+		}
 }
 
 

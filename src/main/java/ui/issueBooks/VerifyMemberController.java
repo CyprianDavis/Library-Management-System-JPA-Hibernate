@@ -1,5 +1,6 @@
 package ui.issueBooks;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,23 +11,25 @@ import data.model.book.Book;
 import data.model.member.Member;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import utility.icon.IconUntil;
 
-public class IssueBookController implements Initializable{
+public class VerifyMemberController implements Initializable{
 	@FXML
 	private JFXTextField memberId;
 	@FXML
-	private JFXTextField issueBtn;
-	@FXML
-	private JFXTextField book;
-	@FXML
-	private JFXButton issueBk;
+	private JFXButton issueBtn;
 	@FXML
 	private TableView<Book>booksIssued;
 	@FXML
@@ -42,7 +45,7 @@ public class IssueBookController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		colsIntialize();
+
 	}
 	/**
 	 * Initializes table columns
@@ -57,16 +60,39 @@ public class IssueBookController implements Initializable{
 	@FXML
 	private void searchMember() {
 		if(memberId.getText().isEmpty()) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) book.getScene().getWindow()), "Issue Book", "Please enter Member ID");
-			 return;
+			showAlert(Alert.AlertType.ERROR, ((Stage) memberId.getScene().getWindow()), "Verify Member!", "Please Enter Member ID ");
+			return;
 		}
-		 member = MembersOperations.findMember(memberId.getText());//check if member exists
-		 if(member==null) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) book.getScene().getWindow()), "Issue Book", "Please enter Vaild Member ID");
-			 return;
-		 }
-			 
+		//Verify that member exists
+		member = MembersOperations.findMember(memberId.getText());
+		if(member == null) {
+			showAlert(Alert.AlertType.ERROR, ((Stage) memberId.getScene().getWindow()), "Verify Member!", "UNKONWN  MEMBER ID ");
+			return;	
+	}
+		((Stage) memberId.getScene().getWindow()).close();//close Verify stage
+		loadIssueBooks();
 		
+		
+	}
+	private void loadIssueBooks() {
+		
+		Parent parent;
+		try {
+			parent = FXMLLoader.load(getClass().getResource("/ui/issueBooks/IssueBooks.fxml"));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			 stage.setTitle("Issue Book");
+			IconUntil.setStageIcon(stage);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setResizable(false);
+			stage.setScene(new Scene(parent));
+			//colsIntialize();
+			stage.show();
+				           
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	}
 	}
 	//Handles Alert Messages
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

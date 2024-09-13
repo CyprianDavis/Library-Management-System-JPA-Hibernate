@@ -1,3 +1,4 @@
+/META-INF/
 /application/
 /data/
 /database/
@@ -5,4 +6,3 @@
 /ui/
 /utility/
 /validateInput/
-/META-INF/
