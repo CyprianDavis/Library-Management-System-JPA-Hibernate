@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import data.model.book.Book;
+import data.model.member.Member;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -21,6 +22,8 @@ public class IssueBooksController implements Initializable {
 	private TableColumn<Book,String>author;
 	@FXML
 	private TableColumn<Book,String>category;
+	private  Member member;
+	private Book book =null;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -35,6 +38,9 @@ public class IssueBooksController implements Initializable {
 		title.setCellValueFactory(new PropertyValueFactory<>("title"));
 		author.setCellValueFactory(new PropertyValueFactory<>("author"));
 		category.setCellValueFactory(new PropertyValueFactory<>("category"));
+		
+	}
+	public static void  setMember(String  memberId) {
 		
 	}
 

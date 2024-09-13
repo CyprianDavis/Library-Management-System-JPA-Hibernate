@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
-import data.model.member.Member;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +27,6 @@ public class VerifyMemberController implements Initializable{
 	private JFXButton issueBtn;
 	
 
-	private Member member=null;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -43,8 +41,8 @@ public class VerifyMemberController implements Initializable{
 			return;
 		}
 		//Verify that member exists
-		member = MembersOperations.findMember(memberId.getText());
-		if(member == null) {
+		
+		if(!MembersOperations.memberExists(memberId.getText())) {
 			showAlert(Alert.AlertType.ERROR, ((Stage) memberId.getScene().getWindow()), "Verify Member!", "UNKONWN  MEMBER ID ");
 			return;	
 	}
@@ -54,7 +52,7 @@ public class VerifyMemberController implements Initializable{
 		
 	}
 	private void loadIssueBooks() {
-		
+		IssueBooksController.setMember(memberId.getText());
 		Parent parent;
 		try {
 			parent = FXMLLoader.load(getClass().getResource("/ui/issueBooks/IssueBooks.fxml"));
