@@ -3,15 +3,22 @@ package ui.issueBooks;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXTextField;
+
 import data.model.book.Book;
 import data.model.member.Member;
+import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 
 public class IssueBooksController implements Initializable {
+	@FXML
+	private JFXTextField bookId;
 	@FXML
 	private TableView<Book>booksIssued;
 	@FXML
@@ -22,7 +29,11 @@ public class IssueBooksController implements Initializable {
 	private TableColumn<Book,String>author;
 	@FXML
 	private TableColumn<Book,String>category;
-	private  Member member;
+	@FXML
+	private TableColumn<Book,String>date;
+	@FXML
+	private TableColumn<Book,String>dueDate;
+	private static  Member member;
 	private Book book =null;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +52,20 @@ public class IssueBooksController implements Initializable {
 		
 	}
 	public static void  setMember(String  memberId) {
+		member = MembersOperations.findMember(memberId);
+	}
+	private void issueBook() {
+		if()
 		
 	}
+	//Handles Alert Messages
+	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+		Alert alert = new Alert(alertType);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.initOwner(owner);
+		alert.show();
+		}
 
 }
