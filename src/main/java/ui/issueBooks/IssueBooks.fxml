@@ -50,7 +50,7 @@
         <columns>
           <TableColumn fx:id="bkNumber" prefWidth="118.66665649414062" text="Book Number" />
           <TableColumn fx:id="title" prefWidth="163.0" text="Title" />
-            <TableColumn fx:id="author" prefWidth="170.33331298828125" text="Authour" />
+            <TableColumn fx:id="author" prefWidth="170.33331298828125" text="Author" />
             <TableColumn fx:id="category" prefWidth="171.66668701171875" text="Category" />
             <TableColumn fx:id="date" prefWidth="155.66668701171875" text="Issued On" />
             <TableColumn fx:id="date1" prefWidth="161.0" text="Due Date" />
