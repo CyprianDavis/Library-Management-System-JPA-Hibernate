@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTextField;
 
 import data.model.member.Member;
-import database.catalog.Catalog;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +41,7 @@ public class ViewMembersController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		colsIntialize();
+		
 		membersTable.setFocusTraversable(false);
 		searchMember.setFocusTraversable(false);
 		loadTable();

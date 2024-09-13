@@ -51,7 +51,7 @@ public class Book {
 	private String  category;		//category of the book
 	private String description;		// Book Description
 		
-	@OneToMany(targetEntity=Transaction.class,mappedBy="book")
+	@OneToMany(targetEntity=Transaction.class,mappedBy="book" )
 	private Collection<Transaction>transactions =new LinkedList<>();
 	@OneToMany(targetEntity=Hold.class,mappedBy="book")
 	private Collection<Hold>holds = new LinkedList<>();

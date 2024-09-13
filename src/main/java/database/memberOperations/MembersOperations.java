@@ -1,5 +1,7 @@
 package database.memberOperations;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -8,8 +10,6 @@ import javax.persistence.Query;
 
 import data.model.member.Member;
 import enitiyFactory.EntityFactoryGen;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  * Handles database operations for Member (CRUD Operations)
@@ -76,13 +76,13 @@ public class MembersOperations {
 	 * 
 	 * @returns a list of avaiable members in the system from the database
 	 */
-	public static ObservableList<Member> viewMembers(){
-		ObservableList<Member> members = FXCollections.observableArrayList(); //List of members from the database
+	public static List<Member> viewMembers(){
+		List<Member> members = new ArrayList<Member>(); //List of members from the database
 		members.addAll(entityManager.createNamedQuery("Member.members",Member.class).getResultList());
 		return members;
 	}
-	public static ObservableList<Member> searchMemberByID(String memberID){
-		ObservableList<Member> members = FXCollections.observableArrayList();
+	public static List<Member> searchMemberByID(String memberID){
+		List<Member> members = new ArrayList<Member>();
 		members.addAll(entityManager.createNamedQuery("Member.searchById", Member.class).setParameter("idNum", "%"+memberID+"%").getResultList());
 		return members;
 		}

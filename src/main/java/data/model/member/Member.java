@@ -3,12 +3,13 @@ package data.model.member;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -46,15 +47,18 @@ public class Member  {
 	private String address;		//Address
 	private String dateOfReg;	//members date of registeration
 	private String gender;	
-	  @Convert(converter = ImageConverter.class)
+ @Convert(converter = ImageConverter.class)
 	private Image picture;		//Member image
 	//Member's Gender
-	@OneToMany(targetEntity=Hold.class,mappedBy="member")
-	private Collection<Hold>booksOnHold = new LinkedList<>();
-	@OneToMany(targetEntity=Transaction.class,mappedBy="member")
-	private Collection<Transaction>transactions = new LinkedList<>();
-	@OneToMany(targetEntity=IssueBook.class,mappedBy="member")
-	private Collection<Book>issuedBooks = new LinkedList<>();
+	
+	@OneToMany(targetEntity=Hold.class,mappedBy="member",fetch=FetchType.LAZY)
+	private Set<Hold>booksOnHold = new HashSet<>();
+	
+	@OneToMany(targetEntity=Transaction.class,mappedBy="member",fetch=FetchType.LAZY)
+	private Set<Transaction>transactions = new HashSet<>();
+	
+	@OneToMany(targetEntity=IssueBook.class,mappedBy="member",fetch=FetchType.LAZY)
+	private Set<Book>issuedBooks = new HashSet<>();
 	
 	//Constructors
 	public Member(String sName,String gName,String oName) {
@@ -159,13 +163,13 @@ public class Member  {
 		return picture;
 		
 	}
-	public Collection<Transaction> getTransactions(){
+	public Set<Transaction> getTransactions(){
 		return this.transactions;
 	}
-	public Collection<Hold> getHolds(){
+	public Set<Hold> getHolds(){
 		return this.booksOnHold;
 	}
-	public Collection<Book> getIssuedBooks(){
+	public Set<Book> getIssuedBooks(){
 		return this.issuedBooks;
 	}
 	
