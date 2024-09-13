@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.issueBooks.IssueBooksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.issueBooks.IssueBooksController">
    <children>
-      <AnchorPane prefHeight="42.0" prefWidth="825.0" style="-fx-background-color: #3F00FF;">
+      <AnchorPane prefHeight="42.0" prefWidth="1025.0" style="-fx-background-color: #3F00FF;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="5.0" prefHeight="35.0" prefWidth="198.0" text="ISSUE BOOKS" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="5.0" prefHeight="35.0" prefWidth="198.0" text="ISSUE BOOKS" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
@@ -36,23 +36,24 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="book" labelFloat="true" layoutX="472.0" layoutY="66.0" prefHeight="25.0" prefWidth="209.0" promptText="Book Id or ISBN">
+      <JFXTextField fx:id="book" labelFloat="true" layoutX="661.0" layoutY="66.0" prefHeight="25.0" prefWidth="209.0" promptText="Book Id or ISBN">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="issueBk" defaultButton="true" layoutX="714.0" layoutY="66.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #3F00FF;" text="ISSUE" textFill="WHITE">
+      <JFXButton fx:id="issueBk" defaultButton="true" layoutX="903.0" layoutY="66.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #3F00FF;" text="ISSUE" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="booksIssued" layoutX="22.0" layoutY="144.0" prefHeight="358.0" prefWidth="770.0" stylesheets="@../../application/application.css">
+      <TableView fx:id="booksIssued" layoutX="41.0" layoutY="151.0" prefHeight="358.0" prefWidth="943.0" stylesheets="@../../application/application.css">
         <columns>
           <TableColumn fx:id="bkNumber" prefWidth="118.66665649414062" text="Book Number" />
           <TableColumn fx:id="title" prefWidth="163.0" text="Title" />
             <TableColumn fx:id="author" prefWidth="170.33331298828125" text="Authour" />
             <TableColumn fx:id="category" prefWidth="171.66668701171875" text="Category" />
-            <TableColumn fx:id="date" prefWidth="164.66668701171875" text="Issued On" />
+            <TableColumn fx:id="date" prefWidth="155.66668701171875" text="Issued On" />
+            <TableColumn fx:id="date1" prefWidth="161.0" text="Due Date" />
         </columns>
       </TableView>
    </children>
