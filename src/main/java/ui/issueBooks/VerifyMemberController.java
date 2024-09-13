@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
-import data.model.book.Book;
 import data.model.member.Member;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
@@ -16,9 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,16 +26,8 @@ public class VerifyMemberController implements Initializable{
 	private JFXTextField memberId;
 	@FXML
 	private JFXButton issueBtn;
-	@FXML
-	private TableView<Book>booksIssued;
-	@FXML
-	private TableColumn<Book,String>bkNumber; 
-	@FXML
-	private TableColumn<Book,String>title;
-	@FXML
-	private TableColumn<Book,String>author;
-	@FXML
-	private TableColumn<Book,String>category;
+	
+
 	private Member member=null;
 	
 	@Override
@@ -47,16 +35,7 @@ public class VerifyMemberController implements Initializable{
 		// TODO Auto-generated method stub
 
 	}
-	/**
-	 * Initializes table columns
-	 */
-	private void colsIntialize(){
-		bkNumber.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-		title.setCellValueFactory(new PropertyValueFactory<>("title"));
-		author.setCellValueFactory(new PropertyValueFactory<>("author"));
-		category.setCellValueFactory(new PropertyValueFactory<>("category"));
-		
-	}
+	
 	@FXML
 	private void searchMember() {
 		if(memberId.getText().isEmpty()) {
