@@ -41,7 +41,7 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="issueBk" defaultButton="true" layoutX="903.0" layoutY="66.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #3F00FF;" text="ISSUE" textFill="WHITE">
+      <JFXButton fx:id="issueBk" defaultButton="true" layoutX="903.0" layoutY="66.0" onAction="#issueBook" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #3F00FF;" text="ISSUE" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

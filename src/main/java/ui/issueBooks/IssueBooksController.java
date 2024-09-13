@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import data.model.book.Book;
 import data.model.member.Member;
+import database.catalog.Catalog;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class IssueBooksController implements Initializable {
@@ -54,8 +56,17 @@ public class IssueBooksController implements Initializable {
 	public static void  setMember(String  memberId) {
 		member = MembersOperations.findMember(memberId);
 	}
+	@FXML
 	private void issueBook() {
-		if()
+		if(bookId.getText().isEmpty()) {
+			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Please Enter Book Number ");
+			return;
+		}
+		if(!Catalog.bookExists(bookId.getText())) {
+			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "UNKOWN Book Number ");
+			return;	
+		}
+		
 		
 	}
 	//Handles Alert Messages
