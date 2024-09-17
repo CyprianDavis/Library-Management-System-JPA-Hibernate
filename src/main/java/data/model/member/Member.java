@@ -30,7 +30,7 @@ import javafx.scene.image.Image;
 @NamedQueries({
 		@NamedQuery(name="Member.members" ,query="SELECT m FROM Member m"),
 		@NamedQuery(name="Member.searchById",query="SELECT m FROM Member m WHERE m.memberId LIKE:idNum"),
-		@NamedQuery(name="Member.numberOfMembers",query="SELECT COUNT(m) FROM Member m "),
+		@NamedQuery(name="Member.numberOfMembers",query="SELECT COUNT(m) FROM Member m ")
 }
 		)
 

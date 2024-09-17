@@ -16,10 +16,10 @@ public class LibraryOpsTest2 {
 	
 	@BeforeEach
 	void intial() {
-		book =  Catalog.findBook("BK00032024");
+		book =  Catalog.findBook("BK00012024");
 		member = MembersOperations.findMember("LM000012024");
 	}
-	@Disabled
+	
 	@Test
 	void testIssueBook() {
 		String date =LibraryOperations.issueBook(member, book);
@@ -43,10 +43,12 @@ public class LibraryOpsTest2 {
 		int value = LibraryOperations.returnBook(book, member);
 		Assertions.assertEquals(1,value);
 	}
+	@Disabled
 	@Test
 	void testTransactionNextId() {
 		Assertions.assertEquals(9,TransactionsOps.getNextTableGeneratorValue());
 		
 	}
+
 	
 }

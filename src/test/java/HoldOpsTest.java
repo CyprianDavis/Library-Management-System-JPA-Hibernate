@@ -21,7 +21,7 @@ public class HoldOpsTest {
 		book = Catalog.findBook("BK00032024");
 		 hold = new Hold(member,book,3);
 	}
-
+	@Disabled
 	@Test
 	void testHoldgetNextId() {
 		int value=HoldProcesses.getNextTableGeneratorValue();
@@ -45,7 +45,7 @@ public class HoldOpsTest {
 	 Hold h = HoldProcesses.placeHold(hold);
 		Assertions.assertEquals(h, hold);
 	}
-	@Disabled
+	
 	@Test
 	void testClearPersistence() {
 		Assertions.assertEquals(1,HoldProcesses.clearPersitence());

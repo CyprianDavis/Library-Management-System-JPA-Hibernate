@@ -16,6 +16,8 @@ import data.model.library.Transaction;
 import data.model.member.Member;
 import database.transactions.TransactionsOps;
 import enitiyFactory.EntityFactoryGen;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -59,25 +61,44 @@ public class LibraryOperations {
 	 * @param book
 	 * @return
 	 */
-	public static String issueBook(Member member,Book book) {
-		transaction = entityManager.getTransaction();
-		transaction.begin();
-		IssueBook bk =  new IssueBook(member,book);
-		bk.setDateOfIssuing(getDate());
-		bk.setDueDate(computeDueDate(14));//set due date to 14 days from now
-		createTransaction("Check-Out",book, member);
-		entityManager.persist(bk);
-		String dueDate = bk.getDueDate();
-		member.getIssuedBooks().add(book);
-		
-		book.setStatus("Issued");
-		entityManager.merge(book);
-		entityManager.merge(member);
-		
-		transaction.commit();
-		
-		return dueDate;
+	public static String issueBook(Member member, Book book) {
+	    String dueDate = null;
+	    transaction = entityManager.getTransaction();
+	    try {
+	       
+	        transaction.begin();
+	      //update Member's Issued Books
+	        member.getIssuedBooks().add(book);
+	      //  entityManager.merge(member);
+			 
+	        //Update Book status
+	        book.setStatus("Issued");
+	        
+	        //Create IssueBook record
+	        IssueBook issueBook = new IssueBook(member,book);
+	        issueBook.setDueDate(computeDueDate(14)); //set due date to 14 days
+	        issueBook.setDateOfIssuing(getDate());//set issue date to now
+	        dueDate = issueBook.getDueDate();
+	        //persist IssuedBook
+	        entityManager.persist(issueBook);
+	        //merge changes
+			
+			  entityManager.merge(book); 
+			 
+	        //Create transaction record
+	        createTransaction("Check-Out",book, member);
+	        transaction.commit();
+	        
+	    } catch (Exception e) {
+	        if (transaction != null && transaction.isActive()) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace(); // Log the exception or handle it accordingly
+	    }
+	    
+	    return dueDate;
 	}
+
 	/**
 	 * 
 	 * @param book
@@ -164,5 +185,30 @@ public class LibraryOperations {
 			e.printStackTrace();
 		}
 		return days;
+	}
+	/**
+	 * 
+	 * @param member
+	 * @returns number of books issued to a member
+	 */
+	public static int getIssuedBooks(Member member) {
+		Long count = null ;
+		try {		
+			 count = (Long) entityManager.createNamedQuery("IssuedBook.countBooks").setParameter("member", member).getSingleResult();
+		        return count.intValue(); // Convert Long to int
+		}catch(NoResultException e){
+			return count.intValue();
+		}
+		
+	}
+	/**
+	 * 
+	 * @param member
+	 * @return
+	 */
+	public static ObservableList<Book> getIssuedBooksToMember(Member member){
+		ObservableList<Book> issuedBooks = FXCollections.observableArrayList(); //List of books from the database
+		issuedBooks.addAll(entityManager.createNamedQuery("IssuedBook.countBooks", Book.class).setParameter("search",member).getResultList());
+		return issuedBooks;
 	}
 }

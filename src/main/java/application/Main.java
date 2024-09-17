@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
 	@Override
-	
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login/LoginForm.fxml"));

@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import data.model.book.Book;
 import data.model.member.Member;
 import database.catalog.Catalog;
+import database.library.LibraryOperations;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,6 +57,9 @@ public class IssueBooksController implements Initializable {
 	public static void  setMember(String  memberId) {
 		member = MembersOperations.findMember(memberId);
 	}
+	/**
+	 * Issues book to a member
+	 */
 	@FXML
 	private void issueBook() {
 		if(bookId.getText().isEmpty()) {
@@ -66,6 +70,16 @@ public class IssueBooksController implements Initializable {
 			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "UNKOWN Book Number ");
 			return;	
 		}
+		if(Catalog.isBookCheckedout(bookId.getText())) {
+			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Book is already Checked-Out ");
+			return;	
+		}
+		book = Catalog.findBook(bookId.getText());//Extract book from database
+		//issue book to member and get due date
+	    String dueDate =LibraryOperations.issueBook(member, book);
+		showAlert(Alert.AlertType.INFORMATION,((Stage) bookId.getScene().getWindow()),"Information","Operation successful Due Date "+dueDate);
+		booksIssued.getItems().clear();
+		booksIssued.getItems().addAll(member.getIssuedBooks());
 		
 		
 	}

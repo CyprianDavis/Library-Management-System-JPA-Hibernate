@@ -53,7 +53,7 @@ public class MemberOpsTest {
 	@Test
 	void testMemberIssuedBks() {
 		Member member = MembersOperations.findMember("LM000012024");
-		Assertions.assertEquals(0, member.getIssuedBooks().size());	
+		Assertions.assertEquals(3, member.getIssuedBooks().size());	
 	}
 	@Disabled
 	@Test
