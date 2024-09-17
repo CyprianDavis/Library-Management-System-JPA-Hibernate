@@ -25,7 +25,10 @@ import data.model.member.Member;
 		{
 		@NamedQuery(name="IssueBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn= :date WHERE i.book= :book"),
 		@NamedQuery(name="IssueBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book"),
-		@NamedQuery(name="IssueBook.findBook",query="SELECT i FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null")
+		@NamedQuery(name="IssueBook.findBook",query="SELECT i FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null"),
+		@NamedQuery(name="IssuedBook.getBooksIssuedToMember", query="SELECT i.book FROM IssuedBook i WHERE i.member= :b AND i.book.status= 'Issued' "),
+		@NamedQuery(name="IssuedBook.countBooks",query="SELECT COUNT(i.book) FROM  IssuedBook i WHERE i.member= :member")
+		
 						  
 		})
 
@@ -52,6 +55,9 @@ public class IssueBook {
 	public IssueBook() {
 		
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 		
@@ -60,7 +66,10 @@ public class IssueBook {
 	public void setDateOfIssuing(String issuedOn) {
 		this.dateOfIssuing =issuedOn;
 	}
-	
+	public Long getId() {
+		return id;
+		
+	}
 	/**
 	 * 
 	 * @returns the due date for the book which is 2 weeks from date of issuing the book
