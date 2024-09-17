@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import data.model.book.Book;
 import data.model.library.IssueBook;
@@ -18,6 +19,7 @@ import database.transactions.TransactionsOps;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import ui.issueBooks.IssueBookDetails;
 
 
 /**
@@ -206,9 +208,13 @@ public class LibraryOperations {
 	 * @param member
 	 * @return
 	 */
-	public static ObservableList<Book> getIssuedBooksToMember(Member member){
-		ObservableList<Book> issuedBooks = FXCollections.observableArrayList(); //List of books from the database
-		issuedBooks.addAll(entityManager.createNamedQuery("IssueBook.countBooks", Book.class).setParameter("search",member).getResultList());
+	public static ObservableList<IssueBookDetails> getIssuedBooksToMember(Member member){
+		ObservableList<IssueBookDetails> issuedBooks = FXCollections.observableArrayList(); //List of books from the database
+		// Create the query
+        TypedQuery<IssueBookDetails> query = entityManager.createNamedQuery("IssueBook.getBooksIssuedToMemberDetails", IssueBookDetails.class)
+        		.setParameter("member", member);
+        //add result to the list
+        issuedBooks.addAll(query.getResultList());
 		return issuedBooks;
 	}
 }
