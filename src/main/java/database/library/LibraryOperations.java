@@ -194,7 +194,7 @@ public class LibraryOperations {
 	public static int getIssuedBooks(Member member) {
 		Long count = null ;
 		try {		
-			 count = (Long) entityManager.createNamedQuery("IssuedBook.countBooks").setParameter("member", member).getSingleResult();
+			 count = (Long) entityManager.createNamedQuery("IssueBook.countBooks").setParameter("member", member).getSingleResult();
 		        return count.intValue(); // Convert Long to int
 		}catch(NoResultException e){
 			return count.intValue();
@@ -208,7 +208,7 @@ public class LibraryOperations {
 	 */
 	public static ObservableList<Book> getIssuedBooksToMember(Member member){
 		ObservableList<Book> issuedBooks = FXCollections.observableArrayList(); //List of books from the database
-		issuedBooks.addAll(entityManager.createNamedQuery("IssuedBook.countBooks", Book.class).setParameter("search",member).getResultList());
+		issuedBooks.addAll(entityManager.createNamedQuery("IssueBook.countBooks", Book.class).setParameter("search",member).getResultList());
 		return issuedBooks;
 	}
 }

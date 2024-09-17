@@ -42,6 +42,7 @@ public class IssueBooksController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		colsIntialize();
+		loadTable();
 		
 	}
 	/**
@@ -74,17 +75,24 @@ public class IssueBooksController implements Initializable {
 			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Book is already Checked-Out ");
 			return;	
 		}
+		if(LibraryOperations.getIssuedBooks(member)>=5) {
+			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Exceeded Limit of Five Books ");
+			return;
+		}
 		book = Catalog.findBook(bookId.getText());//Extract book from database
 		//issue book to member and get due date
 	    String dueDate =LibraryOperations.issueBook(member, book);
 		showAlert(Alert.AlertType.INFORMATION,((Stage) bookId.getScene().getWindow()),"Information","Operation successful Due Date "+dueDate);
+		loadTable(); //load table data
+		
+	}
+	private void loadTable() {
 		booksIssued.getItems().clear();
 		booksIssued.getItems().addAll(member.getIssuedBooks());
 		
-		
 	}
 	//Handles Alert Messages
-	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+	private  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
