@@ -23,19 +23,20 @@ public class IssueBooksController implements Initializable {
 	@FXML
 	private JFXTextField bookId;
 	@FXML
-	private TableView<Book>booksIssued;
+	private TableView<IssueBookDetails>booksIssued;
 	@FXML
-	private TableColumn<Book,String>bkNumber; 
+	private TableColumn<IssueBookDetails,String>bkNumber; 
 	@FXML
-	private TableColumn<Book,String>title;
+	private TableColumn<IssueBookDetails,String>title;
 	@FXML
-	private TableColumn<Book,String>author;
+	private TableColumn<IssueBookDetails,String>author;
 	@FXML
-	private TableColumn<Book,String>category;
+	private TableColumn<IssueBookDetails,String>category;
 	@FXML
-	private TableColumn<Book,String>date;
+	private TableColumn<IssueBookDetails,String>date;
 	@FXML
-	private TableColumn<Book,String>dueDate;
+	private TableColumn<IssueBookDetails,String>dueDate;
+
 	private static  Member member;
 	private Book book =null;
 	@Override
@@ -49,10 +50,14 @@ public class IssueBooksController implements Initializable {
 	 * Initializes table columns
 	 */
 	private void colsIntialize(){
-		bkNumber.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+		bkNumber.setCellValueFactory(new PropertyValueFactory<>("bookNum"));
 		title.setCellValueFactory(new PropertyValueFactory<>("title"));
 		author.setCellValueFactory(new PropertyValueFactory<>("author"));
 		category.setCellValueFactory(new PropertyValueFactory<>("category"));
+		dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+		date.setCellValueFactory(new PropertyValueFactory<>("issuedOn"));
+		
+		
 		
 	}
 	public static void  setMember(String  memberId) {
@@ -88,7 +93,7 @@ public class IssueBooksController implements Initializable {
 	}
 	private void loadTable() {
 		booksIssued.getItems().clear();
-		booksIssued.getItems().addAll(member.getIssuedBooks());
+		booksIssued.getItems().addAll(LibraryOperations.getIssuedBooksToMember(member));
 		
 	}
 	//Handles Alert Messages
