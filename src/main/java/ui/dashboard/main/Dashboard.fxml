@@ -63,7 +63,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="returnBkBtn" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Return Book" textFill="WHITE">
+                        <Button fx:id="returnBkBtn" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#returnBook" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Return Book" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="13.0" />
                            </font>
