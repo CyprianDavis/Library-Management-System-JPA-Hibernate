@@ -14,8 +14,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class ReturnBookController implements Initializable{
+	
 	@FXML
 	private JFXButton returnBtn;
+	@FXML
+	private JFXButton member;
 	@FXML
 	private JFXTextField book;
 	
@@ -38,6 +41,8 @@ public class ReturnBookController implements Initializable{
 			showAlert(Alert.AlertType.WARNING, ((Stage) book.getScene().getWindow()), "Issue Book!", "Book is not checked out ");
 			return;
 		}
+		//return issued book
+		
 	}
 	//Handles Alert Messages
 	private  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
