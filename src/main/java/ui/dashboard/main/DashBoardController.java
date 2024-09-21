@@ -55,7 +55,7 @@ public class DashBoardController implements Initializable{
 		// TODO Auto-generated method stub
 		loadData();
 		Timeline clock = new Timeline(new KeyFrame(Duration.ZERO,e->
-		dateTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss")))
+		dateTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
 		//dateTime1.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
 		),
 			new KeyFrame(Duration.seconds(1)));
