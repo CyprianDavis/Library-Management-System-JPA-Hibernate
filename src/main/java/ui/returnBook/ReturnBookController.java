@@ -68,9 +68,6 @@ public class ReturnBookController implements Initializable{
 			return;
 			
 		}
-			
-		
-		
 	}
 	//Handles Alert Messages
 	private  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

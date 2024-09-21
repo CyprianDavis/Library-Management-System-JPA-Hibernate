@@ -47,7 +47,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="book" labelFloat="true" prefHeight="25.0" prefWidth="268.0" promptText="Book Id ">
+                  <JFXTextField fx:id="bookId" labelFloat="true" prefHeight="25.0" prefWidth="268.0" promptText="Book Id ">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
