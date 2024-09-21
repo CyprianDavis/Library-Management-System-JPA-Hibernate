@@ -26,7 +26,7 @@ import data.model.member.Member;
 		@NamedQuery(name="IssueBook.returnBook", query="UPDATE IssueBook i SET i.dateOfReturn= :date WHERE i.book= :book"),
 		@NamedQuery(name="IssueBook.renewBook",query="UPDATE IssueBook i SET i.dueDate=:date WHERE i.book=:book"),
 		@NamedQuery(name="IssueBook.findBook",query="SELECT i FROM IssueBook i WHERE i.book=:book AND i.dateOfReturn= null"),
-		@NamedQuery(name="IssueBook.countBooks",query="SELECT COUNT(i.book) FROM  IssueBook i WHERE i.member= :member"),
+		@NamedQuery(name="IssueBook.countBooks",query="SELECT COUNT(i.book) FROM  IssueBook i WHERE i.member= :member AND i.book.status= 'Issued'"),
 		@NamedQuery(name = "IssueBook.getBooksIssuedToMemberDetails", 
         query = "SELECT new ui.issueBooks.IssueBookDetails(i.book.bookId,i.book.title,i.book.author,i.book.category, i.dateOfIssuing, i.dueDate) " +
                 "FROM IssueBook i WHERE i.member = :member AND i.book.status = 'Issued'")
