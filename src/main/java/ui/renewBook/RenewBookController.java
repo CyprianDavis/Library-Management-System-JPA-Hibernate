@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.stage.Window;
 
 public class RenewBookController implements Initializable {
 	@FXML
@@ -21,5 +23,19 @@ public class RenewBookController implements Initializable {
 		// TODO Auto-generated method stub
 		
 	}
+	@FXML
+	private void renewBook() {
+		
+	}
+	//Handles Alert Messages
+		private  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+			Alert alert = new Alert(alertType);
+			alert.setTitle(title);
+			alert.setHeaderText(null);
+			alert.setContentText(message);
+			alert.initOwner(owner);
+			alert.show();
+				}
 
-}
+		}
+
