@@ -132,7 +132,7 @@ public class LibraryOperations {
 	 * @param book
 	 * @returns true after adding 7 days to the remaining days to due date
 	 */
-	public static boolean renewBook(Book book,Member member) {
+	public static String renewBook(Book book,Member member) {
 		transaction = entityManager.getTransaction();
 		
 		transaction = entityManager.getTransaction();
@@ -145,11 +145,11 @@ public class LibraryOperations {
 			entityManager.merge(issuedBook);
 			createTransaction("Renewal",book, member);
 			transaction.commit();
-			return true;
+			return issuedBook.getDueDate();
 		}catch(NoResultException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return "";
 	}
 	
 	private static String getDate() {
