@@ -34,7 +34,7 @@ public class LibraryOpsTest2 {
 	@Disabled
 	@Test
 	void testrenewBook() {
-		boolean value = LibraryOperations.renewBook(book,member);
+		String value = LibraryOperations.renewBook(book,member);
 		Assertions.assertEquals(true, value);	
 	}
 	@Disabled

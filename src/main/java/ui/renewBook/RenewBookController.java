@@ -10,6 +10,7 @@ import data.model.book.Book;
 import data.model.member.Member;
 import database.catalog.Catalog;
 import database.holdProcesses.HoldProcesses;
+import database.library.LibraryOperations;
 import database.memberOperations.MembersOperations;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,9 +64,11 @@ public class RenewBookController implements Initializable {
 			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Renew Book", "Book is not renewable it has Hold ");
 			return;
 		}
-		
-
-		
+		String date = null;
+		//Renew Book 
+		date = LibraryOperations.renewBook(book, member);
+		showAlert(Alert.AlertType.INFORMATION, ((Stage) bookId.getScene().getWindow()), "Renew Book", "Operation Successfull new Due Date is : "+date);
+		return;
 	}
 	//Handles Alert Messages
 		private  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

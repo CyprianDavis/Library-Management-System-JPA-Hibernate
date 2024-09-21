@@ -74,7 +74,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Renew Book" textFill="WHITE">
+                        <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#renewBook" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Renew Book" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="13.0" />
                            </font>
@@ -136,7 +136,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#viewMembers" text="View Members" />
                               <MenuItem mnemonicParsing="false" onAction="#viewMemberDetails" text="View Member Details" />
                               <MenuItem mnemonicParsing="false" text="View Member Transations" />
-                              <MenuItem mnemonicParsing="false" text="Renew Book" />
+                              <MenuItem mnemonicParsing="false" onAction="#renewBook" text="Renew Book" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Transactions">
