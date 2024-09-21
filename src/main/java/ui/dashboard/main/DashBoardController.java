@@ -69,7 +69,7 @@ public class DashBoardController implements Initializable{
 	public void loadData() {
 		Timeline clock = new Timeline(new KeyFrame(Duration.ZERO,e->{
 				totalBks.setText(String.valueOf(Catalog.totalNumberOfBooks()));//loads the number of books the libraryowns
-				availablebks.setText(String.valueOf(Catalog.getBooksByStatus("Avaliable")));//loads the number of books availale in the system
+				availablebks.setText(String.valueOf(Catalog.getBooksByStatus("Available")));//loads the number of books availale in the system
 				numIssuedBks.setText(String.valueOf(Catalog.getBooksByStatus("Issued")));
 				numMembers.setText(String.valueOf(MembersOperations.totalNumberOfMembers()));
 				

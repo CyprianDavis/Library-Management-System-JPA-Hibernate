@@ -112,7 +112,7 @@ public class LibraryOperations {
 		
 		try {
 			transaction.begin();//Begin transaction
-			book.setStatus("Avaliable");// update book's status
+			book.setStatus("Available");// update book's status
 			member.getIssuedBooks().remove(book); //remove book from the list of issued books
 			
 			rows=entityManager.createNamedQuery("IssueBook.returnBook").setParameter("date", getDate()).setParameter("book", book).executeUpdate();
