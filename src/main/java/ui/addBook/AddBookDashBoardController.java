@@ -146,7 +146,7 @@ public class AddBookDashBoardController implements Initializable{
 	
 	
 	//create book object
-	Book book = new Book(bkTitle.getText(),bkAuthor.getText(),"Avaliable");
+	Book book = new Book(bkTitle.getText(),bkAuthor.getText(),"Available");
 	book.setCoAuthor(coAuthor.getText());
 	book.setISNB(ISBN.getText());
 	book.setPublicationYear(Integer.parseInt(publicationYr.getText()));
