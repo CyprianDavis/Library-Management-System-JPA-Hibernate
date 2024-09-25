@@ -50,7 +50,7 @@ public class Hold {
 		 
 		this.member = member;
 		this.book = bk;
-		this.status ="Valid";
+		
 		
 		date = computeHoldDueDate(duration);
 		//Auto id generation

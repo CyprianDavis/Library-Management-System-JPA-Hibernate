@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import data.model.book.Book;
+import data.model.library.Hold;
 import data.model.member.Member;
 import database.catalog.Catalog;
 import database.holdProcesses.HoldProcesses;
@@ -24,6 +25,8 @@ public class PlaceHoldController  implements Initializable{
 	private JFXTextField bookId;
 	@FXML
 	private JFXButton placeHold;
+	@FXML
+	private JFXTextField duration;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +46,10 @@ public class PlaceHoldController  implements Initializable{
 			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Place Hold", "Please Enter Book ID Number ");
 			return;
 		}
+		if(duration.getText().isEmpty()) {
+			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Place Hold", "Please Enter Hold Duration ");
+			return;
+		}
 		if(!Catalog.bookExists(bookId.getText())) {
 			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Place Hold", "UNKONWN BOOK ID ");
 			return;
@@ -60,6 +67,12 @@ public class PlaceHoldController  implements Initializable{
 			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Place Hold", "Hold already Exists ");
 			return;
 		}
+		//place hold
+		Hold hold =new Hold(member,book,Integer.parseInt(duration.getText()));
+		HoldProcesses.placeHold(hold);
+		showAlert(Alert.AlertType.INFORMATION,((Stage) bookId.getScene().getWindow()),"Information","Operation successful Hold ID "+hold.getHoldId());
+
+		
 		
 		
 	}
