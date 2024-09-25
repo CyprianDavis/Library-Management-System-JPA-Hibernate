@@ -72,39 +72,39 @@ public class AddBookDashBoardController implements Initializable{
 	@FXML
 	private void saveBook () {
 	if(bkTitle.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) bkTitle.getScene().getWindow()), "Add Book Error!", "Please enter Book Title ");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) bkTitle.getScene().getWindow()), "Add Book Error!", "Please enter Book Title ");
 		 return;
 		}
 	if(bkAuthor.getText().isEmpty()) {
-		showAlert(Alert.AlertType.ERROR, ((Stage) bkAuthor.getScene().getWindow()), "Add Book Error!", "Please enter Book Author ");
+		showAlert(Alert.AlertType.WARNING, ((Stage) bkAuthor.getScene().getWindow()), "Add Book Error!", "Please enter Book Author ");
 		return;
 	}
 	if(ISBN.getText().isEmpty()) {
-		showAlert(Alert.AlertType.ERROR, ((Stage) ISBN.getScene().getWindow()), "Add Book Error!", "Please enter ISBN Number ");
+		showAlert(Alert.AlertType.WARNING, ((Stage) ISBN.getScene().getWindow()), "Add Book Error!", "Please enter ISBN Number ");
 		return;
 		}
 	if(publicationYr.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) publicationYr.getScene().getWindow()), "Add Book Error!", "Please enter Publication Year ");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) publicationYr.getScene().getWindow()), "Add Book Error!", "Please enter Publication Year ");
 			 return;
 		}
 	if(edition.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) edition.getScene().getWindow()), "Add Book Error!", "Please enter Book Edition ");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) edition.getScene().getWindow()), "Add Book Error!", "Please enter Book Edition ");
 			 return;
 		}
 	if(language.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) language.getScene().getWindow()), "Add Book Error!", "Please enter language ");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) language.getScene().getWindow()), "Add Book Error!", "Please enter language ");
 			 return;
 		} 
 	if(publisher.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) publisher.getScene().getWindow()), "Add Book Error!", "Please enter Book Publisher");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) publisher.getScene().getWindow()), "Add Book Error!", "Please enter Book Publisher");
 			 return;
 		}
 	if(category.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) category.getScene().getWindow()), "Add Book Error!", "Please enter Book Category");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) category.getScene().getWindow()), "Add Book Error!", "Please enter Book Category");
 			 return;
 		}
 	if(bkDescription.getText().isEmpty()) {
-		 showAlert(Alert.AlertType.ERROR, ((Stage) bkDescription.getScene().getWindow()), "Add Book Error!", "Please enter Book Description");
+		 showAlert(Alert.AlertType.WARNING, ((Stage) bkDescription.getScene().getWindow()), "Add Book Error!", "Please enter Book Description");
 			 return;
 		}
 	if(Catalog.checkISBN(ISBN.getText())) {
