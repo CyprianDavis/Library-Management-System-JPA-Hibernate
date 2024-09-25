@@ -69,7 +69,7 @@ public class IssueBooksController implements Initializable {
 	@FXML
 	private void issueBook() {
 		if(bookId.getText().isEmpty()) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Please Enter Book Number ");
+			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Please Enter Book Number ");
 			return;
 		}
 		if(!Catalog.bookExists(bookId.getText())) {
@@ -77,11 +77,11 @@ public class IssueBooksController implements Initializable {
 			return;	
 		}
 		if(Catalog.isBookCheckedout(bookId.getText())) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Book is already Checked-Out ");
+			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Book is already Checked-Out ");
 			return;	
 		}
 		if(LibraryOperations.getIssuedBooks(member)>=5) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Exceeded Limit of Five Books ");
+			showAlert(Alert.AlertType.WARNING, ((Stage) bookId.getScene().getWindow()), "Issue Book!", "Exceeded Limit of Five Books ");
 			return;
 		}
 		book = Catalog.findBook(bookId.getText());//Extract book from database

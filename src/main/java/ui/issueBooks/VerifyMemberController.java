@@ -37,7 +37,7 @@ public class VerifyMemberController implements Initializable{
 	@FXML
 	private void searchMember() {
 		if(memberId.getText().isEmpty()) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) memberId.getScene().getWindow()), "Verify Member!", "Please Enter Member ID ");
+			showAlert(Alert.AlertType.WARNING, ((Stage) memberId.getScene().getWindow()), "Verify Member!", "Please Enter Member ID ");
 			return;
 		}
 		//Verify that member exists
