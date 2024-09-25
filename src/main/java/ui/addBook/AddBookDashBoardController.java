@@ -114,32 +114,32 @@ public class AddBookDashBoardController implements Initializable{
 	
 	//validate user input
 	if(!ValidateUserInput.validateOnlyCharacterInput(bkAuthor.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) bkAuthor.getScene().getWindow()),"Book Author","Invalid Input for Author");
+		showAlert(Alert.AlertType.ERROR,((Stage) bkAuthor.getScene().getWindow()),"Book Author","Invalid Input for Author");
 		return;
 	}
 	if(!ValidateUserInput.validateOnlyCharacterInput(coAuthor.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) coAuthor.getScene().getWindow()),"Co Author","Invalid Input for Co Author");
+		showAlert(Alert.AlertType.ERROR,((Stage) coAuthor.getScene().getWindow()),"Co Author","Invalid Input for Co Author");
 		return;
 	}
 
 	if(!ValidateUserInput.validateOnlyIntegerInput(publicationYr.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) publicationYr.getScene().getWindow()),"Publication year","Invalid Input for year of publication");
+		showAlert(Alert.AlertType.ERROR,((Stage) publicationYr.getScene().getWindow()),"Publication year","Invalid Input for year of publication");
 		return;
 	}
 	if(!ValidateUserInput.validateOnlyCharacterInput(edition.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) edition.getScene().getWindow()),"Edition","Invalid Input for Book Edition");
+		showAlert(Alert.AlertType.ERROR,((Stage) edition.getScene().getWindow()),"Edition","Invalid Input for Book Edition");
 		return;
 	}
 	if(!ValidateUserInput.validateOnlyCharacterInput(language.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) language.getScene().getWindow()),"Language","Invalid Input for language");
+		showAlert(Alert.AlertType.ERROR,((Stage) language.getScene().getWindow()),"Language","Invalid Input for language");
 		return;
 	}
 	if(!ValidateUserInput.validateOnlyCharacterInput(publisher.getText())) {
-		showAlert(Alert.AlertType.WARNING,((Stage) publisher.getScene().getWindow()),"Publisher","Invalid  input for Book Publisher");
+		showAlert(Alert.AlertType.ERROR,((Stage) publisher.getScene().getWindow()),"Publisher","Invalid  input for Book Publisher");
 		return;
 	}
 	if(!ValidateUserInput.validateOnlyCharacterInput(category.getText())){
-		showAlert(Alert.AlertType.WARNING,((Stage) category.getScene().getWindow()),"Category","Invalid Input for Book Category");
+		showAlert(Alert.AlertType.ERROR,((Stage) category.getScene().getWindow()),"Category","Invalid Input for Book Category");
 		return;
 	}
 	
