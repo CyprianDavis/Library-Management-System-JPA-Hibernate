@@ -148,7 +148,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Hold on Book">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Place Hold" />
+                              <MenuItem mnemonicParsing="false" onAction="#placeHold" text="Place Hold" />
                               <MenuItem mnemonicParsing="false" text="View Holds" />
                               <MenuItem mnemonicParsing="false" text="Process Hold" />
                               <MenuItem mnemonicParsing="false" text="Remove Hold" />
