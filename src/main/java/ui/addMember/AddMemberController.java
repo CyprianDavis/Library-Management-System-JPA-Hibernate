@@ -89,31 +89,31 @@ public class AddMemberController implements Initializable{
 	@FXML
 	private void save() {
 		if(file == null) {
-			showAlert(Alert.AlertType.ERROR, ((Stage) image.getScene().getWindow()), "Add Image Error!", "Please upload Image ");
+			showAlert(Alert.AlertType.WARNING, ((Stage) image.getScene().getWindow()), "Add Image !", "Please upload Image ");
 			return;
 		}
 		if(sName.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter SurName ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter SurName ");
 			 return;
 			}
 		if(gName.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter GivenName ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter GivenName ");
 			 return;
 			}
 		if(address.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Address ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Address ");
 			 return;
 			}
 		if(email.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Email ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Email ");
 			 return;
 			}
 		if(gender.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Gender ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Gender ");
 			 return;
 			}
 		if(contact.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Contact ");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) sName.getScene().getWindow()), "Add Member!", "Please enter Contact ");
 			 return;
 			}
 		//create member object
