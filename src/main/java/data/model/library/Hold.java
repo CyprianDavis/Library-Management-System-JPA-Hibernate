@@ -50,6 +50,7 @@ public class Hold {
 		 
 		this.member = member;
 		this.book = bk;
+		this.status ="Valid";
 		
 		date = computeHoldDueDate(duration);
 		//Auto id generation
@@ -94,15 +95,23 @@ public class Hold {
 		return date;
 	}
 	public String getStatus() {
+		isValid();//check if it's still vaild
 		return this.status;
 		
 	}
-	public boolean isValid() {
+	public void isValid() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		  // Parse the date string into a LocalDate object
-         LocalDate date = LocalDate.parse(this.date, formatter);
-		return (today.isAfter(date));
+        LocalDate date = LocalDate.parse(this.date, formatter);
+     // Update hold status
+        if(LocalDate.now().isBefore(date)) {
+	        	 this.status =  "Valid";
+	         }
+        else {
+        	this.status ="Invalid";
+        }
 	}
+	        	 
+        	  
 	public String getHoldId() {
 		return holdId;
 		
