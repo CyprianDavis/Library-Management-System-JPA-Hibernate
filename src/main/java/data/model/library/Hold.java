@@ -2,6 +2,8 @@ package data.model.library;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -41,7 +43,7 @@ public class Hold {
 	@ManyToOne
 	@JoinColumn(name="book")
 	private Book book;			//Book on with hold
-	
+	@Column(name="ReservationDate")
 	private String date; //date in string
 	private String status; //Hold Status
 	
