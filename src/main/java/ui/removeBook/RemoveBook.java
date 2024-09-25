@@ -29,7 +29,7 @@ public class RemoveBook implements Initializable {
 	@FXML
 	private void deleteBook() {
 		if(book.getText().isEmpty()) {
-			 showAlert(Alert.AlertType.ERROR, ((Stage) book.getScene().getWindow()), "Remove Book", "Please enter Book ID");
+			 showAlert(Alert.AlertType.WARNING, ((Stage) book.getScene().getWindow()), "Remove Book", "Please enter Book ID");
 			 return;
 		}
 		if(!Catalog.bookExists(book.getText())) {
