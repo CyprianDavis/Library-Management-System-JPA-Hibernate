@@ -85,7 +85,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="CHAIN_BROKEN" size="20" />
                            </graphic>
                         </Button>
-                        <Button fx:id="placeHoldBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="20.0" layoutY="396.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Place Hold" textFill="WHITE">
+                        <Button fx:id="placeHoldBtn" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="20.0" layoutY="396.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#placeHold" prefHeight="37.0" prefWidth="137.0" styleClass="toolbar-button" stylesheets="@../../../application/application.css" text="Place Hold" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="13.0" />
                            </font>

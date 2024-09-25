@@ -279,6 +279,25 @@ public class DashBoardController implements Initializable{
 	}
 		
 	}
+	@FXML
+	private void placeHold() {
+		Parent parent;
+		try {
+			parent = FXMLLoader.load(getClass().getResource("/ui/hold/PlaceHold.fxml"));
+			Stage stage = new Stage(StageStyle.DECORATED);
+			 stage.setTitle("Place Hold");
+			IconUntil.setStageIcon(stage);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setResizable(false);
+			stage.setScene(new Scene(parent));
+			stage.show();
+				           
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	}
+		
+	}
 }
 
 
