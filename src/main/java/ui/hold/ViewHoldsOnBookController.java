@@ -28,8 +28,6 @@ public class ViewHoldsOnBookController implements Initializable{
 	@FXML
 	private TableColumn<DisplayHoldsDetails,String>comment;
 	
-	
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
