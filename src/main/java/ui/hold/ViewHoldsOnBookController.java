@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 
-public class ViewHoldsOnBook implements Initializable{
+public class ViewHoldsOnBookController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
