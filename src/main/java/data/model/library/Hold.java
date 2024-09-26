@@ -28,7 +28,9 @@ import database.holdProcesses.HoldProcesses;
 			@NamedQuery(name="Hold.getHolds",query="SELECT h FROM Hold h WHERE h.book=:book AND h.status='On'"),
 			@NamedQuery(name="Hold.bookHasHold",query="SELECT h.book FROM Hold h WHERE h.book=:book AND h.status= 'On'"),
 			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status='Removed' WHERE h.member=:member AND h.book=:book "),
-			@NamedQuery(name="Hold.holdExist",query="SELECT h FROM Hold h WHERE h.member= :member AND h.book= :book")
+			@NamedQuery(name="Hold.holdExist",query="SELECT h FROM Hold h WHERE h.member= :member AND h.book= :book"),
+			@NamedQuery(name="Hold.getHoldDetails",query="SELECT new ui.hold.DisplayHoldsDetails(h.holdId,CONCAT(h.member.surName,' ',h.member.givenName,' ',h.member.otherName),h.book.title,h.date,h.status,h.comment)"
+					+ "FROM Hold")
 		})
 
 
@@ -46,6 +48,7 @@ public class Hold {
 	@Column(name="ReservationDate")
 	private String date; //date in string
 	private String status; //Hold Status
+	private String comment;
 	
 	
 	public Hold(Member member, Book bk,int duration) {
@@ -137,6 +140,12 @@ public class Hold {
         String futureDateString = futureDate.format(formatter);
 		
 		return futureDateString;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 		}

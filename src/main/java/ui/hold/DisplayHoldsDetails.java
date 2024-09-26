@@ -23,7 +23,6 @@ public class DisplayHoldsDetails {
 	 */
 	public DisplayHoldsDetails(String holdId, String member, String book, String reservationDate, String status,
 			String comment) {
-		super();
 		this.holdId = holdId;
 		this.member = member;
 		this.book = book;
