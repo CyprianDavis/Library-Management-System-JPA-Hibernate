@@ -40,12 +40,12 @@
          <children>
             <TableView fx:id="holdsTable" layoutX="21.0" layoutY="9.0" prefHeight="495.0" prefWidth="1136.0" stylesheets="@../../application/application.css">
               <columns>
-                <TableColumn fx:id="bookId" prefWidth="137.0" text="Hold ID" />
-                <TableColumn fx:id="title" prefWidth="284.0" text="Member" />
-                  <TableColumn fx:id="author" prefWidth="325.0" text="Book" />
-                  <TableColumn fx:id="status" prefWidth="150.3333740234375" text="Reservation Date" />
-                  <TableColumn fx:id="status1" prefWidth="102.6666259765625" text="Status" />
-                  <TableColumn fx:id="status11" prefWidth="135.0" text="Comment" />
+                <TableColumn fx:id="holdId" prefWidth="137.0" text="Hold ID" />
+                <TableColumn fx:id="member" prefWidth="284.0" text="Member" />
+                  <TableColumn fx:id="book" prefWidth="325.0" text="Book" />
+                  <TableColumn fx:id="reservationDate" prefWidth="150.3333740234375" text="Reservation Date" />
+                  <TableColumn fx:id="status" prefWidth="102.6666259765625" text="Status" />
+                  <TableColumn fx:id="comment" prefWidth="135.0" text="Comment" />
               </columns>
                <effect>
                   <DropShadow />
