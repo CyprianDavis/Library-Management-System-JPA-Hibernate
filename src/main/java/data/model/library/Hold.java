@@ -30,7 +30,7 @@ import database.holdProcesses.HoldProcesses;
 			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status='Removed' WHERE h.member=:member AND h.book=:book "),
 			@NamedQuery(name="Hold.holdExist",query="SELECT h FROM Hold h WHERE h.member= :member AND h.book= :book"),
 			@NamedQuery(name="Hold.getHoldDetails",query="SELECT new ui.hold.DisplayHoldsDetails(h.holdId,CONCAT(h.member.surName,' ',h.member.givenName,' ',h.member.otherName),h.book.title,h.date,h.status,h.comment)"
-					+ "FROM Hold")
+					+ "FROM Hold WHERE h.status ='Valid'")
 		})
 
 
@@ -77,6 +77,7 @@ public class Hold {
 			String id ="HB00"+auto_id+""+year;
 			this.holdId = id;
 		}
+		this.status = "Valid";
 		
 	}
 	public Hold() {
