@@ -36,6 +36,7 @@ public class ViewHoldsOnBookController implements Initializable{
 		// TODO Auto-generated method stub
 		colsIntialize();
 		loadHoldsTable();// load holds
+		searchHolds(); //text search for holds on Book
 		
 	}
 	/**
@@ -56,8 +57,18 @@ public class ViewHoldsOnBookController implements Initializable{
 	private void loadHoldsTable() {
 		holdsTable.getItems().clear();
 		holdsTable.getItems().addAll(HoldProcesses.getHolds());
+	}
+	private void searchHolds() {
+		searchBk.textProperty().addListener((observable, oldValue, newValue) -> {	
+			holdsTable.getItems().clear();
+			holdsTable.getItems().addAll(HoldProcesses.getHolds(newValue));
+			if(searchBk.getText().isEmpty()) {
+				loadHoldsTable();
+				
+			}
 		
-		
+
+				});		
 	}
 	
 
