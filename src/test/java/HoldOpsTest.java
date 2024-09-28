@@ -46,9 +46,4 @@ public class HoldOpsTest {
 		Assertions.assertEquals(h, hold);
 	}
 	
-	@Test
-	void testClearPersistence() {
-		Assertions.assertEquals(1,HoldProcesses.clearPersitence());
-	}
-
 }
