@@ -12,6 +12,7 @@ import database.library.LibraryOperations;
 import enitiyFactory.EntityFactoryGen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import ui.hold.DisplayHoldsDetails;
 
 /**
  * 
@@ -144,14 +145,9 @@ public class HoldProcesses {
 		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
 		return holds;
 }	
-	public static int clearPersitence() {
-		try {
-			entityManager.clear();
-			return 1;
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
+	public static ObservableList<DisplayHoldsDetails> getHolds(){
+		
+		
 	}
+	
 	}
