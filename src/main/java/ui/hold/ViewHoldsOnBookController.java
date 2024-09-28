@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXTextField;
 
+import database.holdProcesses.HoldProcesses;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -34,6 +35,7 @@ public class ViewHoldsOnBookController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		colsIntialize();
+		loadHoldsTable();// load holds
 		
 	}
 	/**
@@ -46,6 +48,14 @@ public class ViewHoldsOnBookController implements Initializable{
 		reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
 		status.setCellValueFactory(new PropertyValueFactory<>("status"));
 		comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
+		
+	}
+	/**
+	 * Loads holds in the table
+	 */
+	private void loadHoldsTable() {
+		holdsTable.getItems().clear();
+		holdsTable.getItems().addAll(HoldProcesses.getHolds());
 		
 		
 	}
