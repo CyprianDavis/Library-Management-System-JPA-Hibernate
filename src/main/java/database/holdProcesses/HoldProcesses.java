@@ -137,13 +137,16 @@ public class HoldProcesses {
 		return rows>0;
 	}
 	/**
-	 * 
-	 * @param book
+	 * text search for holds on book
+	 * @param search it could book id or title
 	 * @returns the list of holds of the book from the database
 	 */
-	public static ObservableList<Hold> getHolds(Book book){
-		ObservableList<Hold> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
-		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
+	public static ObservableList<DisplayHoldsDetails> getHolds(String search){
+		ObservableList<DisplayHoldsDetails> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
+		// Create the query
+        TypedQuery<DisplayHoldsDetails> query = entityManager.createNamedQuery("Hold.HoldsOnBook", DisplayHoldsDetails.class).setParameter("search", "%"+search+"%");
+        //add result to the list
+        holds.addAll(query.getResultList());
 		return holds;
 }	
 	/**
