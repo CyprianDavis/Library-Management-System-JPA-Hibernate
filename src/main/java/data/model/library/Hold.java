@@ -29,9 +29,9 @@ import database.holdProcesses.HoldProcesses;
 			@NamedQuery(name="Hold.removeHold",query="UPDATE Hold h SET h.status='Removed' WHERE h.member=:member AND h.book=:book "),
 			@NamedQuery(name="Hold.holdExist",query="SELECT h FROM Hold h WHERE h.member= :member AND h.book= :book"),
 			@NamedQuery(name="Hold.getHoldDetails",query="SELECT new ui.hold.DisplayHoldsDetails(h.holdId,CONCAT(h.member.surName,' ',h.member.givenName,' ',h.member.otherName),h.book.title,h.date,h.status,h.comment)"
-					+ "FROM Hold WHERE h.status ='Valid'"),
+					+ "FROM Hold h WHERE h.status ='Valid'"),
 			@NamedQuery(name="Hold.HoldsOnBook",query="SELECT new ui.hold.DisplayHoldsDetails(h.holdId,CONCAT(h.member.surName,' ',h.member.givenName,' ',h.member.otherName),h.book.title,h.date,h.status,h.comment)"
-					+ "FROM Hold WHERE h.book.bookId LIKE :search OR h.book.title :search AND h.status ='Valid'")
+					+ "FROM Hold h WHERE h.book.bookId LIKE :search OR h.book.title LIKE :search AND h.status ='Valid'")
 		})
 
 
