@@ -104,7 +104,7 @@ public class HoldProcesses {
 		try {
 			transaction = entityManager.getTransaction();
 			transaction.begin();
-			hold.setStatus("On");
+			//hold.setStatus("On");
 			entityManager.persist(hold);
 			LibraryOperations.createTransaction("Reserve Book",hold.getBook(), hold.getMember());
 			transaction.commit();
