@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import data.model.book.Book;
 import data.model.library.Hold;
@@ -145,7 +146,17 @@ public class HoldProcesses {
 		holds.addAll(entityManager.createNamedQuery("Hold.getHolds", Hold.class).setParameter("book", book).getResultList());
 		return holds;
 }	
+	/**
+	 * 
+	 * @returns all valid holds on books
+	 */
 	public static ObservableList<DisplayHoldsDetails> getHolds(){
+		ObservableList<DisplayHoldsDetails> holds = FXCollections.observableArrayList(); //List of Holds on a book from the database
+		// Create the query
+        TypedQuery<DisplayHoldsDetails> query = entityManager.createNamedQuery("Hold.getHoldDetails", DisplayHoldsDetails.class);
+        //add result to the list
+        holds.addAll(query.getResultList());
+		return holds;
 		
 		
 	}
